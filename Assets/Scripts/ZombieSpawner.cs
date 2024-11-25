@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject player1Prefab;
+    [SerializeField] private GameObject player2Prefab;
     [SerializeField] private GameObject[] zombiePrefab;
     public static int currentIndex = 0; // Track which prefab to spawn next
     private float spawnTimer = 0f;
     public static float spawnInterval = 3f;
-    // public static List<int> num = new();
 
     // Update is called once per frame
     void Update()
@@ -28,7 +28,12 @@ public class ZombieSpawner : MonoBehaviour
 
                 // Assign a script or movement logic to make the zombie move toward the player
                 ZombieMovement movementScript = newZombie.AddComponent<ZombieMovement>();
-                movementScript.target = playerPrefab.transform;
+                // movementScript.target = playerPrefab.transform;
+                movementScript.players = new Transform[]
+                {
+                    player1Prefab.transform,
+                    player2Prefab.transform
+                };
 
                 // Reset the spawn timer
                 spawnTimer = 0f;
