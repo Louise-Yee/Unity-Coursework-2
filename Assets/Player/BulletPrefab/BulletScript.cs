@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("Hit Zombie!");
             // If you have a health system on the zombie, you can damage it here
-            HealthSystem zombieHealth = collision.GetComponent<HealthSystem>();
+            zombieHealth zombieHealth = collision.GetComponent<zombieHealth>();
             if (zombieHealth != null)
             {
                 zombieHealth.TakeDamage(damage);

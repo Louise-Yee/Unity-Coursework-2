@@ -14,14 +14,14 @@ public class Player2Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Player 2's custom input keys (WASD for example)
+        // Player 2's custom input keys
         moveInput.x =
-            Input.GetKey(KeyCode.J) ? -1
-            : Input.GetKey(KeyCode.L) ? 1
+            Input.GetKey(KeyCode.LeftArrow) ? -1
+            : Input.GetKey(KeyCode.RightArrow) ? 1
             : 0;
         moveInput.y =
-            Input.GetKey(KeyCode.I) ? 1
-            : Input.GetKey(KeyCode.K) ? -1
+            Input.GetKey(KeyCode.UpArrow) ? 1
+            : Input.GetKey(KeyCode.DownArrow) ? -1
             : 0;
 
         moveInput.Normalize();

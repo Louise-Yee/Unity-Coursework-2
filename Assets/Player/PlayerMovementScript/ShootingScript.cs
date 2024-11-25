@@ -10,18 +10,18 @@ public class ShootingScript : MonoBehaviour
     public bool isPlayerOne = true; // Set this in inspector to determine which player this is
 
     [Header("Player 1 Controls")]
-    public KeyCode shootKeyP1 = KeyCode.Space;
-    public KeyCode p1Up = KeyCode.W;
-    public KeyCode p1Down = KeyCode.S;
-    public KeyCode p1Left = KeyCode.A;
-    public KeyCode p1Right = KeyCode.D;
+    private KeyCode shootKeyP1 = KeyCode.V;
+    private KeyCode p1Up = KeyCode.W;
+    private KeyCode p1Down = KeyCode.S;
+    private KeyCode p1Left = KeyCode.A;
+    private KeyCode p1Right = KeyCode.D;
 
     [Header("Player 2 Controls")]
-    public KeyCode shootKeyP2 = KeyCode.RightControl;
-    public KeyCode p2Up = KeyCode.UpArrow;
-    public KeyCode p2Down = KeyCode.DownArrow;
-    public KeyCode p2Left = KeyCode.LeftArrow;
-    public KeyCode p2Right = KeyCode.RightArrow;
+    private KeyCode shootKeyP2 = KeyCode.Slash;
+    private KeyCode p2Up = KeyCode.UpArrow;
+    private KeyCode p2Down = KeyCode.DownArrow;
+    private KeyCode p2Left = KeyCode.LeftArrow;
+    private KeyCode p2Right = KeyCode.RightArrow;
 
     void Update()
     {

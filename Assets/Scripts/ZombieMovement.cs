@@ -4,8 +4,16 @@ public class ZombieMovement : MonoBehaviour
 {
     public Transform[] players; // Array of player transforms to choose from
     public float speed = 1f; // Movement speed
+    public float avoidanceRadius = 0.2f; // Radius for avoiding other zombies
 
     private Transform nearestPlayer;
+    public bool isLeft;
+    private Animator animator; // Reference to the Animator component
+    void Start()
+    {
+        // Get the Animator component attached to this GameObject
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -16,13 +24,23 @@ public class ZombieMovement : MonoBehaviour
 
             if (nearestPlayer != null)
             {
-                // Move the zombie toward the nearest player
-                transform.position = Vector2.MoveTowards(transform.position, nearestPlayer.position, speed * Time.deltaTime);
-
-                // Optional: Rotate the zombie to face the target
+                // Calculate the direction towards the nearest player
                 Vector2 direction = (nearestPlayer.position - transform.position).normalized;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, 0, angle - 90); // Adjust rotation if needed
+
+                // Avoid other zombies
+                Vector2 avoidanceDirection = AvoidOtherZombies();
+
+                // Combine the player direction with avoidance direction
+                Vector2 finalDirection = (direction + avoidanceDirection).normalized;
+
+                // Move the zombie toward the target while avoiding others
+                transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + finalDirection, speed * Time.deltaTime);
+
+                // Check if the zombie is moving left or right based on the x component of the direction
+                isLeft = direction.x < 0;
+                
+                // Set the animator parameter based on isLeft
+                animator.SetBool("isLeft", isLeft);
             }
         }
     }
@@ -46,6 +64,23 @@ public class ZombieMovement : MonoBehaviour
         }
 
         return closest;
+    }
+
+    private Vector2 AvoidOtherZombies()
+    {
+        Vector2 avoidanceDirection = Vector2.zero;
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, avoidanceRadius);
+
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Zombie") && hitCollider.transform != transform)
+            {
+                Vector2 directionAwayFromZombie = (transform.position - hitCollider.transform.position).normalized;
+                avoidanceDirection += directionAwayFromZombie;
+            }
+        }
+
+        return avoidanceDirection.normalized; // Normalize to ensure consistent movement speed
     }
 }
 
