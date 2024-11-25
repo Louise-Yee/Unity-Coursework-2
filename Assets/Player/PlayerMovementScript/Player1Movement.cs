@@ -8,9 +8,19 @@ public class Player1Movement : MonoBehaviour
 
     void Update()
     {
-        // Get movement input
-        moveInput.x = Input.GetAxisRaw("Horizontal");
-        moveInput.y = Input.GetAxisRaw("Vertical");
+        // // Get movement input
+        // moveInput.x = Input.GetAxisRaw("Horizontal");
+        // moveInput.y = Input.GetAxisRaw("Vertical");
+
+        // Player 1's custom input keys
+        moveInput.x =
+            Input.GetKey(KeyCode.A) ? -1
+            : Input.GetKey(KeyCode.D) ? 1
+            : 0;
+        moveInput.y =
+            Input.GetKey(KeyCode.W) ? 1
+            : Input.GetKey(KeyCode.S) ? -1
+            : 0;
         
         // Normalize the movement input
         moveInput.Normalize();
