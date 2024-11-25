@@ -212,7 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d31682e026afd47b0476213b7d955d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2126875929}
+  player1Prefab: {fileID: 2126875929}
+  player2Prefab: {fileID: 521239504}
   zombiePrefab:
   - {fileID: 8523294679111037448, guid: 0412e51ff7ce55f47923e3b90e8f21be, type: 3}
 --- !u!1 &308965217
@@ -305,7 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d31682e026afd47b0476213b7d955d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2126875929}
+  player1Prefab: {fileID: 2126875929}
+  player2Prefab: {fileID: 521239504}
   zombiePrefab:
   - {fileID: 8523294679111037448, guid: 0412e51ff7ce55f47923e3b90e8f21be, type: 3}
 --- !u!1 &387917701
@@ -385,7 +387,7 @@ Transform:
   m_GameObject: {fileID: 387917701}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.28, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 18, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -525,7 +527,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.5
+  orthographic size: 2.8265626
   m_Depth: 3.5
   m_CullingMask:
     serializedVersion: 2
@@ -1035,7 +1037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d31682e026afd47b0476213b7d955d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2126875929}
+  player1Prefab: {fileID: 2126875929}
+  player2Prefab: {fileID: 521239504}
   zombiePrefab:
   - {fileID: 8523294679111037448, guid: 0412e51ff7ce55f47923e3b90e8f21be, type: 3}
 --- !u!1 &2126875929 stripped
