@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TopDownMovement : MonoBehaviour
+public class Player1Movement : MonoBehaviour
 {
     public float moveSpeed;
     public new Rigidbody2D rigidbody2D;
