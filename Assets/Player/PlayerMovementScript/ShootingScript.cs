@@ -23,33 +23,37 @@ public class ShootingScript : MonoBehaviour
     private KeyCode p2Left = KeyCode.LeftArrow;
     private KeyCode p2Right = KeyCode.RightArrow;
 
+    // Store the last set direction for each player
+    private Vector2 currentDirection = Vector2.right; // Default to right
+
     void Update()
     {
+        // Get current direction inputs
+        Vector2 newDirection = GetDirectionInput();
+
+        // If a direction is pressed, update the current direction
+        if (newDirection != Vector2.zero)
+        {
+            currentDirection = newDirection;
+        }
+
         // Check for shooting based on which player this is
         if (isPlayerOne && Input.GetKeyDown(shootKeyP1))
         {
-            Vector2 shootDirection = GetShootingDirection(true);
-            if (shootDirection != Vector2.zero)
-            {
-                Shoot(shootDirection);
-            }
+            Shoot(currentDirection);
         }
         else if (!isPlayerOne && Input.GetKeyDown(shootKeyP2))
         {
-            Vector2 shootDirection = GetShootingDirection(false);
-            if (shootDirection != Vector2.zero)
-            {
-                Shoot(shootDirection);
-            }
+            Shoot(currentDirection);
         }
     }
 
-    Vector2 GetShootingDirection(bool isFirstPlayer)
+    Vector2 GetDirectionInput()
     {
         float horizontalInput = 0f;
         float verticalInput = 0f;
 
-        if (isFirstPlayer)
+        if (isPlayerOne)
         {
             // Player 1 direction input (WASD)
             if (Input.GetKey(p1Up))
@@ -74,12 +78,6 @@ public class ShootingScript : MonoBehaviour
                 horizontalInput = -1f;
         }
 
-        // If no direction is pressed, return zero vector
-        if (horizontalInput == 0 && verticalInput == 0)
-        {
-            return Vector2.zero;
-        }
-
         // Create and normalize the direction vector
         Vector2 direction = new Vector2(horizontalInput, verticalInput);
         return direction.normalized;
@@ -87,6 +85,10 @@ public class ShootingScript : MonoBehaviour
 
     void Shoot(Vector2 direction)
     {
+        // If no direction is set, don't shoot
+        if (direction == Vector2.zero)
+            return;
+
         // Instantiate the bullet at the fire point's position
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
