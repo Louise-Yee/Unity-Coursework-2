@@ -458,7 +458,7 @@ Transform:
   m_GameObject: {fileID: 443808821}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.538, y: 0, z: -11}
+  m_LocalPosition: {x: 0.22599995, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -583,7 +583,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.538, y: 0, z: -11}
+  m_LocalPosition: {x: 0.22599995, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -735,7 +735,7 @@ MonoBehaviour:
   - target: {fileID: 1761049742}
     weight: 1
     radius: 1
-  - target: {fileID: 521239505}
+  - target: {fileID: 1727250748}
     weight: 1
     radius: 1
 --- !u!4 &762311633
@@ -747,7 +747,7 @@ Transform:
   m_GameObject: {fileID: 762311631}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.538, y: 0, z: 0}
+  m_LocalPosition: {x: -0.0762152, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1105,6 +1105,7 @@ MonoBehaviour:
   pushForce: 2
   revivalTime: 5
   reviveHealth: 5
+  isPlayerOne: 0
 --- !u!95 &1727250742
 Animator:
   serializedVersion: 5
@@ -1412,7 +1413,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.46875, y: 0.84375}
+    oldSize: {x: 0.53125, y: 0.65625}
     newSize: {x: 0.46875, y: 0.84375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1526,6 +1527,7 @@ MonoBehaviour:
   pushForce: 2
   revivalTime: 5
   reviveHealth: 5
+  isPlayerOne: 1
 --- !u!1 &2126875929 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8865964009047985440, guid: 9930ac66f00cad746ba19de2399319bf, type: 3}
