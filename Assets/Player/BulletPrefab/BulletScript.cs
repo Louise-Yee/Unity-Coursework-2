@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Zombie"))
         {
-            Debug.Log("Hit Zombie!");
+            // Debug.Log("Hit Zombie!");
             // If you have a health system on the zombie, you can damage it here
             zombieHealth zombieHealth = collision.GetComponent<zombieHealth>();
             if (zombieHealth != null)
@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
         }
         else if (!collision.CompareTag("Player")) // Don't destroy on player collision
         {
-            Debug.Log($"Hit non-zombie object: {collision.gameObject.name}");
+            // Debug.Log($"Hit non-zombie object: {collision.gameObject.name}");
             Destroy(gameObject);
         }
     }

@@ -46,11 +46,11 @@ public class Player2Movement : MonoBehaviour
         // Set the speed parameter to determine idle or walking
         animator.SetFloat("Speed", movement.magnitude);
 
-        if (movement != Vector2.zero)
+        if (movement != Vector2.zero && !animator.GetBool("isDown"))
         {
             animator.Play("player_walk");
         }
-        else
+        else if (movement == Vector2.zero && !animator.GetBool("isDown"))
         {
             animator.Play("player_idle");
         }

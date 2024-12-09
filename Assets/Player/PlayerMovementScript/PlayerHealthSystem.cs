@@ -5,10 +5,7 @@ public class PlayerHealthSystem : MonoBehaviour
 {
     public int maxHealth = 10; // Maximum health
     private int currentHealth; // Current health
-
     public float pushForce = 2f; // Force to push the zombie away
-    float pushDuration = 0.2f; // Duration of the push in seconds
-
     public float revivalTime = 5f; // Time required to revive the player
     public int reviveHealth = 5; // Health restored upon revival
 
@@ -22,7 +19,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void Start()
     {
-        Animator animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         if (isPlayerOne)
         {
             player1Movement = GetComponent<Player1Movement>();
@@ -47,37 +44,12 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Zombie") && !isDowned)
+        if (other.CompareTag("Zombie") && !isDowned && !other.GetComponent<Animator>().GetBool("isDead"))
         {
             // Reduce health
             currentHealth--;
-            Debug.Log($"Player hit by Zombie! Health: {currentHealth}");
-
-            // Calculate the direction to push the zombie away
-            Vector2 pushDirection = (other.transform.position - transform.position).normalized;
-
-            // Apply force to the zombie for a limited duration
-            Rigidbody2D zombieRigidbody = other.GetComponent<Rigidbody2D>();
-            if (zombieRigidbody != null)
-            {
-                StartCoroutine(ApplyPushForce(zombieRigidbody, pushDirection));
-                Debug.Log("Zombie pushed away!");
-            }
+            // Debug.Log($"Player hit by Zombie! Health: {currentHealth}");
         }
-    }
-
-    private IEnumerator ApplyPushForce(Rigidbody2D zombieRigidbody, Vector2 direction)
-    {
-        Vector2 originalVelocity = zombieRigidbody.velocity;
-
-        // Apply the push force
-        zombieRigidbody.velocity = direction * pushForce;
-
-        // Wait for the push duration
-        yield return new WaitForSeconds(pushDuration);
-
-        // Reset the zombie's velocity
-        zombieRigidbody.velocity = originalVelocity;
     }
 
     private void EnterDownedState()
@@ -136,6 +108,6 @@ public class PlayerHealthSystem : MonoBehaviour
         }
         animator.SetBool("isDown", false);
 
-        Debug.Log($"Player revived with {currentHealth} health!");
+        // Debug.Log($"Player revived with {currentHealth} health!");
     }
 }

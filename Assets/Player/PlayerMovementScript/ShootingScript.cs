@@ -26,6 +26,15 @@ public class ShootingScript : MonoBehaviour
     // Store the last set direction for each player
     private Vector2 currentDirection = Vector2.right; // Default to right
 
+    // Reference to the Animator component
+    private Animator animator;
+
+    void Start()
+    {
+        // Get the Animator component attached to the GameObject
+        animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         // Get current direction inputs
@@ -38,11 +47,11 @@ public class ShootingScript : MonoBehaviour
         }
 
         // Check for shooting based on which player this is
-        if (isPlayerOne && Input.GetKeyDown(shootKeyP1))
+        if (isPlayerOne && Input.GetKeyDown(shootKeyP1) && !animator.GetComponent<Animator>().GetBool("isDown"))
         {
             Shoot(currentDirection);
         }
-        else if (!isPlayerOne && Input.GetKeyDown(shootKeyP2))
+        else if (!isPlayerOne && Input.GetKeyDown(shootKeyP2) && !animator.GetComponent<Animator>().GetBool("isDown"))
         {
             Shoot(currentDirection);
         }
@@ -105,10 +114,10 @@ public class ShootingScript : MonoBehaviour
 
         // Rotate bullet sprite to face the shooting direction
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        bullet.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        Debug.Log(
-            $"Player {(isPlayerOne ? "1" : "2")} shooting bullet with direction: {direction}"
-        );
+        // Debug.Log(
+        //     $"Player {(isPlayerOne ? "1" : "2")} shooting bullet with direction: {direction}"
+        // );
     }
 }

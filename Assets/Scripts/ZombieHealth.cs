@@ -16,9 +16,8 @@ public class zombieHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        Debug.Log($"{gameObject.name} took {damage} damage. Health: {currentHealth}/{maxHealth}");
-
-        if (currentHealth <= 0)
+        // Debug.Log($"{gameObject.name} took {damage} damage. Health: {currentHealth}/{maxHealth}");
+        if (currentHealth == 0)
         {
             Die();
         }
@@ -26,8 +25,9 @@ public class zombieHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log($"{gameObject.name} has died!");
+        // Debug.Log($"{gameObject.name} has died!");
         animator.SetBool("isDead", true);
         Destroy(gameObject,1f);
+        GameManager.zombiesKilled++;
     }
 }
