@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ZombieMovement : MonoBehaviour
@@ -9,6 +10,7 @@ public class ZombieMovement : MonoBehaviour
     private Transform nearestPlayer;
     public bool isLeft;
     private Animator animator; // Reference to the Animator component
+    private bool isPushedAway = false; // Track if the zombie is currently pushed away
     void Start()
     {
         // Get the Animator component attached to this GameObject
@@ -17,7 +19,7 @@ public class ZombieMovement : MonoBehaviour
 
     void Update()
     {
-        if (players != null && players.Length > 0)
+        if (players != null && players.Length > 0 && !isPushedAway && !animator.GetBool("isDead"))
         {
             // Find the nearest player
             nearestPlayer = FindNearestPlayer();
@@ -81,6 +83,35 @@ public class ZombieMovement : MonoBehaviour
         }
 
         return avoidanceDirection.normalized; // Normalize to ensure consistent movement speed
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(PushAwayFromPlayer(other.transform));
+        }
+    }
+
+    private IEnumerator PushAwayFromPlayer(Transform player)
+    {
+        isPushedAway = true;
+
+        // Calculate push direction away from player
+        Vector2 pushDirection = (transform.position - player.position).normalized;
+
+        // Apply push force for 0.4 seconds
+        float pushDuration = 0.4f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < pushDuration)
+        {
+            transform.position += (Vector3)pushDirection * speed * Time.deltaTime;
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
+
+        isPushedAway = false; // Allow chasing again after pushing away
     }
 }
 

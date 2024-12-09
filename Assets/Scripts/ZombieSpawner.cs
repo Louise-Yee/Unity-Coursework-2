@@ -8,12 +8,14 @@ public class ZombieSpawner : MonoBehaviour
     public static int currentIndex = 0; // Track which prefab to spawn next
     private float spawnTimer = 0f;
     public static float spawnInterval = 3f;
+    public static int spawnCount = 51; // The number of zombies that should spawn
+    public static int temp = 0;
 
     // Update is called once per frame
     void Update()
     {
         // make sure we have prefabs to spawn
-        if (zombiePrefab.Length > 0)
+        if (zombiePrefab.Length > 0 && temp < spawnCount)
         {
             // Update the spawn timer
             spawnTimer += Time.deltaTime;
@@ -37,6 +39,8 @@ public class ZombieSpawner : MonoBehaviour
 
                 // Reset the spawn timer
                 spawnTimer = 0f;
+                //tracks the number of zombies spawning
+                temp+=1;
             }
         }
     }
