@@ -95,13 +95,19 @@ public class ZombieMovement : MonoBehaviour
 
     private IEnumerator PushAwayFromPlayer(Transform player)
     {
+        if (animator.GetBool("isLeft")){
+            animator.SetBool("touchedLeft", true);
+        }
+        else{
+            animator.SetBool("touchedRight", true);
+        }
         isPushedAway = true;
 
         // Calculate push direction away from player
         Vector2 pushDirection = (transform.position - player.position).normalized;
 
-        // Apply push force for 0.4 seconds
-        float pushDuration = 0.4f;
+        // Apply push force for 0.1 seconds
+        float pushDuration = 0.1f;
         float elapsedTime = 0f;
 
         while (elapsedTime < pushDuration)
@@ -109,6 +115,19 @@ public class ZombieMovement : MonoBehaviour
             transform.position += (Vector3)pushDirection * speed * Time.deltaTime;
             elapsedTime += Time.deltaTime;
             yield return null; // Wait for the next frame
+        }
+
+        // Wait for 1 second to allow the animation to play
+        yield return new WaitForSeconds(1f);
+
+        // Reset animation state
+        if (animator.GetBool("isLeft"))
+        {
+            animator.SetBool("touchedLeft", false);
+        }
+        else
+        {
+            animator.SetBool("touchedRight", false);
         }
 
         isPushedAway = false; // Allow chasing again after pushing away
