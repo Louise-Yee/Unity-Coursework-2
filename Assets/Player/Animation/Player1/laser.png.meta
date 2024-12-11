@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 18651a6c992b8174ba570f5f8afa8016
+guid: a7e8219b9b7e59441923508386bb5ba1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,36 +95,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: trashcan32x32_0
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 5
-        width: 12
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -5, y: -5.5}
-        - {x: -5, y: 3.5}
-        - {x: -6, y: 3.5}
-        - {x: -6, y: 9.5}
-        - {x: 6, y: 9.5}
-        - {x: 6, y: 3.5}
-        - {x: 5, y: 3.5}
-        - {x: 5, y: -5.5}
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd752929072de6d43b79d45fcc8e0120
-      internalID: -270781400
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -135,8 +106,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      trashcan32x32_0: -270781400
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
