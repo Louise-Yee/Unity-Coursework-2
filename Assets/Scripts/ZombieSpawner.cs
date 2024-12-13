@@ -8,14 +8,17 @@ public class ZombieSpawner : MonoBehaviour
     public static int currentIndex = 0; // Track which prefab to spawn next
     private float spawnTimer = 0f;
     public static float spawnInterval = 3f;
-    public static int spawnCount = 51; // The number of zombies that should spawn
-    public static int temp = 0;
+    public static int spawnCount = 60; // The number of zombies that should spawn
+    public static int powerCount = 6; // The number of zombies that contains power
+    public static int temp1 = 0;
+    public static int temp2 = 0;
+    private System.Random random = new System.Random(); // Random number generator
 
     // Update is called once per frame
     void Update()
     {
         // make sure we have prefabs to spawn
-        if (zombiePrefab.Length > 0 && temp < spawnCount)
+        if (zombiePrefab.Length > 0 && temp1 < spawnCount)
         {
             // Update the spawn timer
             spawnTimer += Time.deltaTime;
@@ -25,8 +28,16 @@ public class ZombieSpawner : MonoBehaviour
                 // Spawn the current prefab
                 GameObject newZombie = Instantiate(zombiePrefab[currentIndex]);
                 newZombie.name = zombiePrefab[currentIndex].name;
-
-                newZombie.transform.position = new Vector2(transform.position.x, transform.position.y);
+                if (transform.name.Contains("North") || transform.name.Contains("South")){
+                    // Change x value by a random number between -2 and 2
+                    float randomXChange = Random.Range(-2f, 2f);
+                    newZombie.transform.position = new Vector2(transform.position.x + randomXChange, transform.position.y);
+                }
+                else{
+                    // Change x value by a random number between -2 and 2
+                    float randomYChange = Random.Range(-2f, 2f);
+                    newZombie.transform.position = new Vector2(transform.position.x, transform.position.y + randomYChange);  
+                }
 
                 // Assign a script or movement logic to make the zombie move toward the player
                 ZombieMovement movementScript = newZombie.AddComponent<ZombieMovement>();
@@ -37,10 +48,22 @@ public class ZombieSpawner : MonoBehaviour
                     player2Prefab.transform
                 };
 
+                // Randomly paint some zombies red
+                if (random.Next(0, 7) == 1 && temp2 < powerCount)
+                {
+                    SpriteRenderer spriteRenderer = newZombie.GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null)
+                    {
+                        spriteRenderer.color = Color.red; // Paint the zombie red
+                    }
+                    newZombie.name = "PoweredZombie";
+                    temp2+=1;
+                }
+
                 // Reset the spawn timer
                 spawnTimer = 0f;
                 //tracks the number of zombies spawning
-                temp+=1;
+                temp1+=1;
             }
         }
     }
