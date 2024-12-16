@@ -8,6 +8,7 @@ public class Player2Movement : MonoBehaviour
 
     // Reference to the Animator component
     private Animator animator;
+    public Vector2 lastMoveDirection { get; private set; }
 
     void Start()
     {
@@ -33,6 +34,11 @@ public class Player2Movement : MonoBehaviour
         // Update the Rigidbody velocity for movement
         rigidbody2D.velocity = moveInput * moveSpeed;
 
+        // Update lastMoveDirection if the player is moving
+        if (moveInput != Vector2.zero)
+        {
+            lastMoveDirection = moveInput;
+        }
         // Update animation parameters
         UpdateAnimatorParameters(moveInput);
     }
