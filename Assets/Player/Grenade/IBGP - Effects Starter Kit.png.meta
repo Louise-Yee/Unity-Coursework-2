@@ -1,0 +1,3348 @@
+fileFormatVersion: 2
+guid: 09ea2b79cdaf0ee4c9142d2f8add0210
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_0
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 535
+        width: 50
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 885edc8cc69f66a438f9fa3e74c02c89
+      internalID: -780173812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 564
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c856e22c19504a747bb07fa817c07455
+      internalID: 1997091063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 532
+        width: 62
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd74d641ee34e8f449459ce1844ede70
+      internalID: 1477625790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_3
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 562
+        width: 55
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6800d1a55f25750419a1896c091c7188
+      internalID: -2134235514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_4
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 568
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1a2b644aa5ef184aab9397a5dc4f882
+      internalID: 1897212255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_5
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 535
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a80f216a0bac24aadf66b94c9a8e51
+      internalID: -1256568559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_6
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 543
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c620d6cc53edc74fbb3de9db4486b1e
+      internalID: -2033046113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_7
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 563
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c38878e2a04888f4e8c44ace9fe1ce89
+      internalID: 1663984953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_8
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 572
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e3ed3827557264ebc821f81dc15d8c
+      internalID: -198479863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_9
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 534
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b767b80de1c01f4bb8eb65a3dac7df0
+      internalID: 127549065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_10
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 543
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc54fba26a3ea934086ab5dd100be2bb
+      internalID: 8536016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_11
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 565
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e51051197c505084e950594b4fd2179a
+      internalID: -520350845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_12
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 537
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a7aeedec41e074bab22240f4c30abd
+      internalID: 469319383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_13
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 576
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5bc78946802ced4290cfdd6eb973700
+      internalID: 891468832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_14
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 567
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76733363a48c5c14db1efec2020670a6
+      internalID: 529798688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_15
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 547
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b6172c20df0ffe42bc07371a3a233ce
+      internalID: 1394558493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_16
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 574
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc0a6fa14a6e51f42b8f9f8581c64ea0
+      internalID: -1596637651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_17
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 566
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b79598d52308dc45a12860107ae9192
+      internalID: -661641497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_18
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 543
+        width: 4
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dce6110b7fd20640a29673c32e73b0a
+      internalID: 1649666415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_19
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 542
+        width: 70
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89fa062be6104654996f2f0a84297c9e
+      internalID: 373806163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_20
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 531
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf6ac66a3d1fee4aae5db68d6f4e817
+      internalID: -826843208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_21
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 534
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c1fff2eb7ee4b419f09fd79b8e82cd
+      internalID: 1970115532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_22
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 536
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c879d75aa7481b844aa1986da77cb9a5
+      internalID: -1289761416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_23
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 489
+        width: 56
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 350ed8e827560f0489a0b4c956714800
+      internalID: 525740448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_24
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 489
+        width: 72
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aca373b14449254a9b74361e37581eb
+      internalID: -128795343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_25
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 509
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b616f16e3ce48a846877a81122ee01e3
+      internalID: 463246672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_26
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 506
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c9871b8aa3076546aeea83b20ad7bf2
+      internalID: -1489687629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_27
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 509
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85e2e8b111ea87d48a6e944a32ca1638
+      internalID: 1969506810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_28
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 512
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77717f1350fe87a418056f5eb1654750
+      internalID: 1811674576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_29
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 508
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 570484b38500e6d41b248feafce08340
+      internalID: 1709838107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_30
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 493
+        width: 35
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0dae7c25bca21246a443e6e26ffca1b
+      internalID: -1883097109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_31
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 494
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e045cb0b3a4a0a6488116a2bc710a6a7
+      internalID: 1783852985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_32
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 497
+        width: 24
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea7bb4c77139164897228d4c067499c
+      internalID: 1469017858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_33
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 495
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6ff4790e2abb70488ef90a3412b1930
+      internalID: -1675214204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_34
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 453
+        width: 44
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5b00a7d6ca47fd47b53ff46cd735d99
+      internalID: -1963521139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_35
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 456
+        width: 53
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347477ab00ca8c3418ab8a7f00a8fcb6
+      internalID: 643622002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_36
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 463
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b4f557f13b76c44c865739914def5f1
+      internalID: -332780997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_37
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 466
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66f1e709caab7244f9cb385cb75f82c0
+      internalID: -521343302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_38
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 461
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a31b2c2e7d290d2479236ca94523c052
+      internalID: -1887231446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_39
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 464
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96945a658bb3f0348b971808ae72dea7
+      internalID: -995550825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_40
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 464
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b02594a0a5b89a64d8ac7b7eba6efec3
+      internalID: -1026059001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_41
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 467
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee2da850119801944826a91dc4eee32e
+      internalID: 1573216031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_42
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 463
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 862900a57f829a7448fbb5b62df4030c
+      internalID: 1145955353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_43
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 456
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d4678405b53694aa340cccfc44edd3
+      internalID: -2025921299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_44
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 457
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24fd13c779f25354595ce97b57f0118e
+      internalID: -888288967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_45
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 404
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842f4b41e8f7cc648a8e27bd9d2ac7b6
+      internalID: -1643631017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_46
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 408
+        width: 62
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05089675c5949c04b902633b72ac7c6b
+      internalID: 12416572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_47
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 420
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 896af94f0f68a664bbafbd24ad670b31
+      internalID: -1383398483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_48
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 418
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4077153b73f57c459eeaeb66a589756
+      internalID: 1651677531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_49
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 407
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae6afb7c08462948b0b0a8ca319228b
+      internalID: 1303107470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_50
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 419
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f25fb4991233be4ebaedd684ab13ad1
+      internalID: 1037817178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_51
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 415
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e1d4e5a9754c7f4d86d6bf929439d5e
+      internalID: -653402718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_52
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 410
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c673eb1dc955148b15eda7cf792de8
+      internalID: -2115380340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_53
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 410
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 296d01c7d6eac9e4dbc5c7880e1d7402
+      internalID: -2120041522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_54
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 409
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f5088b2cbc041144ba88be0a0b220e2
+      internalID: 1017624313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_55
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 372
+        width: 46
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27146d6447cf3b2489fd319a82a77ded
+      internalID: 1938236942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_56
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 370
+        width: 73
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8448d727fb18844419c7ca80bb1c199a
+      internalID: 652035913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_57
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 386
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a706800575292214b98933f894ad50ee
+      internalID: -1477005637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_58
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 378
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18b294497b460f74298d66b1e6feed05
+      internalID: -209374962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_59
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 387
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c1dc7b2d8684ef46871ed6e753cfd24
+      internalID: 437288687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_60
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 385
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07b7a163bb0f2b3469226c95beb11f33
+      internalID: 523361198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_61
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 376
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b7b9c37e5699f94898fba7b8feafd86
+      internalID: 929338503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_62
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 376
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0661e9018ec8cd41a2066214218770d
+      internalID: 570935311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_63
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 372
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c731467ec812714e908e682cc7c6c7f
+      internalID: -1481557238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_64
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 376
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8023d1360bfa2004688a2466f034e25c
+      internalID: -909909655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_65
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 374
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebc3d905e94d984a9491ccc95a21a3e
+      internalID: -1136744991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_66
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 378
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fd0c486d1e521a4e92486847c8680da
+      internalID: -1691568067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_67
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 322
+        width: 43
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7ace282ce816ff4096b939894b3827b
+      internalID: -669552668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_68
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 311
+        width: 49
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a913b85ff69a44486dad66d61357ab
+      internalID: 661680090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_69
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 303
+        width: 73
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940accb5bdd4a3d40a018cf28e8a6987
+      internalID: -885429290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_70
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 279
+        width: 48
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 551141e37eecbcb4d964cf4a39bfa239
+      internalID: 1672225492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_71
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 308
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1e13cde69913b6458d13f6d69f91bd1
+      internalID: 2011165794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_72
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 273
+        width: 44
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9067b3b9b1b0eb14ba9f47deb2b890a1
+      internalID: -750483918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_73
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 277
+        width: 30
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48c5d76b5f785b145a26ca7cc9b98f4e
+      internalID: 102353364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_74
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 277
+        width: 38
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d5661290c0077543938c928c69f42d2
+      internalID: -863751605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_75
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 157
+        width: 136
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 866d75e888d61a44291eda2becd19d20
+      internalID: 692901092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_76
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 227
+        width: 35
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87679ff470168b04f98adb00a1da9a68
+      internalID: 1327202054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_77
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 222
+        width: 14
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cecdde7072846424a9c81aaeaa91a435
+      internalID: 1786759787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_78
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 213
+        width: 35
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4de1e3db36b7b07409f08a47adc87607
+      internalID: 1707654453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_79
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 254
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c944888f1ddf9094681b24d29cad3450
+      internalID: 377221594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_80
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 237
+        width: 13
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898ba8d5045ced9449d700adfe2f88ff
+      internalID: 311614323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_81
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 91
+        width: 325
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99942c0777606dc4f9e256c1f3a883d0
+      internalID: 822274478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_82
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 155
+        width: 79
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e5dffddaf83695449f0e39374dd9f8f
+      internalID: -935777208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_83
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 154
+        width: 96
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a294727f311254598532edc65bdd63
+      internalID: 100145096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_84
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 171
+        width: 67
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e375936b48d11d7499d59c02af996404
+      internalID: -1214011075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_85
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 208
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 953a02c1b02fa5946ad605196bbe10a1
+      internalID: 682393190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_86
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 219
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 581cd09d1c7c8a544ad9667ee9978045
+      internalID: 1641816906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_87
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 204
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11fe7e2cdc37aff4b9e277c9841c74b1
+      internalID: -768853881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_88
+      rect:
+        serializedVersion: 2
+        x: 1197
+        y: 215
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d633156aa052654887564ea8642db20
+      internalID: 961875689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_89
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 171
+        width: 29
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d6eef5dd867bd547ba30e14c6ceb584
+      internalID: 418028969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_90
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 208
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6608b4e79c2ffd498168fd904ea42b1
+      internalID: 1418879107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_91
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 209
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4665761d3a94dc4cbcabba64c29002e
+      internalID: 823315655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_92
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 206
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58257939d92d25d4db45662f22b855bc
+      internalID: 1385606399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_93
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 194
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 585719c552e61504b98454e41330422f
+      internalID: 1468239602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_94
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 192
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25b6378b7718d924ba47d4e7c0699adc
+      internalID: -1554158746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_95
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 198
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d6243164b2b57448c881fb5411d987
+      internalID: 554019833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_96
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 199
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc704d5e532fcb4bb1d2811a213417e
+      internalID: 1516855044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_97
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 189
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42e39cd1866a40041af0503b9b4b1dc4
+      internalID: -1735984528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_98
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 160
+        width: 95
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87f9bb8594cab764882ff7b2b62a5ad0
+      internalID: 238385914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_99
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 190
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c19c047ccc0000e4e8589dcb57180f3a
+      internalID: -1064482909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_100
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 186
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4727245d701c85c4f9dc6634f32027c6
+      internalID: -12641657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_101
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 191
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34f6e6b6c2135c247b65539e3771d77b
+      internalID: 210160235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_102
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 167
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5937281b349dd7d478606d0a291e6aa4
+      internalID: 1082292699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_103
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 12
+        width: 127
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb840b3323ad7f540b3d8b968bd6c7a0
+      internalID: 1109469373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_104
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 114
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc6dec2b2adc7274cb8f525484f4af82
+      internalID: -742818311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_105
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 116
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60c1326091ca12048bff0bf23feb0e82
+      internalID: 187849284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_106
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 116
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b589ea4299249a4429d4124c4a4cecfe
+      internalID: 801836296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_107
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 99
+        width: 53
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6871bac7db539948938fd2f08efe93f
+      internalID: 463101771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_108
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 64
+        width: 40
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 943b47add04351e428d3b5a3605576d0
+      internalID: -137000044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_109
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 89
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 333536319ffe5fb4eb18c21ea862c45c
+      internalID: -530695934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_110
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 114
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a9e937ee86b6154590d10ed4bad050b
+      internalID: -521539296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_111
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 112
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30e4c45de6da3cf48bffc6b56dd7e2a3
+      internalID: -368594689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_112
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 58
+        width: 60
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 452bb2f04bb556a4cbe01ee4b7eeee74
+      internalID: 647174247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_113
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 106
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59098369f89372d42b7f08f82bde1162
+      internalID: -1422578026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_114
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 105
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fe5a4b11cac2e544913ac6e4e23ea28
+      internalID: 1126330596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_115
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 66
+        width: 38
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0086370811c3d38408fe5e672d39353c
+      internalID: -311746453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_116
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 98
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff3050c28d5a86f4dad0a17bfdb26e87
+      internalID: 427492677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_117
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 104
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9f2da97c2ef50c4c8a68a0184d0176b
+      internalID: -1145831638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_118
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 92
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7edc1ccf515e3f549bbb9a2fae5df9ce
+      internalID: 1369983305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_119
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 101
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d6dffa0bd9d76e4f85e765b6c772d65
+      internalID: 1228646801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_120
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 101
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d742d2445be587044812fc50c6bf59e5
+      internalID: 1727959284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_121
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 93
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7baf10394ae16c349a2c5ad00c5e848f
+      internalID: -1315445054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_122
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 100
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa4d1117f66ae184a8a5a05fd78ca686
+      internalID: -2080453126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_123
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 91
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f02ceebebd114e4459dc312415c38690
+      internalID: -146985064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_124
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 94
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87b8b801d0e8af3488b80d8f42b66355
+      internalID: 1947598305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_125
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 91
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f40c24e4951cb674db6fed4b990171f3
+      internalID: 1992088314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_126
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 95
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f71c1a6e744b054f925e3abee9bf697
+      internalID: -1136268938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_127
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 76
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a3cdfcc0306d04fa033c48382e1c45
+      internalID: 1449990974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_128
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 74
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e00c431eb82cf154b823cdebbf753c67
+      internalID: -125383407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_129
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 82
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6841f18f19aa8f84d842b9f97567ae8a
+      internalID: 573026833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_130
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 81
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5c9c9e36d05f4e4caeaf58a2ff1a044
+      internalID: -603451638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_131
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 68
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d69997501cb8254bbca467246ae7e9b
+      internalID: 1968245262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_132
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 69
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42b2a96dce6bbe14eb8494ab638360a6
+      internalID: -1867265000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_133
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 64
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fe97e76fe668a74195543523d290440
+      internalID: 1762659300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_134
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 56
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdb99d666303e774ea8d66b032b9e589
+      internalID: 225386991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_135
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 64
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aafa4af0a07f96a48b0f106ca048470f
+      internalID: -617449606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_136
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 57
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae5c204d772e2bb4ca8698ec04c89a0a
+      internalID: -2007448231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_137
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 55
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38f4c722312a244418885ca4fa8c1291
+      internalID: -1045174834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_138
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 21
+        width: 67
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc4216afac7d1d241a7d362e319fd958
+      internalID: 662194931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_139
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 7
+        width: 44
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9065c6ab67de0d64586fe6bcc204d0ba
+      internalID: -505848298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_140
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 32
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dababe2efb721440ae23c135c180e0b
+      internalID: 1429889954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_141
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 7
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 241747a639ef2224995e103b1ff4159e
+      internalID: 1165695693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_142
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 8
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbc12755bcb612a46a9c2cebd113246e
+      internalID: 1027374855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_143
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 19
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 494b8caa878249c4794b134bcd6c7d12
+      internalID: -518541629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_144
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 9
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7145e10c2a2573148b8be2b37b411caf
+      internalID: 280908254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_145
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 8
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81ee52b9bf80f4142b008ded4e18aeba
+      internalID: -534525259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBGP - Effects Starter Kit_146
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 8
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba1de4a22dd09f45b6378d40757e7de
+      internalID: 653727229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      IBGP - Effects Starter Kit_0: -780173812
+      IBGP - Effects Starter Kit_1: 1997091063
+      IBGP - Effects Starter Kit_10: 8536016
+      IBGP - Effects Starter Kit_100: -12641657
+      IBGP - Effects Starter Kit_101: 210160235
+      IBGP - Effects Starter Kit_102: 1082292699
+      IBGP - Effects Starter Kit_103: 1109469373
+      IBGP - Effects Starter Kit_104: -742818311
+      IBGP - Effects Starter Kit_105: 187849284
+      IBGP - Effects Starter Kit_106: 801836296
+      IBGP - Effects Starter Kit_107: 463101771
+      IBGP - Effects Starter Kit_108: -137000044
+      IBGP - Effects Starter Kit_109: -530695934
+      IBGP - Effects Starter Kit_11: -520350845
+      IBGP - Effects Starter Kit_110: -521539296
+      IBGP - Effects Starter Kit_111: -368594689
+      IBGP - Effects Starter Kit_112: 647174247
+      IBGP - Effects Starter Kit_113: -1422578026
+      IBGP - Effects Starter Kit_114: 1126330596
+      IBGP - Effects Starter Kit_115: -311746453
+      IBGP - Effects Starter Kit_116: 427492677
+      IBGP - Effects Starter Kit_117: -1145831638
+      IBGP - Effects Starter Kit_118: 1369983305
+      IBGP - Effects Starter Kit_119: 1228646801
+      IBGP - Effects Starter Kit_12: 469319383
+      IBGP - Effects Starter Kit_120: 1727959284
+      IBGP - Effects Starter Kit_121: -1315445054
+      IBGP - Effects Starter Kit_122: -2080453126
+      IBGP - Effects Starter Kit_123: -146985064
+      IBGP - Effects Starter Kit_124: 1947598305
+      IBGP - Effects Starter Kit_125: 1992088314
+      IBGP - Effects Starter Kit_126: -1136268938
+      IBGP - Effects Starter Kit_127: 1449990974
+      IBGP - Effects Starter Kit_128: -125383407
+      IBGP - Effects Starter Kit_129: 573026833
+      IBGP - Effects Starter Kit_13: 891468832
+      IBGP - Effects Starter Kit_130: -603451638
+      IBGP - Effects Starter Kit_131: 1968245262
+      IBGP - Effects Starter Kit_132: -1867265000
+      IBGP - Effects Starter Kit_133: 1762659300
+      IBGP - Effects Starter Kit_134: 225386991
+      IBGP - Effects Starter Kit_135: -617449606
+      IBGP - Effects Starter Kit_136: -2007448231
+      IBGP - Effects Starter Kit_137: -1045174834
+      IBGP - Effects Starter Kit_138: 662194931
+      IBGP - Effects Starter Kit_139: -505848298
+      IBGP - Effects Starter Kit_14: 529798688
+      IBGP - Effects Starter Kit_140: 1429889954
+      IBGP - Effects Starter Kit_141: 1165695693
+      IBGP - Effects Starter Kit_142: 1027374855
+      IBGP - Effects Starter Kit_143: -518541629
+      IBGP - Effects Starter Kit_144: 280908254
+      IBGP - Effects Starter Kit_145: -534525259
+      IBGP - Effects Starter Kit_146: 653727229
+      IBGP - Effects Starter Kit_15: 1394558493
+      IBGP - Effects Starter Kit_16: -1596637651
+      IBGP - Effects Starter Kit_17: -661641497
+      IBGP - Effects Starter Kit_18: 1649666415
+      IBGP - Effects Starter Kit_19: 373806163
+      IBGP - Effects Starter Kit_2: 1477625790
+      IBGP - Effects Starter Kit_20: -826843208
+      IBGP - Effects Starter Kit_21: 1970115532
+      IBGP - Effects Starter Kit_22: -1289761416
+      IBGP - Effects Starter Kit_23: 525740448
+      IBGP - Effects Starter Kit_24: -128795343
+      IBGP - Effects Starter Kit_25: 463246672
+      IBGP - Effects Starter Kit_26: -1489687629
+      IBGP - Effects Starter Kit_27: 1969506810
+      IBGP - Effects Starter Kit_28: 1811674576
+      IBGP - Effects Starter Kit_29: 1709838107
+      IBGP - Effects Starter Kit_3: -2134235514
+      IBGP - Effects Starter Kit_30: -1883097109
+      IBGP - Effects Starter Kit_31: 1783852985
+      IBGP - Effects Starter Kit_32: 1469017858
+      IBGP - Effects Starter Kit_33: -1675214204
+      IBGP - Effects Starter Kit_34: -1963521139
+      IBGP - Effects Starter Kit_35: 643622002
+      IBGP - Effects Starter Kit_36: -332780997
+      IBGP - Effects Starter Kit_37: -521343302
+      IBGP - Effects Starter Kit_38: -1887231446
+      IBGP - Effects Starter Kit_39: -995550825
+      IBGP - Effects Starter Kit_4: 1897212255
+      IBGP - Effects Starter Kit_40: -1026059001
+      IBGP - Effects Starter Kit_41: 1573216031
+      IBGP - Effects Starter Kit_42: 1145955353
+      IBGP - Effects Starter Kit_43: -2025921299
+      IBGP - Effects Starter Kit_44: -888288967
+      IBGP - Effects Starter Kit_45: -1643631017
+      IBGP - Effects Starter Kit_46: 12416572
+      IBGP - Effects Starter Kit_47: -1383398483
+      IBGP - Effects Starter Kit_48: 1651677531
+      IBGP - Effects Starter Kit_49: 1303107470
+      IBGP - Effects Starter Kit_5: -1256568559
+      IBGP - Effects Starter Kit_50: 1037817178
+      IBGP - Effects Starter Kit_51: -653402718
+      IBGP - Effects Starter Kit_52: -2115380340
+      IBGP - Effects Starter Kit_53: -2120041522
+      IBGP - Effects Starter Kit_54: 1017624313
+      IBGP - Effects Starter Kit_55: 1938236942
+      IBGP - Effects Starter Kit_56: 652035913
+      IBGP - Effects Starter Kit_57: -1477005637
+      IBGP - Effects Starter Kit_58: -209374962
+      IBGP - Effects Starter Kit_59: 437288687
+      IBGP - Effects Starter Kit_6: -2033046113
+      IBGP - Effects Starter Kit_60: 523361198
+      IBGP - Effects Starter Kit_61: 929338503
+      IBGP - Effects Starter Kit_62: 570935311
+      IBGP - Effects Starter Kit_63: -1481557238
+      IBGP - Effects Starter Kit_64: -909909655
+      IBGP - Effects Starter Kit_65: -1136744991
+      IBGP - Effects Starter Kit_66: -1691568067
+      IBGP - Effects Starter Kit_67: -669552668
+      IBGP - Effects Starter Kit_68: 661680090
+      IBGP - Effects Starter Kit_69: -885429290
+      IBGP - Effects Starter Kit_7: 1663984953
+      IBGP - Effects Starter Kit_70: 1672225492
+      IBGP - Effects Starter Kit_71: 2011165794
+      IBGP - Effects Starter Kit_72: -750483918
+      IBGP - Effects Starter Kit_73: 102353364
+      IBGP - Effects Starter Kit_74: -863751605
+      IBGP - Effects Starter Kit_75: 692901092
+      IBGP - Effects Starter Kit_76: 1327202054
+      IBGP - Effects Starter Kit_77: 1786759787
+      IBGP - Effects Starter Kit_78: 1707654453
+      IBGP - Effects Starter Kit_79: 377221594
+      IBGP - Effects Starter Kit_8: -198479863
+      IBGP - Effects Starter Kit_80: 311614323
+      IBGP - Effects Starter Kit_81: 822274478
+      IBGP - Effects Starter Kit_82: -935777208
+      IBGP - Effects Starter Kit_83: 100145096
+      IBGP - Effects Starter Kit_84: -1214011075
+      IBGP - Effects Starter Kit_85: 682393190
+      IBGP - Effects Starter Kit_86: 1641816906
+      IBGP - Effects Starter Kit_87: -768853881
+      IBGP - Effects Starter Kit_88: 961875689
+      IBGP - Effects Starter Kit_89: 418028969
+      IBGP - Effects Starter Kit_9: 127549065
+      IBGP - Effects Starter Kit_90: 1418879107
+      IBGP - Effects Starter Kit_91: 823315655
+      IBGP - Effects Starter Kit_92: 1385606399
+      IBGP - Effects Starter Kit_93: 1468239602
+      IBGP - Effects Starter Kit_94: -1554158746
+      IBGP - Effects Starter Kit_95: 554019833
+      IBGP - Effects Starter Kit_96: 1516855044
+      IBGP - Effects Starter Kit_97: -1735984528
+      IBGP - Effects Starter Kit_98: 238385914
+      IBGP - Effects Starter Kit_99: -1064482909
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
