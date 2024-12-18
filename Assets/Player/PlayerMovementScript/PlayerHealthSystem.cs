@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
-    public int maxHealth = 10; // Maximum health
-    private int currentHealth; // Current health
+    public float maxHealth = 10; // Maximum health
+    private float currentHealth; // Current health
     public float pushForce = 2f; // Force to push the zombie away
     private float revivalTime = 5f; // Time required to revive the player
     private float revivalCount = 0f;
@@ -36,6 +36,11 @@ public class PlayerHealthSystem : MonoBehaviour
     public float fadeDuration = 1f; // Duration of fade in/out
     public float minFontSize = 10f; // Minimum font size
     public float maxFontSize = 14f; // Maximum font size
+
+    public bool IsAtMaxHealth
+    {
+        get { return currentHealth == maxHealth; }
+    }
 
     void Start()
     {
@@ -78,19 +83,24 @@ public class PlayerHealthSystem : MonoBehaviour
         // Check for revival input
         if (nearbyAlivePlayer != null)
         {
-            if (nearbyAlivePlayer.isDowned && Input.GetKey(KeyCode.R))
+            if (nearbyAlivePlayer.isDowned && Input.GetKey(KeyCode.H))
             {
                 StartRevival();
             }
         }
     }
 
+    public void Heal(float amount)
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += amount;
+        }
+        UpdateHealthUI();
+    }
+
     private void UpdateHealthUI()
     {
-        Debug.Log(
-            $"Updating Health UI for Player {(isPlayerOne ? "One" : "Two")}: Current Health = {currentHealth}"
-        );
-
         if (healthImage != null)
         {
             // Calculate the fill amount based on current health
@@ -122,10 +132,6 @@ public class PlayerHealthSystem : MonoBehaviour
         {
             // Reduce health
             currentHealth--;
-
-            // Add debug log to see health change
-            Debug.Log($"Player {(isPlayerOne ? "One" : "Two")} Health: {currentHealth}");
-
             // Update health UI
             UpdateHealthUI();
         }
@@ -161,7 +167,6 @@ public class PlayerHealthSystem : MonoBehaviour
     private void EnterDownedState()
     {
         isDowned = true;
-        Debug.Log("Player is downed!");
         ReviveProgress.targetObject = transform;
 
         // Reduce movement speed for the downed state
@@ -231,18 +236,14 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         UpdateHealthUI();
         isImmune = true; // Enable immunity
-        // Optional: Add visual feedback for immunity (e.g., flashing effect)
-        Debug.Log("Player is immune to damage!");
 
         yield return new WaitForSeconds(immunityDuration); // Wait for the immunity period
 
-        isImmune = false; // Disable immunity
-        Debug.Log("Immunity ended. Player can take damage again.");
+        isImmune = false; // Disable immunity\
     }
 
     public void StartRevival()
     {
-        Debug.Log("Player is being revived...");
         nearbyAlivePlayer.RevivePlayer();
     }
 

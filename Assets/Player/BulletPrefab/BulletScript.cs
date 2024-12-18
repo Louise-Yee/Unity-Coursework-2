@@ -7,6 +7,19 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        Collider2D bulletCollider = GetComponent<Collider2D>();
+        Collider2D[] dropColliders = FindObjectsOfType<Collider2D>();
+
+        // Ignore collisions with grenade and health pickups
+        foreach (Collider2D dropCollider in dropColliders)
+        {
+            if (dropCollider.CompareTag("GrenadeDrop") || dropCollider.CompareTag("HealthDrop"))
+            {
+                Physics2D.IgnoreCollision(bulletCollider, dropCollider);
+            }
+        }
+
+        // Destroy the bullet after the specified lifetime
         Destroy(gameObject, lifetime);
     }
 
@@ -14,19 +27,18 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Zombie"))
         {
-            // Debug.Log("Hit Zombie!");
-            // If you have a health system on the zombie, you can damage it here
             zombieHealth zombieHealth = collision.GetComponent<zombieHealth>();
-            if (zombieHealth != null)
+
+            if (zombieHealth != null && !zombieHealth.IsDead())
             {
+                // Only damage and destroy the bullet if the zombie is not dead
                 zombieHealth.TakeDamage(damage);
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
         else if (!collision.CompareTag("Player")) // Don't destroy on player collision
         {
-            // Debug.Log($"Hit non-zombie object: {collision.gameObject.name}");
-            Destroy(gameObject);
+            Destroy(gameObject); // Destroy the bullet on any other collision
         }
     }
 }

@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShootingScript : MonoBehaviour
 {
@@ -8,23 +10,30 @@ public class ShootingScript : MonoBehaviour
 
     [Header("Player Settings")]
     public bool isPlayerOne = true; // Set this in inspector to determine which player this is
+    public int maxBullets = 10; // Maximum bullets before reloading
+    public float reloadTime = 2f; // Time it takes to reload
 
-    [Header("Player 1 Controls")]
+    [Header("UI Elements")]
+    public Text bulletCountText; // UI Text for bullet count (e.g., "5/10")
+    public Image reloadSpinner; // UI Image for reload spinner
+
+    // Controls
     private KeyCode shootKeyP1 = KeyCode.V;
     private KeyCode p1Up = KeyCode.W;
     private KeyCode p1Down = KeyCode.S;
     private KeyCode p1Left = KeyCode.A;
     private KeyCode p1Right = KeyCode.D;
 
-    [Header("Player 2 Controls")]
     private KeyCode shootKeyP2 = KeyCode.Slash;
     private KeyCode p2Up = KeyCode.UpArrow;
     private KeyCode p2Down = KeyCode.DownArrow;
     private KeyCode p2Left = KeyCode.LeftArrow;
     private KeyCode p2Right = KeyCode.RightArrow;
 
-    // Store the last set direction for each player
-    private Vector2 currentDirection = Vector2.right; // Default to right
+    // Shooting and Reloading State
+    private int currentBullets;
+    private bool isReloading = false;
+    public Vector2 currentDirection = Vector2.right; // Default to right
 
     // Reference to the Animator component
     private Animator animator;
@@ -33,10 +42,23 @@ public class ShootingScript : MonoBehaviour
     {
         // Get the Animator component attached to the GameObject
         animator = GetComponent<Animator>();
+
+        // Initialize bullets
+        currentBullets = maxBullets;
+
+        // Initialize UI
+        UpdateBulletCountUI();
+        if (reloadSpinner != null)
+        {
+            reloadSpinner.gameObject.SetActive(false); // Hide reload spinner initially
+        }
     }
 
     void Update()
     {
+        // if (isReloading)
+        //     return; // Prevent shooting while reloading
+
         // Get current direction inputs
         Vector2 newDirection = GetDirectionInput();
 
@@ -45,13 +67,22 @@ public class ShootingScript : MonoBehaviour
         {
             currentDirection = newDirection;
         }
-
-        // Check for shooting based on which player this is
-        if (isPlayerOne && Input.GetKeyDown(shootKeyP1) && !animator.GetComponent<Animator>().GetBool("isDown"))
+        // Check for shooting
+        if (
+            isPlayerOne
+            && Input.GetKeyDown(shootKeyP1)
+            && !animator.GetBool("isDown")
+            && !isReloading
+        )
         {
             Shoot(currentDirection);
         }
-        else if (!isPlayerOne && Input.GetKeyDown(shootKeyP2) && !animator.GetComponent<Animator>().GetBool("isDown"))
+        else if (
+            !isPlayerOne
+            && Input.GetKeyDown(shootKeyP2)
+            && !animator.GetBool("isDown")
+            && !isReloading
+        )
         {
             Shoot(currentDirection);
         }
@@ -64,7 +95,6 @@ public class ShootingScript : MonoBehaviour
 
         if (isPlayerOne)
         {
-            // Player 1 direction input (WASD)
             if (Input.GetKey(p1Up))
                 verticalInput = 1f;
             if (Input.GetKey(p1Down))
@@ -76,7 +106,6 @@ public class ShootingScript : MonoBehaviour
         }
         else
         {
-            // Player 2 direction input (Arrow Keys)
             if (Input.GetKey(p2Up))
                 verticalInput = 1f;
             if (Input.GetKey(p2Down))
@@ -87,37 +116,123 @@ public class ShootingScript : MonoBehaviour
                 horizontalInput = -1f;
         }
 
-        // Create and normalize the direction vector
         Vector2 direction = new Vector2(horizontalInput, verticalInput);
         return direction.normalized;
     }
 
     void Shoot(Vector2 direction)
     {
-        // If no direction is set, don't shoot
-        if (direction == Vector2.zero)
-            return;
+        // Decrease the bullet count
+        currentBullets--;
+        UpdateBulletCountUI();
 
-        // Instantiate the bullet at the fire point's position
+        if (currentBullets <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
+        // Instantiate bullet
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
-        // Get or add Rigidbody2D component
+        // Debug the bullet instantiation
+        if (bullet != null)
+        {
+            Debug.Log("Bullet instantiated");
+        }
+        else
+        {
+            Debug.Log("Bullet is not instantiated");
+        }
+
+        // Get the SpriteRenderer component and check its properties
+        SpriteRenderer spriteRenderer = bullet.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Debug.Log("Bullet has SpriteRenderer");
+            // Ensure the sprite is visible (enabled)
+            spriteRenderer.enabled = true; // Just in case it's disabled
+        }
+        else
+        {
+            Debug.Log("Bullet does not have SpriteRenderer!");
+        }
+
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb == null)
         {
             rb = bullet.AddComponent<Rigidbody2D>();
+            Debug.Log("Rigidbody is null, adding Rigidbody2D");
         }
 
-        // Calculate bullet direction and velocity
-        Vector2 bulletVelocity = direction * bulletSpeed;
-        rb.velocity = bulletVelocity;
+        // Set bullet velocity and rotation
+        rb.velocity = direction * bulletSpeed;
 
-        // Rotate bullet sprite to face the shooting direction
+        // Calculate the angle of the bullet to face the movement or shooting direction
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Apply the calculated rotation
         bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        // Debug.Log(
-        //     $"Player {(isPlayerOne ? "1" : "2")} shooting bullet with direction: {direction}"
-        // );
+        // Debugging
+        Debug.Log($"Bullet fired at angle: {angle}, direction: {direction}");
+
+        // Debug the bullet's spawn position
+        Debug.Log($"Bullet spawned at: {firePoint.position}");
+
+        if (currentBullets <= 0)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    private IEnumerator Reload()
+    {
+        isReloading = true;
+
+        // Hide the bullet count text during reload
+        if (bulletCountText != null)
+        {
+            bulletCountText.gameObject.SetActive(false);
+        }
+
+        // Activate and rotate the reload spinner
+        if (reloadSpinner != null)
+        {
+            reloadSpinner.gameObject.SetActive(true);
+            float elapsedTime = 0f;
+
+            while (elapsedTime < reloadTime)
+            {
+                reloadSpinner.transform.Rotate(0, 0, -360 * Time.deltaTime / reloadTime);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            reloadSpinner.gameObject.SetActive(false); // Hide spinner after reload
+        }
+
+        currentBullets = maxBullets;
+        isReloading = false;
+
+        // Show the bullet count text after reload
+        if (bulletCountText != null)
+        {
+            bulletCountText.gameObject.SetActive(true);
+        }
+
+        UpdateBulletCountUI();
+
+        Debug.Log(
+            $"Player {(isPlayerOne ? "1" : "2")} has reloaded. Bullets refilled to {maxBullets}."
+        );
+    }
+
+    private void UpdateBulletCountUI()
+    {
+        if (bulletCountText != null)
+        {
+            bulletCountText.text = $"{currentBullets}/{maxBullets}";
+        }
     }
 }

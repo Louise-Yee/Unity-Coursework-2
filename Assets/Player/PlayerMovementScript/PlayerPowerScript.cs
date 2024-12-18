@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // Added for UI components
 
@@ -26,39 +24,35 @@ public class PlayerInventory : MonoBehaviour
     public float throwForce = 2f;
 
     // UI References
-    public Image grenadeImage; // Reference to the grenade image in UI
-    public Text grenadeCountText; // Reference to the grenade count text in UI
+    public Image[] grenadeImages; // Array of grenade images
 
     // UI or debugging log to show grenade count (optional)
     void UpdateUI()
     {
-        // Update grenade count text
-        if (grenadeCountText != null)
+        // Iterate through all grenade images
+        for (int i = 0; i < grenadeImages.Length; i++)
         {
-            grenadeCountText.text = grenadeCount.ToString();
+            if (i < grenadeCount)
+            {
+                // Grenades the player has: full opacity
+                grenadeImages[i].color = new Color(
+                    grenadeImages[i].color.r,
+                    grenadeImages[i].color.g,
+                    grenadeImages[i].color.b,
+                    1f
+                );
+            }
+            else
+            {
+                // Grenades the player doesn't have: 50% opacity
+                grenadeImages[i].color = new Color(
+                    grenadeImages[i].color.r,
+                    grenadeImages[i].color.g,
+                    grenadeImages[i].color.b,
+                    0.5f
+                );
+            }
         }
-
-        // Update grenade image opacity
-        if (grenadeImage != null)
-        {
-            // Set opacity to 50% when no grenades, 100% otherwise
-            grenadeImage.color =
-                grenadeCount > 0
-                    ? new Color(
-                        grenadeImage.color.r,
-                        grenadeImage.color.g,
-                        grenadeImage.color.b,
-                        1f
-                    )
-                    : new Color(
-                        grenadeImage.color.r,
-                        grenadeImage.color.g,
-                        grenadeImage.color.b,
-                        0.5f
-                    );
-        }
-
-        Debug.Log("Player " + playerID + " Grenades: " + grenadeCount);
     }
 
     // Method to pick up a grenade
@@ -69,10 +63,7 @@ public class PlayerInventory : MonoBehaviour
             grenadeCount++;
             UpdateUI();
         }
-        else
-        {
-            Debug.Log("Player " + playerID + " Maximum grenades reached!");
-        }
+        else { }
     }
 
     // Method to use a grenade
@@ -104,7 +95,6 @@ public class PlayerInventory : MonoBehaviour
 
             if (grenadePrefab == null)
             {
-                Debug.LogError("Grenade prefab is not assigned to PlayerInventory.");
                 return;
             }
 
@@ -121,33 +111,44 @@ public class PlayerInventory : MonoBehaviour
                 if (grenadeRb != null)
                 {
                     grenadeRb.velocity = throwDirection.normalized * throwForce;
-                    Debug.Log(
-                        "Player " + playerID + " Grenade thrown in direction: " + throwDirection
-                    );
                 }
-                else
-                {
-                    Debug.LogError("Grenade prefab is missing a Rigidbody2D component.");
-                }
+                else { }
             }
-            else
-            {
-                Debug.Log("Player " + playerID + " is not moving. Grenade not thrown.");
-            }
+            else { }
         }
-        else
+        else { }
+    }
+
+    // Method to heal the player
+    public void HealPlayer(float healAmount)
+    {
+        if (playerHealth != null)
         {
-            Debug.Log("Player " + playerID + " No grenades to use!");
+            playerHealth.Heal(healAmount);
         }
     }
 
-    // Trigger to simulate picking up a grenade
-    private void OnTriggerEnter(Collider other)
+    // Trigger to simulate picking up a grenade or health item
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("GrenadePickup"))
+        if (other.CompareTag("GrenadeDrop"))
         {
-            PickupGrenade();
-            Destroy(other.gameObject); // Remove the grenade pickup from the scene
+            if (grenadeCount < maxGrenades)
+            {
+                PickupGrenade();
+                Destroy(other.gameObject); // Remove the grenade pickup from the scene
+            }
+            else { }
+        }
+
+        // when player is not at max health then heals
+        if (other.CompareTag("HealthDrop") && !playerHealth.IsAtMaxHealth)
+        {
+            // Heal the player but don't exceed the maximum health
+            float healAmount = 4f; // Example heal amount, adjust based on your needs
+            HealPlayer(healAmount);
+
+            Destroy(other.gameObject); // Remove the health pickup from the scene
         }
     }
 
@@ -163,10 +164,7 @@ public class PlayerInventory : MonoBehaviour
             playerMovement = GetComponent<Player2Movement>();
         }
 
-        if (playerMovement == null)
-        {
-            Debug.LogError("Player " + playerID + " Movement script not found!");
-        }
+        if (playerMovement == null) { }
 
         playerHealth = GetComponent<PlayerHealthSystem>();
 

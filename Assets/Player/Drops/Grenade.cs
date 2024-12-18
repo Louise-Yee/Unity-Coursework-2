@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    public float explosionDelay = 1f; // Time before the grenade explodes
+    public float explosionDelay = 1.5f; // Time before the grenade explodes
     public float explosionRadius = 1f; // Radius of the explosion
     public int damage = 100; // Damage dealt to zombies
     public Animator animator; // Reference to the Animator component
     public Rigidbody2D rb; // Rigidbody for physics-based movement
     private bool hasExploded = false; // To prevent multiple explosions
     private SpriteRenderer spriteRenderer; // For the grenade's default sprite
+
+    [Header("Sound Settings")]
+    public AudioSource audioSource; // Reference to the AudioSource component
+    public AudioClip explosionSound; // Explosion sound effect
 
     void Start()
     {
@@ -20,6 +24,9 @@ public class Grenade : MonoBehaviour
 
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -42,8 +49,6 @@ public class Grenade : MonoBehaviour
         // Trigger the explosion animation
         if (animator != null)
         {
-            Debug.Log("Attempting to trigger explosion");
-
             // Try multiple methods to trigger the animation
             animator.SetTrigger("Explode");
             animator.Play("GrenadeExplode", 0, 0f);
@@ -58,7 +63,6 @@ public class Grenade : MonoBehaviour
                 if (clip.name == "GrenadeExplode")
                 {
                     animationLength = clip.length;
-                    Debug.Log($"Found GrenadeExplode animation. Length: {animationLength}");
                     break;
                 }
             }
@@ -70,10 +74,7 @@ public class Grenade : MonoBehaviour
             // Wait for the animation to play
             yield return new WaitForSeconds(animationLength);
         }
-        else
-        {
-            Debug.LogError("Animator is null when trying to trigger explosion!");
-        }
+        else { }
 
         // Perform explosion logic
         Explode();
@@ -84,7 +85,15 @@ public class Grenade : MonoBehaviour
         if (hasExploded)
             return;
         hasExploded = true; // Ensure explosion happens only once
-        Debug.Log("Grenade exploded!");
+
+        if (audioSource != null && explosionSound != null)
+        {
+            audioSource.PlayOneShot(explosionSound);
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource or ExplosionSound is missing!");
+        }
 
         // Find all colliders within the explosion radius
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
@@ -92,9 +101,15 @@ public class Grenade : MonoBehaviour
         {
             if (hitCollider.CompareTag("Zombie"))
             {
-                // Apply damage or destroy the zombie
-                Destroy(hitCollider.gameObject);
-                Debug.Log("Zombie killed!");
+                // Attempt to get the zombieHealth script on the zombie
+                zombieHealth zombie = hitCollider.GetComponent<zombieHealth>();
+
+                if (zombie != null)
+                {
+                    // Call the TakeDamage function with the grenade's damage
+                    zombie.TakeDamage(damage);
+                }
+                else { }
             }
         }
 
