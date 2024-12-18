@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6161887773093463558}
   - component: {fileID: 4772400943614917659}
   - component: {fileID: 1540775389811834526}
+  - component: {fileID: 5442784783266771386}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
@@ -230,3 +231,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.02737382, y: -0.06387207}
   m_Size: {x: 0.40502185, y: 0.8742859}
   m_Direction: 0
+--- !u!114 &5442784783266771386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035901463218139429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0343ad1a00af09d448e3474b6c4ccc81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenadePrefab: {fileID: 6274190681150290607, guid: 35fe063a547b7b34e85033a614c8ea54, type: 3}
+  healthPickupPrefab: {fileID: 5414669685299003818, guid: c318b020574531043ae6e221d02c05be, type: 3}
+  dropOffset: {x: 0, y: 0.5}

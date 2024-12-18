@@ -23,11 +23,11 @@ public class GameManager : MonoBehaviour
     
     void Update(){
         // for now, press G after all the zombies in the first round are eliminated
-        if (Input.GetKey(KeyCode.G) && zombiesKilled==ZombieSpawner.spawnCount){
+        if (Input.GetKey(KeyCode.F) && zombiesKilled==ZombieSpawner.spawnCount){
             NextLevel1();
         }
         // for now, press G after all the zombies in the second round are eliminated
-        if (Input.GetKey(KeyCode.H) && zombiesKilled==ZombieSpawner.spawnCount){
+        if (Input.GetKey(KeyCode.J) && zombiesKilled==ZombieSpawner.spawnCount){
             NextLevel2();
         }
     }
