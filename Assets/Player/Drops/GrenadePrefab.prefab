@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4d4a15dd94c0a44b57b59e75557a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionDelay: 0.5
+  explosionDelay: 1
   explosionRadius: 2
   damage: 100
   animator: {fileID: 3183529491980697499}
@@ -167,7 +167,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aa448d6b599b6a647bfb00702bcfac02, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.65
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

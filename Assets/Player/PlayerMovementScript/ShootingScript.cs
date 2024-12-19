@@ -17,6 +17,13 @@ public class ShootingScript : MonoBehaviour
     public Text bulletCountText; // UI Text for bullet count (e.g., "5/10")
     public Image reloadSpinner; // UI Image for reload spinner
 
+    [Header("Audio")]
+    public AudioClip shootSound; // Sound for shooting
+    public AudioClip dryFireSound; // Sound for weapon dry (no ammo)
+    public AudioClip reloadStartSound; // Sound when reload starts
+    public AudioClip reloadFinishSound; // Sound when reload finishes
+    private AudioSource audioSource; // Reference to AudioSource component
+
     // Controls
     private KeyCode shootKeyP1 = KeyCode.V;
     private KeyCode p1Up = KeyCode.W;
@@ -52,13 +59,17 @@ public class ShootingScript : MonoBehaviour
         {
             reloadSpinner.gameObject.SetActive(false); // Hide reload spinner initially
         }
+
+        // Get AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
     {
-        // if (isReloading)
-        //     return; // Prevent shooting while reloading
-
         // Get current direction inputs
         Vector2 newDirection = GetDirectionInput();
 
@@ -67,6 +78,7 @@ public class ShootingScript : MonoBehaviour
         {
             currentDirection = newDirection;
         }
+
         // Check for shooting
         if (
             isPlayerOne
@@ -75,7 +87,7 @@ public class ShootingScript : MonoBehaviour
             && !isReloading
         )
         {
-            Shoot(currentDirection);
+            HandleShooting();
         }
         else if (
             !isPlayerOne
@@ -84,7 +96,21 @@ public class ShootingScript : MonoBehaviour
             && !isReloading
         )
         {
+            HandleShooting();
+        }
+    }
+
+    void HandleShooting()
+    {
+        if (currentBullets > 0)
+        {
             Shoot(currentDirection);
+            PlayAudio(shootSound); // Play shooting sound
+        }
+        else
+        {
+            PlayAudio(dryFireSound); // Play dry fire sound
+            StartCoroutine(Reload());
         }
     }
 
@@ -122,63 +148,21 @@ public class ShootingScript : MonoBehaviour
 
     void Shoot(Vector2 direction)
     {
-        // Decrease the bullet count
         currentBullets--;
         UpdateBulletCountUI();
 
-        if (currentBullets <= 0)
-        {
-            StartCoroutine(Reload());
-            return;
-        }
-
-        // Instantiate bullet
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-
-        // Debug the bullet instantiation
-        if (bullet != null)
-        {
-            Debug.Log("Bullet instantiated");
-        }
-        else
-        {
-            Debug.Log("Bullet is not instantiated");
-        }
-
-        // Get the SpriteRenderer component and check its properties
-        SpriteRenderer spriteRenderer = bullet.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            Debug.Log("Bullet has SpriteRenderer");
-            // Ensure the sprite is visible (enabled)
-            spriteRenderer.enabled = true; // Just in case it's disabled
-        }
-        else
-        {
-            Debug.Log("Bullet does not have SpriteRenderer!");
-        }
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb == null)
         {
             rb = bullet.AddComponent<Rigidbody2D>();
-            Debug.Log("Rigidbody is null, adding Rigidbody2D");
         }
 
-        // Set bullet velocity and rotation
         rb.velocity = direction * bulletSpeed;
 
-        // Calculate the angle of the bullet to face the movement or shooting direction
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        // Apply the calculated rotation
         bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-        // Debugging
-        Debug.Log($"Bullet fired at angle: {angle}, direction: {direction}");
-
-        // Debug the bullet's spawn position
-        Debug.Log($"Bullet spawned at: {firePoint.position}");
 
         if (currentBullets <= 0)
         {
@@ -190,42 +174,55 @@ public class ShootingScript : MonoBehaviour
     {
         isReloading = true;
 
-        // Hide the bullet count text during reload
         if (bulletCountText != null)
         {
             bulletCountText.gameObject.SetActive(false);
         }
 
-        // Activate and rotate the reload spinner
         if (reloadSpinner != null)
         {
             reloadSpinner.gameObject.SetActive(true);
-            float elapsedTime = 0f;
+        }
 
-            while (elapsedTime < reloadTime)
+        float elapsedTime = 0f;
+        float reloadSoundInterval = 0.5f; // Interval between reload start sounds
+        float nextSoundTime = reloadSoundInterval;
+
+        while (elapsedTime < reloadTime)
+        {
+            // Play reload start sound multiple times during reload
+            if (elapsedTime >= nextSoundTime)
             {
-                reloadSpinner.transform.Rotate(0, 0, -360 * Time.deltaTime / reloadTime);
-                elapsedTime += Time.deltaTime;
-                yield return null;
+                PlayAudio(reloadStartSound);
+                nextSoundTime += reloadSoundInterval; // Schedule the next sound
             }
 
+            if (reloadSpinner != null)
+            {
+                reloadSpinner.transform.Rotate(0, 0, -360 * Time.deltaTime / reloadTime);
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        if (reloadSpinner != null)
+        {
             reloadSpinner.gameObject.SetActive(false); // Hide spinner after reload
         }
 
         currentBullets = maxBullets;
         isReloading = false;
 
-        // Show the bullet count text after reload
+        // Play reload finish sound
+        PlayAudio(reloadFinishSound);
+
         if (bulletCountText != null)
         {
             bulletCountText.gameObject.SetActive(true);
         }
 
         UpdateBulletCountUI();
-
-        Debug.Log(
-            $"Player {(isPlayerOne ? "1" : "2")} has reloaded. Bullets refilled to {maxBullets}."
-        );
     }
 
     private void UpdateBulletCountUI()
@@ -233,6 +230,14 @@ public class ShootingScript : MonoBehaviour
         if (bulletCountText != null)
         {
             bulletCountText.text = $"{currentBullets}/{maxBullets}";
+        }
+    }
+
+    private void PlayAudio(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 }

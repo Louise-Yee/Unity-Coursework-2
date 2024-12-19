@@ -26,6 +26,11 @@ public class PlayerInventory : MonoBehaviour
     // UI References
     public Image[] grenadeImages; // Array of grenade images
 
+    [Header("Audio")]
+    public AudioClip healthPickupSound; // Sound when health pick up
+    public AudioClip grenadePickupSound; // Sound when grenade pick up
+    private AudioSource audioSource; // Reference to AudioSource component
+
     // UI or debugging log to show grenade count (optional)
     void UpdateUI()
     {
@@ -135,6 +140,9 @@ public class PlayerInventory : MonoBehaviour
         {
             if (grenadeCount < maxGrenades)
             {
+                Debug.Log("GRENADE pick up");
+
+                PlayAudio(grenadePickupSound);
                 PickupGrenade();
                 Destroy(other.gameObject); // Remove the grenade pickup from the scene
             }
@@ -144,6 +152,8 @@ public class PlayerInventory : MonoBehaviour
         // when player is not at max health then heals
         if (other.CompareTag("HealthDrop") && !playerHealth.IsAtMaxHealth)
         {
+            Debug.Log("health pick up");
+            PlayAudio(healthPickupSound);
             // Heal the player but don't exceed the maximum health
             float healAmount = 4f; // Example heal amount, adjust based on your needs
             HealPlayer(healAmount);
@@ -167,7 +177,11 @@ public class PlayerInventory : MonoBehaviour
         if (playerMovement == null) { }
 
         playerHealth = GetComponent<PlayerHealthSystem>();
-
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
         // Initialize UI on start
         UpdateUI();
     }
@@ -188,6 +202,14 @@ public class PlayerInventory : MonoBehaviour
             {
                 UseGrenade();
             }
+        }
+    }
+
+    private void PlayAudio(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 }

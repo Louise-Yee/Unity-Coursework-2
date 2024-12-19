@@ -10,10 +10,26 @@ public class Player2Movement : MonoBehaviour
     private Animator animator;
     public Vector2 lastMoveDirection { get; private set; }
 
+    // Footstep sound
+    [Header("Footstep Sound")]
+    public AudioClip footstepSound;
+    public AudioSource audioSource;
+    public float footstepInterval = 0.5f; // Time between footstep sounds
+
+    private float footstepTimer;
+
     void Start()
     {
         // Get the Animator component attached to the GameObject
         animator = GetComponent<Animator>();
+
+        // Setup AudioSource if not assigned
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.clip = footstepSound;
+            audioSource.playOnAwake = false;
+        }
     }
 
     void Update()
@@ -39,6 +55,10 @@ public class Player2Movement : MonoBehaviour
         {
             lastMoveDirection = moveInput;
         }
+
+        // Play footstep sound
+        PlayFootstepSound();
+
         // Update animation parameters
         UpdateAnimatorParameters(moveInput);
     }
@@ -59,6 +79,27 @@ public class Player2Movement : MonoBehaviour
         else if (movement == Vector2.zero && !animator.GetBool("isDown"))
         {
             animator.Play("player_idle");
+        }
+    }
+
+    // Play footstep sound at intervals when moving
+    private void PlayFootstepSound()
+    {
+        if (moveInput != Vector2.zero && !animator.GetBool("isDown"))
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                if (audioSource != null && footstepSound != null)
+                {
+                    audioSource.PlayOneShot(footstepSound);
+                }
+                footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f; // Reset timer when not moving
         }
     }
 
