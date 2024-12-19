@@ -34,8 +34,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
     // Revive text fade parameters
     public float fadeDuration = 1f; // Duration of fade in/out
-    public float minFontSize = 10f; // Minimum font size
-    public float maxFontSize = 14f; // Maximum font size
+    public float minFontSize = 15f; // Minimum font size
+    public float maxFontSize = 20f; // Maximum font size
 
     public bool IsAtMaxHealth
     {

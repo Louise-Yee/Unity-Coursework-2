@@ -25,8 +25,11 @@ public class Grenade : MonoBehaviour
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
 
+        audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
-            audioSource = GetComponent<AudioSource>();
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -38,7 +41,10 @@ public class Grenade : MonoBehaviour
     {
         // Wait for the explosion delay
         yield return new WaitForSeconds(explosionDelay);
-
+        if (audioSource != null && explosionSound != null)
+        {
+            audioSource.PlayOneShot(explosionSound);
+        }
         // Stop the grenade's movement immediately before explosion
         if (rb != null)
         {
@@ -69,7 +75,7 @@ public class Grenade : MonoBehaviour
 
             // If no specific length found, use a default
             if (animationLength == 0f)
-                animationLength = 0.5f;
+                animationLength = 1f;
 
             // Wait for the animation to play
             yield return new WaitForSeconds(animationLength);
@@ -84,15 +90,18 @@ public class Grenade : MonoBehaviour
     {
         if (hasExploded)
             return;
-        hasExploded = true; // Ensure explosion happens only once
+
+        hasExploded = true;
 
         if (audioSource != null && explosionSound != null)
         {
             audioSource.PlayOneShot(explosionSound);
+            StartCoroutine(DestroyAfterSound());
         }
         else
         {
             Debug.LogWarning("AudioSource or ExplosionSound is missing!");
+            Destroy(gameObject);
         }
 
         // Find all colliders within the explosion radius
@@ -114,6 +123,12 @@ public class Grenade : MonoBehaviour
         }
 
         // Destroy the grenade after the explosion
+        Destroy(gameObject);
+    }
+
+    private IEnumerator DestroyAfterSound()
+    {
+        yield return new WaitForSeconds(explosionSound.length);
         Destroy(gameObject);
     }
 
