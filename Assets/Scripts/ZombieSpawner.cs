@@ -7,7 +7,7 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private GameObject[] zombiePrefab;
     public static int currentIndex = 0; // Track which prefab to spawn next
     private float spawnTimer = 0f;
-    public static float spawnInterval = 3f;
+    public float spawnInterval = 3f;
     public static int spawnCount = 60; // The number of zombies that should spawn
     public static int powerCount = 6; // The number of zombies that contains power
     public static int temp1 = 0;
@@ -64,6 +64,7 @@ public class ZombieSpawner : MonoBehaviour
                 spawnTimer = 0f;
                 //tracks the number of zombies spawning
                 temp1+=1;
+                spawnInterval = Random.Range(1f, 4f);
             }
         }
     }

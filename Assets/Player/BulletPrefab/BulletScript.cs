@@ -31,6 +31,12 @@ public class Bullet : MonoBehaviour
 
             if (zombieHealth != null && !zombieHealth.IsDead())
             {
+                if (gameObject.name.Contains("Bullet2")){
+                    GameManager.p2ZombieKilled++;
+                }
+                else{
+                    GameManager.p1ZombieKilled++;
+                }
                 // Only damage and destroy the bullet if the zombie is not dead
                 zombieHealth.TakeDamage(damage);
                 Destroy(gameObject);
