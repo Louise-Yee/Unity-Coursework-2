@@ -39,7 +39,7 @@ public class ShootingScript : MonoBehaviour
 
     // Shooting and Reloading State
     private int currentBullets;
-    private bool isReloading = false;
+    public bool isReloading = false;
     public Vector2 currentDirection = Vector2.right; // Default to right
 
     // Reference to the Animator component
@@ -83,7 +83,7 @@ public class ShootingScript : MonoBehaviour
         if (
             isPlayerOne
             && Input.GetKeyDown(shootKeyP1)
-            && !animator.GetBool("isDown")
+            && !animator.GetBool("isDead")
             && !isReloading
         )
         {
@@ -92,7 +92,7 @@ public class ShootingScript : MonoBehaviour
         else if (
             !isPlayerOne
             && Input.GetKeyDown(shootKeyP2)
-            && !animator.GetBool("isDown")
+            && !animator.GetBool("isDead")
             && !isReloading
         )
         {
