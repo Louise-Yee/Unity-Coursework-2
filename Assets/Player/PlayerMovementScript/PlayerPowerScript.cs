@@ -23,6 +23,8 @@ public class PlayerInventory : MonoBehaviour
     // Grenade throw force
     public float throwForce = 2f;
 
+    private Animator animator;
+
     // UI References
     public Image[] grenadeImages; // Array of grenade images
 
@@ -136,7 +138,7 @@ public class PlayerInventory : MonoBehaviour
     // Trigger to simulate picking up a grenade or health item
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("GrenadeDrop"))
+        if (other.CompareTag("GrenadeDrop") && animator.GetBool("isDead") == false)
         {
             if (grenadeCount < maxGrenades)
             {
@@ -150,7 +152,11 @@ public class PlayerInventory : MonoBehaviour
         }
 
         // when player is not at max health then heals
-        if (other.CompareTag("HealthDrop") && !playerHealth.IsAtMaxHealth)
+        if (
+            other.CompareTag("HealthDrop")
+            && !playerHealth.IsAtMaxHealth
+            && animator.GetBool("isDead") == false
+        )
         {
             Debug.Log("health pick up");
             PlayAudio(healthPickupSound);
@@ -165,6 +171,7 @@ public class PlayerInventory : MonoBehaviour
     // Initialize the player movement script based on player ID
     void Start()
     {
+        animator = GetComponent<Animator>();
         if (playerID == 1)
         {
             playerMovement = GetComponent<Player1Movement>();

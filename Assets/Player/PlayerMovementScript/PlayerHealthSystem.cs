@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class PlayerHealthSystem : MonoBehaviour
     public float maxHealth = 10; // Maximum health
     private float currentHealth; // Current health
     public float pushForce = 2f; // Force to push the zombie away
+    private float damageCooldown = 1f; // Delay between consecutive damage events from the same zombie
+    private Dictionary<GameObject, float> damageCooldowns = new Dictionary<GameObject, float>(); // Tracks cooldowns per zombie
     private float revivalTime = 5f; // Time required to revive the player
     private float revivalCount = 0f;
     public int reviveHealth = 5; // Health restored upon revival
@@ -26,6 +29,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     [SerializeField]
     Image reviveButtonImage;
+    private Coroutine decreaseCoroutine;
 
     // UI References
     public Image healthImage; // Reference to the health bar image
@@ -42,6 +46,18 @@ public class PlayerHealthSystem : MonoBehaviour
         get { return currentHealth == maxHealth; }
     }
 
+    [Header("Audio")]
+    public AudioSource reviveAudioSource; // Reference to AudioSource component
+    public AudioSource takeDamageAudioSource; // Reference to AudioSource component
+    public AudioClip[] hurtSounds; // The revival sound effect
+
+    public AudioClip reviveSound; // The revival sound effect
+    public float minPitch = 0.5f; // Minimum pitch for the revival sound
+    public float maxPitch = 1.5f; // Maximum pitch for the revival sound
+
+    private bool isReviving = false; // Track if currently reviving
+    private Coroutine reviveCoroutine; // Store the revive coroutine
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -56,10 +72,24 @@ public class PlayerHealthSystem : MonoBehaviour
 
         // Initialize the player's health
         currentHealth = maxHealth;
-        revivalPrompt.SetActive(false); // Hide prompt initially
+        revivalPrompt.SetActive(false);
 
         // Initialize UI
         UpdateHealthUI();
+
+        // Initialize audio source if not set
+        if (reviveAudioSource == null)
+        {
+            reviveAudioSource = gameObject.AddComponent<AudioSource>();
+            reviveAudioSource.playOnAwake = false;
+            reviveAudioSource.loop = true;
+        }
+
+        if (takeDamageAudioSource == null)
+        {
+            takeDamageAudioSource = gameObject.AddComponent<AudioSource>();
+            takeDamageAudioSource.playOnAwake = false;
+        }
 
         // Disable revive text initially
         if (reviveText != null)
@@ -74,19 +104,65 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void Update()
     {
-        // Check for game over
         if (currentHealth <= 0 && !isDowned)
         {
             EnterDownedState();
         }
 
+        // Update the cooldown timer for each zombie
+        List<GameObject> zombiesToReset = new List<GameObject>();
+        foreach (var zombie in damageCooldowns.Keys)
+        {
+            damageCooldowns[zombie] -= Time.deltaTime;
+            if (damageCooldowns[zombie] <= 0)
+            {
+                zombiesToReset.Add(zombie); // Mark zombies whose cooldown has expired
+            }
+        }
+
+        // Remove zombies with expired cooldowns
+        foreach (var zombie in zombiesToReset)
+        {
+            damageCooldowns.Remove(zombie);
+        }
+
         // Check for revival input
         if (nearbyAlivePlayer != null)
         {
-            if (nearbyAlivePlayer.isDowned && Input.GetKey(KeyCode.H))
+            if (nearbyAlivePlayer.isDowned)
             {
-                StartRevival();
+                if (Input.GetKeyDown(KeyCode.H) && !isReviving)
+                {
+                    // Start reviving
+                    isReviving = true;
+                    if (reviveCoroutine != null)
+                    {
+                        StopCoroutine(reviveCoroutine);
+                    }
+                    reviveCoroutine = StartCoroutine(ReviveCoroutine());
+
+                    // Start playing the sound
+                    if (reviveSound != null)
+                    {
+                        reviveAudioSource.clip = reviveSound;
+                        reviveAudioSource.Play();
+                    }
+                }
+                else if (Input.GetKeyUp(KeyCode.H) && isReviving)
+                {
+                    StopReviving(); // Replace previous stop logic with centralized method
+
+                    // Start decreasing
+                    if (decreaseCoroutine == null)
+                    {
+                        decreaseCoroutine = StartCoroutine(GradualReviveDecrease());
+                    }
+                }
             }
+        }
+        else if (isReviving) // Add this check to stop reviving if nearby player becomes null
+        {
+            StopReviving();
         }
     }
 
@@ -130,10 +206,24 @@ public class PlayerHealthSystem : MonoBehaviour
             && !other.GetComponent<Animator>().GetBool("isDead")
         )
         {
-            // Reduce health
-            currentHealth--;
-            // Update health UI
-            UpdateHealthUI();
+            // Check if the zombie is not in cooldown or if its cooldown has expired
+            if (
+                !damageCooldowns.ContainsKey(other.gameObject)
+                || damageCooldowns[other.gameObject] <= 0
+            )
+            {
+                if (hurtSounds != null && hurtSounds.Length > 0)
+                {
+                    AudioClip randomHurtSound = hurtSounds[Random.Range(0, hurtSounds.Length)];
+                    takeDamageAudioSource.PlayOneShot(randomHurtSound);
+                }
+                // Reduce health
+                currentHealth--;
+                UpdateHealthUI();
+
+                // Reset/Add zombie to cooldown tracker
+                damageCooldowns[other.gameObject] = damageCooldown;
+            }
         }
 
         // Check for nearby downed player
@@ -155,12 +245,15 @@ public class PlayerHealthSystem : MonoBehaviour
             if (otherPlayerHealth != null && otherPlayerHealth.isDowned)
             {
                 revivalPrompt.gameObject.SetActive(false);
-                reviveButtonImage.fillAmount = 1;
-                reviveButtonText.gameObject.SetActive(false);
-                reviveButtonImage.gameObject.SetActive(false);
+                StopReviving(); // Add this call to handle stopping revival properly
+
+                // Start decreasing the revive progress bar
+                if (decreaseCoroutine == null)
+                {
+                    decreaseCoroutine = StartCoroutine(GradualReviveDecrease());
+                }
                 nearbyAlivePlayer = null;
             }
-            revivalCount = 0;
         }
     }
 
@@ -178,10 +271,131 @@ public class PlayerHealthSystem : MonoBehaviour
         {
             player2Movement.isOnGround();
         }
-        animator.SetBool("isDown", true);
+        animator.SetBool("isDead", true);
 
         // Show revive text with fade effect
         StartCoroutine(ReviveTextFadeCoroutine());
+    }
+
+    private void StopReviving()
+    {
+        isReviving = false;
+
+        // Stop any ongoing revival coroutine
+        if (reviveCoroutine != null)
+        {
+            StopCoroutine(reviveCoroutine);
+            reviveCoroutine = null;
+        }
+
+        // Stop and reset audio
+        if (reviveAudioSource != null)
+        {
+            reviveAudioSource.Stop();
+            reviveAudioSource.pitch = minPitch;
+        }
+
+        // Stop any ongoing decrease coroutine
+        if (decreaseCoroutine != null)
+        {
+            StopCoroutine(decreaseCoroutine);
+            decreaseCoroutine = null;
+        }
+    }
+
+    public void StartRevival()
+    {
+        nearbyAlivePlayer.RevivePlayer();
+    }
+
+    private void RevivePlayer()
+    {
+        revivalCount += Time.deltaTime;
+        reviveButtonImage.fillAmount = revivalCount / revivalTime;
+
+        if (revivalCount >= revivalTime)
+        {
+            // Revive the player
+            isDowned = false;
+            currentHealth = reviveHealth;
+
+            if (isPlayerOne)
+            {
+                player1Movement.isRevived(); // Restore movement speed
+            }
+            else
+            {
+                player2Movement.isRevived();
+            }
+
+            animator.SetBool("isDead", false);
+            revivalCount = 0;
+            ReviveProgress.targetObject = null;
+            reviveButtonText.gameObject.SetActive(false);
+            reviveButtonImage.gameObject.SetActive(false);
+
+            // Disable revive text
+            if (reviveText != null)
+            {
+                reviveText.gameObject.SetActive(false);
+            }
+            if (reviveTextBackground != null)
+            {
+                reviveTextBackground.gameObject.SetActive(false);
+            }
+
+            // Grant immunity after revival
+            StartCoroutine(GrantImmunity());
+        }
+    }
+
+    private IEnumerator GradualReviveDecrease()
+    {
+        float decreaseRate = 1f / revivalTime; // Decrease over the same duration as revival
+
+        while (reviveButtonImage.fillAmount > 0 && !isReviving)
+        {
+            reviveButtonImage.fillAmount -= decreaseRate * Time.deltaTime;
+            revivalCount = reviveButtonImage.fillAmount * revivalTime;
+            yield return null;
+        }
+
+        if (!isReviving)
+        {
+            revivalCount = 0;
+            if (reviveButtonText != null)
+                reviveButtonText.gameObject.SetActive(false);
+            if (reviveButtonImage != null)
+                reviveButtonImage.gameObject.SetActive(false);
+        }
+
+        decreaseCoroutine = null;
+    }
+
+    private IEnumerator ReviveCoroutine()
+    {
+        while (isReviving && revivalCount < revivalTime)
+        {
+            revivalCount += Time.deltaTime;
+            float progress = revivalCount / revivalTime;
+            reviveButtonImage.fillAmount = progress;
+
+            // Update sound pitch based on progress
+            if (reviveAudioSource != null && reviveAudioSource.isPlaying)
+            {
+                reviveAudioSource.pitch = Mathf.Lerp(minPitch, maxPitch, progress);
+            }
+
+            if (progress >= 1f)
+            {
+                nearbyAlivePlayer.RevivePlayer();
+                isReviving = false;
+                reviveAudioSource.Stop();
+                break;
+            }
+
+            yield return null;
+        }
     }
 
     private IEnumerator ReviveTextFadeCoroutine()
@@ -240,50 +454,5 @@ public class PlayerHealthSystem : MonoBehaviour
         yield return new WaitForSeconds(immunityDuration); // Wait for the immunity period
 
         isImmune = false; // Disable immunity\
-    }
-
-    public void StartRevival()
-    {
-        nearbyAlivePlayer.RevivePlayer();
-    }
-
-    private void RevivePlayer()
-    {
-        revivalCount += Time.deltaTime;
-        reviveButtonImage.fillAmount = revivalCount / revivalTime;
-        if (revivalCount >= revivalTime)
-        {
-            // Revive the player
-            isDowned = false;
-            currentHealth = reviveHealth;
-
-            if (isPlayerOne)
-            {
-                player1Movement.isRevived(); // Restore movement speed
-            }
-            else
-            {
-                player2Movement.isRevived();
-            }
-
-            animator.SetBool("isDown", false);
-            revivalCount = 0;
-            ReviveProgress.targetObject = null;
-            reviveButtonText.gameObject.SetActive(false);
-            reviveButtonImage.gameObject.SetActive(false);
-
-            // Disable revive text
-            if (reviveText != null)
-            {
-                reviveText.gameObject.SetActive(false);
-            }
-            if (reviveTextBackground != null)
-            {
-                reviveTextBackground.gameObject.SetActive(false);
-            }
-
-            // Grant immunity after revival
-            StartCoroutine(GrantImmunity());
-        }
     }
 }

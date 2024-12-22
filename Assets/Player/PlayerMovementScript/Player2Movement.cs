@@ -1,29 +1,52 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player2Movement : MonoBehaviour
 {
+    [Header("Movement")]
     public float moveSpeed = 5f;
     public new Rigidbody2D rigidbody2D;
     private Vector2 moveInput;
+    public Vector2 lastMoveDirection { get; private set; } = Vector2.down; // Initialize with down direction
 
-    // Reference to the Animator component
+    [Header("Animation")]
     private Animator animator;
-    public Vector2 lastMoveDirection { get; private set; }
 
-    // Footstep sound
     [Header("Footstep Sound")]
     public AudioClip footstepSound;
     public AudioSource audioSource;
-    public float footstepInterval = 0.5f; // Time between footstep sounds
-
+    public float footstepInterval = 0.5f;
     private float footstepTimer;
+
+    [Header("Shooting")]
+    public KeyCode shootKey = KeyCode.Slash;
+    public float shootAnimationDuration = 0.15f;
+    private bool isShooting = false;
+    private float shootTimer = 0f;
+    private ShootingScript reloadState;
 
     void Start()
     {
-        // Get the Animator component attached to the GameObject
-        animator = GetComponent<Animator>();
+        SetupComponents();
+    }
 
-        // Setup AudioSource if not assigned
+    void Update()
+    {
+        HandleInput();
+        UpdateMovementAndAnimation();
+        UpdateShooting();
+    }
+
+    private void FixedUpdate()
+    {
+        // Physics updates should always be in FixedUpdate
+        rigidbody2D.velocity = moveInput * moveSpeed;
+    }
+
+    private void SetupComponents()
+    {
+        animator = GetComponent<Animator>();
+        reloadState = GetComponent<ShootingScript>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -32,9 +55,23 @@ public class Player2Movement : MonoBehaviour
         }
     }
 
-    void Update()
+    private void HandleInput()
     {
-        // Custom input keys for Player 2
+        // Handle shooting input
+        if (Input.GetKeyDown(shootKey) && !isShooting && !reloadState.isReloading)
+        {
+            StartShooting();
+        }
+
+        // Only process movement input if not shooting
+        if (!isShooting)
+        {
+            ProcessMovementInput();
+        }
+    }
+
+    private void ProcessMovementInput()
+    {
         moveInput.x =
             Input.GetKey(KeyCode.LeftArrow) ? -1
             : Input.GetKey(KeyCode.RightArrow) ? 1
@@ -43,85 +80,86 @@ public class Player2Movement : MonoBehaviour
             Input.GetKey(KeyCode.UpArrow) ? 1
             : Input.GetKey(KeyCode.DownArrow) ? -1
             : 0;
-
-        // Normalize the movement input
         moveInput.Normalize();
 
-        // Update the Rigidbody velocity for movement
-        rigidbody2D.velocity = moveInput * moveSpeed;
-
-        // Update lastMoveDirection if the player is moving
+        // Update last move direction only when actually moving
         if (moveInput != Vector2.zero)
         {
             lastMoveDirection = moveInput;
         }
-
-        // Play footstep sound
-        PlayFootstepSound();
-
-        // Update animation parameters
-        UpdateAnimatorParameters(moveInput);
     }
 
-    // Update Animator parameters to control animations
-    private void UpdateAnimatorParameters(Vector2 movement)
+    private void UpdateMovementAndAnimation()
     {
-        // Set the horizontal and vertical direction
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        // Set the speed parameter to determine idle or walking
-        animator.SetFloat("Speed", movement.magnitude);
+        // If shooting, ensure we're not moving
+        if (isShooting)
+        {
+            moveInput = Vector2.zero;
+        }
 
-        if (movement != Vector2.zero && !animator.GetBool("isDown"))
-        {
-            animator.Play("player_walk");
-        }
-        else if (movement == Vector2.zero && !animator.GetBool("isDown"))
-        {
-            animator.Play("player_idle");
-        }
+        UpdateAnimation();
+        UpdateFootsteps();
     }
 
-    // Play footstep sound at intervals when moving
-    private void PlayFootstepSound()
+    private void UpdateAnimation()
     {
-        if (moveInput != Vector2.zero && !animator.GetBool("isDown"))
+        animator.SetFloat("MoveX", moveInput.x);
+        animator.SetFloat("MoveY", moveInput.y);
+        animator.SetFloat("MoveMagnitude", moveInput.magnitude);
+        animator.SetFloat("LastMoveX", lastMoveDirection.x);
+        animator.SetFloat("LastMoveY", lastMoveDirection.y);
+    }
+
+    private void UpdateFootsteps()
+    {
+        if (moveInput != Vector2.zero && !animator.GetBool("isDead"))
         {
             footstepTimer -= Time.deltaTime;
-            if (footstepTimer <= 0f)
+            if (footstepTimer <= 0f && audioSource != null && footstepSound != null)
             {
-                if (audioSource != null && footstepSound != null)
-                {
-                    audioSource.PlayOneShot(footstepSound);
-                }
+                audioSource.PlayOneShot(footstepSound);
                 footstepTimer = footstepInterval;
             }
         }
         else
         {
-            footstepTimer = 0f; // Reset timer when not moving
+            footstepTimer = 0f;
         }
     }
 
-    // This can be used by other scripts to get the current movement direction
-    public Vector2 GetMoveInput()
+    private void UpdateShooting()
     {
-        return moveInput;
+        if (isShooting)
+        {
+            shootTimer -= Time.deltaTime;
+            if (shootTimer <= 0)
+            {
+                StopShooting();
+            }
+        }
     }
 
-    // Methods to handle different movement states
-    public void isOnGround()
+    private void StartShooting()
     {
-        this.moveSpeed = 2f;
+        isShooting = true;
+        shootTimer = shootAnimationDuration;
+        animator.SetBool("isShooting", true);
+        moveInput = Vector2.zero; // Ensure we stop moving when starting to shoot
     }
 
-    public void isRevived()
+    private void StopShooting()
     {
-        this.moveSpeed = 5f;
+        isShooting = false;
+        animator.SetBool("isShooting", false);
     }
 
-    public void isBeingRevived()
-    {
-        this.moveSpeed = 0f;
-    }
+    // Public methods for external access
+    public Vector2 GetMoveInput() => moveInput;
+
+    // State modification methods
+    public void isOnGround() => moveSpeed = 2f;
+
+    public void isRevived() => moveSpeed = 5f;
+
+    public void isBeingRevived() => moveSpeed = 0f;
 }
