@@ -8,6 +8,8 @@ TagManager:
   - Structure
   - GrenadeDrop
   - HealthDrop
+  - Vehicle
+  - GearDrop
   layers:
   - Default
   - TransparentFX

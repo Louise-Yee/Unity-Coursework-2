@@ -8,15 +8,18 @@ public class ZombieSpawner : MonoBehaviour
     public static int currentIndex = 0; // Track which prefab to spawn next
     private float spawnTimer = 0f;
     public float spawnInterval = 3f;
-    public static int spawnCount = 60; // The number of zombies that should spawn
+    public static float minSpawmTime = 2f;
+    public static float maxSpawmTime = 4f;
+    public int spawnCount = 30; // The number of zombies that should spawn
     public static int powerCount = 6; // The number of zombies that contains power
-    public static int temp1 = 0;
-    public static int temp2 = 0;
+    public int temp1 = 0;
+    public int temp2 = 0;
     private System.Random random = new System.Random(); // Random number generator
 
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log(transform.name+", "+temp1+", "+spawnCount);
         // make sure we have prefabs to spawn
         if (zombiePrefab.Length > 0 && temp1 < spawnCount)
         {
@@ -64,7 +67,7 @@ public class ZombieSpawner : MonoBehaviour
                 spawnTimer = 0f;
                 //tracks the number of zombies spawning
                 temp1+=1;
-                spawnInterval = Random.Range(1f, 4f);
+                spawnInterval = Random.Range(minSpawmTime, maxSpawmTime);
             }
         }
     }

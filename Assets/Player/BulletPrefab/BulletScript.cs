@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
         // Ignore collisions with grenade and health pickups
         foreach (Collider2D dropCollider in dropColliders)
         {
-            if (dropCollider.CompareTag("GrenadeDrop") || dropCollider.CompareTag("HealthDrop"))
+            if (dropCollider.CompareTag("GrenadeDrop") || dropCollider.CompareTag("HealthDrop") || dropCollider.CompareTag("GearDrop"))
             {
                 Physics2D.IgnoreCollision(bulletCollider, dropCollider);
             }
@@ -25,11 +25,11 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Zombie"))
+        if (collision.CompareTag("Zombie") && (collision is CapsuleCollider2D))
         {
             zombieHealth zombieHealth = collision.GetComponent<zombieHealth>();
 
-            if (zombieHealth != null && !zombieHealth.IsDead())
+            if (zombieHealth != null && !zombieHealth.IsDead() && zombieHealth.currentHealth!=0)
             {
                 if (gameObject.name.Contains("Bullet2")){
                     GameManager.p2ZombieKilled++;

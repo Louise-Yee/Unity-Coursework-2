@@ -3,7 +3,7 @@ using UnityEngine;
 public class zombieHealth : MonoBehaviour
 {
     public float maxHealth = 1f;
-    private float currentHealth;
+    public float currentHealth;
     private Animator animator; // Reference to the Animator component
     private ZombieDrop zombieDrop; // Reference to ZombieDrop script
     private Collider2D zombieCollider; // Reference to the Zombie's Collider2D
@@ -47,7 +47,6 @@ public class zombieHealth : MonoBehaviour
             zombieDrop.DropItem(); // Trigger the drop
         }
         Destroy(gameObject, 1f); // Destroy the zombie after 1 second
-        GameManager.zombiesKilled++;
     }
 
     // Getter to check if the zombie is dead

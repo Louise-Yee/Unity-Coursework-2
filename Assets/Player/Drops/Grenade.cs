@@ -6,7 +6,7 @@ public class Grenade : MonoBehaviour
 {
     public float explosionDelay = 1.5f; // Time before the grenade explodes
     public float explosionRadius = 1f; // Radius of the explosion
-    public int damage = 100; // Damage dealt to zombies
+    public int damage = 1; // Damage dealt to zombies
     public Animator animator; // Reference to the Animator component
     public Rigidbody2D rb; // Rigidbody for physics-based movement
     private bool hasExploded = false; // To prevent multiple explosions
@@ -108,17 +108,28 @@ public class Grenade : MonoBehaviour
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (Collider2D hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Zombie"))
-            {
-                // Attempt to get the zombieHealth script on the zombie
-                zombieHealth zombie = hitCollider.GetComponent<zombieHealth>();
-
-                if (zombie != null)
+            if (hitCollider is CapsuleCollider2D || hitCollider is PolygonCollider2D){
+                if (hitCollider.CompareTag("Zombie"))
                 {
-                    // Call the TakeDamage function with the grenade's damage
-                    zombie.TakeDamage(damage);
+                    // Attempt to get the zombieHealth script on the zombie
+                    zombieHealth zombie = hitCollider.GetComponent<zombieHealth>();
+
+                    if (zombie != null)
+                    {
+                        // Call the TakeDamage function with the grenade's damage
+                        zombie.TakeDamage(damage);
+                    }
                 }
-                else { }
+                else if (hitCollider.CompareTag("Vehicle")){
+                    // Attempt to get the vehicleHealth script on the vehicle
+                    vehicleHealth vehicle = hitCollider.GetComponent<vehicleHealth>();
+
+                    if (vehicle != null)
+                    {
+                        // Call the TakeDamage function with the grenade's damage
+                        vehicle.TakeDamage(damage);
+                    }
+                }
             }
         }
 

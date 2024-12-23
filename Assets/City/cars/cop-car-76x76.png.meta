@@ -95,7 +95,39 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: cop-car-76x76_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 52
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3, y: 12}
+        - {x: -8, y: 12}
+        - {x: -11, y: 11}
+        - {x: -17, y: 6}
+        - {x: -24, y: 6}
+        - {x: -26, y: 5}
+        - {x: -26, y: -2}
+        - {x: 26, y: -2}
+        - {x: 26, y: 3}
+        - {x: 19, y: 6}
+        - {x: 10, y: 6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dd40f17a8000c94491812523a25e081
+      internalID: 1636485126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +138,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cop-car-76x76_0: 1636485126
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
