@@ -19,23 +19,26 @@ public class ZombieDrop : MonoBehaviour
     // Method to drop the items (grenade and health pickup)
     public void DropItem()
     {
-        if (grenadePrefab != null && gameObject.name == "PoweredZombie")
-        {
-            // Calculate drop position for 2D
-            Vector2 dropPosition = (Vector2)transform.position + dropOffset;
+        if (gameObject.name == "PoweredZombie"){
+            if (grenadePrefab != null)
+            {
+                // Calculate drop position for 2D
+                Vector2 dropPosition = (Vector2)transform.position + dropOffset;
 
-            // Instantiate the grenade prefab at the calculated position
-            Instantiate(grenadePrefab, dropPosition, Quaternion.identity);
+                // Instantiate the grenade prefab at the calculated position
+                Instantiate(grenadePrefab, dropPosition, Quaternion.identity);
+            }
         }
+        else{
+            // Randomly determine whether to drop a health pickup (25% chance)
+            if (healthPickupPrefab != null && Random.value < healthDropChance)
+            {
+                // Calculate drop position for 2D
+                Vector2 dropPosition = (Vector2)transform.position + dropOffset;
 
-        // Randomly determine whether to drop a health pickup (25% chance)
-        if (healthPickupPrefab != null && Random.value < healthDropChance)
-        {
-            // Calculate drop position for 2D
-            Vector2 dropPosition = (Vector2)transform.position + dropOffset;
-
-            // Instantiate the health pickup prefab at the calculated position
-            Instantiate(healthPickupPrefab, dropPosition, Quaternion.identity);
+                // Instantiate the health pickup prefab at the calculated position
+                Instantiate(healthPickupPrefab, dropPosition, Quaternion.identity);
+            }
         }
     }
 }

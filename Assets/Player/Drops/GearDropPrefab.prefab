@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6815410915012645932}
   - component: {fileID: 7794422791879737884}
   m_Layer: 0
-  m_Name: GrenadeDropPrefab
-  m_TagString: GrenadeDrop
+  m_Name: GearDropPrefab
+  m_TagString: GearDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 11367805ab9813e4eb3e41763989a33c, type: 2}
+  m_Sprite: {fileID: 21300000, guid: a409cd0d9c4c5254692f5cf76b7d4b2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

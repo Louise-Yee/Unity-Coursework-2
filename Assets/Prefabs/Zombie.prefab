@@ -98,7 +98,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.016652778, y: -0.047182754}
+  m_Offset: {x: 0.030085772, y: -0.0702108}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.433862, y: 0.85018075}
+  m_Size: {x: 0.33023584, y: 0.6659566}
   m_EdgeRadius: 0
 --- !u!95 &7365964954419174646
 Animator:
@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  currentHealth: 0
   zombieDieSound: {fileID: 8300000, guid: 16e1887ab55e8564ab26a0fe0f6d5c66, type: 3}
 --- !u!70 &1540775389811834526
 CapsuleCollider2D:

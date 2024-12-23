@@ -5,9 +5,13 @@ public class PlayerInventory : MonoBehaviour
 {
     // Maximum number of grenades the player can hold
     private const int maxGrenades = 3;
+    // Maximum number of gears the player can hold
+    private const int maxGears = 4;
 
     // Current number of grenades
-    private int grenadeCount = 3;
+    private int grenadeCount = 0;
+    // Current number of gears
+    private int gearCount = 0;
 
     // Player identifier
     public int playerID = 1; // Set this in the inspector or dynamically
@@ -27,11 +31,13 @@ public class PlayerInventory : MonoBehaviour
 
     // UI References
     public Image[] grenadeImages; // Array of grenade images
+    public Image[] gearImages; // Array of gear images
 
     [Header("Audio")]
     public AudioClip healthPickupSound; // Sound when health pick up
     public AudioClip grenadePickupSound; // Sound when grenade pick up
     private AudioSource audioSource; // Reference to AudioSource component
+    private Collider2D lastCollider;
 
     // UI or debugging log to show grenade count (optional)
     void UpdateUI()
@@ -60,6 +66,30 @@ public class PlayerInventory : MonoBehaviour
                 );
             }
         }
+        // Iterate through all gear images
+        for (int i = 0; i < gearImages.Length; i++)
+        {
+            if (i < gearCount)
+            {
+                // gears the player has: full opacity
+                gearImages[i].color = new Color(
+                    gearImages[i].color.r,
+                    gearImages[i].color.g,
+                    gearImages[i].color.b,
+                    1f
+                );
+            }
+            else
+            {
+                // gears the player doesn't have: 50% opacity
+                gearImages[i].color = new Color(
+                    gearImages[i].color.r,
+                    gearImages[i].color.g,
+                    gearImages[i].color.b,
+                    0.01f
+                );
+            }
+        }
     }
 
     // Method to pick up a grenade
@@ -68,6 +98,17 @@ public class PlayerInventory : MonoBehaviour
         if (grenadeCount < maxGrenades)
         {
             grenadeCount++;
+            UpdateUI();
+        }
+        else { }
+    }
+
+    // Method to pick up a gear
+    public void PickupGear()
+    {
+        if (gearCount < maxGears)
+        {
+            gearCount++;
             UpdateUI();
         }
         else { }
@@ -138,33 +179,39 @@ public class PlayerInventory : MonoBehaviour
     // Trigger to simulate picking up a grenade or health item
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("GrenadeDrop") && animator.GetBool("isDead") == false)
-        {
-            if (grenadeCount < maxGrenades)
+        if (lastCollider == null || lastCollider != other){
+            if (other.CompareTag("GrenadeDrop") && animator.GetBool("isDead") == false)
             {
-                Debug.Log("GRENADE pick up");
+                lastCollider = other;
+                if (grenadeCount < maxGrenades)
+                {
+                    Debug.Log("GRENADE pick up");
 
-                PlayAudio(grenadePickupSound);
-                PickupGrenade();
+                    PlayAudio(grenadePickupSound);
+                    PickupGrenade();
+                    Destroy(other.gameObject); // Remove the grenade pickup from the scene
+                }
+            }
+
+            // when player is not at max health then heals
+            if (other.CompareTag("HealthDrop") && !playerHealth.IsAtMaxHealth && animator.GetBool("isDead") == false)
+            {
+                lastCollider = other;
+                Debug.Log("health pick up");
+                PlayAudio(healthPickupSound);
+                // Heal the player but don't exceed the maximum health
+                float healAmount = 4f; // Example heal amount, adjust based on your needs
+                HealPlayer(healAmount);
+
+                Destroy(other.gameObject); // Remove the health pickup from the scene
+            }
+            if (other.CompareTag("GearDrop") && gameObject.name=="Player 2")
+            {
+                lastCollider = other;
+                Debug.Log("Gear pick up");
+                PickupGear();
                 Destroy(other.gameObject); // Remove the grenade pickup from the scene
             }
-            else { }
-        }
-
-        // when player is not at max health then heals
-        if (
-            other.CompareTag("HealthDrop")
-            && !playerHealth.IsAtMaxHealth
-            && animator.GetBool("isDead") == false
-        )
-        {
-            Debug.Log("health pick up");
-            PlayAudio(healthPickupSound);
-            // Heal the player but don't exceed the maximum health
-            float healAmount = 4f; // Example heal amount, adjust based on your needs
-            HealPlayer(healAmount);
-
-            Destroy(other.gameObject); // Remove the health pickup from the scene
         }
     }
 

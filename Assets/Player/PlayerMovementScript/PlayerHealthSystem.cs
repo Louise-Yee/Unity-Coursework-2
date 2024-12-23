@@ -313,6 +313,7 @@ public class PlayerHealthSystem : MonoBehaviour
         revivalCount += Time.deltaTime;
         reviveButtonImage.fillAmount = revivalCount / revivalTime;
 
+        // Debug.Log(revivalCount+", "+revivalTime);
         if (revivalCount >= revivalTime)
         {
             // Revive the player

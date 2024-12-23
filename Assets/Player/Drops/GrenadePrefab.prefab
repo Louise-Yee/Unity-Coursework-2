@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionDelay: 1
   explosionRadius: 2
-  damage: 100
+  damage: 1
   animator: {fileID: 3183529491980697499}
   rb: {fileID: -8796978107727003967}
   audioSource: {fileID: -4521254033129635231}
