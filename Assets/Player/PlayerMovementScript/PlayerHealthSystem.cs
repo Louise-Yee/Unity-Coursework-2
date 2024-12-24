@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -109,58 +110,56 @@ public class PlayerHealthSystem : MonoBehaviour
             EnterDownedState();
         }
 
-        // Update the cooldown timer for each zombie
-        List<GameObject> zombiesToReset = new List<GameObject>();
-        foreach (var zombie in damageCooldowns.Keys)
-        {
-            damageCooldowns[zombie] -= Time.deltaTime;
-            if (damageCooldowns[zombie] <= 0)
-            {
-                zombiesToReset.Add(zombie); // Mark zombies whose cooldown has expired
-            }
-        }
+        // Safe way to update the cooldown timer for each zombie
+        var cooldownEntries = damageCooldowns.ToList();
 
-        // Remove zombies with expired cooldowns
-        foreach (var zombie in zombiesToReset)
+        foreach (var entry in cooldownEntries)
         {
-            damageCooldowns.Remove(zombie);
+            var zombie = entry.Key;
+            var cooldown = entry.Value - Time.deltaTime;
+
+            if (cooldown <= 0)
+            {
+                damageCooldowns.Remove(zombie);
+            }
+            else
+            {
+                damageCooldowns[zombie] = cooldown;
+            }
         }
 
         // Check for revival input
-        if (nearbyAlivePlayer != null)
+        if (nearbyAlivePlayer != null && !isDowned) // If this player is not downed, they can revive others
         {
-            if (nearbyAlivePlayer.isDowned)
+            if (Input.GetKey(KeyCode.H) && !isReviving)
             {
-                if (Input.GetKeyDown(KeyCode.H) && !isReviving)
+                // Start reviving
+                isReviving = true;
+                if (reviveCoroutine != null)
                 {
-                    // Start reviving
-                    isReviving = true;
-                    if (reviveCoroutine != null)
-                    {
-                        StopCoroutine(reviveCoroutine);
-                    }
-                    reviveCoroutine = StartCoroutine(ReviveCoroutine());
-
-                    // Start playing the sound
-                    if (reviveSound != null)
-                    {
-                        reviveAudioSource.clip = reviveSound;
-                        reviveAudioSource.Play();
-                    }
+                    StopCoroutine(reviveCoroutine);
                 }
-                else if (Input.GetKeyUp(KeyCode.H) && isReviving)
-                {
-                    StopReviving(); // Replace previous stop logic with centralized method
+                reviveCoroutine = StartCoroutine(ReviveCoroutine());
 
-                    // Start decreasing
-                    if (decreaseCoroutine == null)
-                    {
-                        decreaseCoroutine = StartCoroutine(GradualReviveDecrease());
-                    }
+                // Start playing the sound
+                if (reviveSound != null && reviveAudioSource != null)
+                {
+                    reviveAudioSource.clip = reviveSound;
+                    reviveAudioSource.Play();
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.H) && isReviving)
+            {
+                StopReviving();
+
+                // Start decreasing
+                if (decreaseCoroutine == null)
+                {
+                    decreaseCoroutine = StartCoroutine(GradualReviveDecrease());
                 }
             }
         }
-        else if (isReviving) // Add this check to stop reviving if nearby player becomes null
+        else if (isReviving)
         {
             StopReviving();
         }
@@ -226,13 +225,19 @@ public class PlayerHealthSystem : MonoBehaviour
             }
         }
 
-        // Check for nearby downed player
         PlayerHealthSystem otherPlayerHealth = other.GetComponent<PlayerHealthSystem>();
-        if (other.CompareTag("Player") && otherPlayerHealth != null && otherPlayerHealth.isDowned)
+        if (
+            other.CompareTag("Player")
+            && otherPlayerHealth != null
+            && otherPlayerHealth.isDowned
+            && !isDowned
+        )
         {
-            revivalPrompt.gameObject.SetActive(true);
-            reviveButtonText.gameObject.SetActive(true);
-            reviveButtonImage.gameObject.SetActive(true);
+            revivalPrompt.SetActive(true);
+            if (reviveButtonText != null)
+                reviveButtonText.gameObject.SetActive(true);
+            if (reviveButtonImage != null)
+                reviveButtonImage.gameObject.SetActive(true);
             nearbyAlivePlayer = otherPlayerHealth;
         }
     }
@@ -303,51 +308,49 @@ public class PlayerHealthSystem : MonoBehaviour
         }
     }
 
-    public void StartRevival()
-    {
-        nearbyAlivePlayer.RevivePlayer();
-    }
+    // public void StartRevival()
+    // {
+    //     nearbyAlivePlayer.RevivePlayer();
+    // }
 
     private void RevivePlayer()
     {
         revivalCount += Time.deltaTime;
         reviveButtonImage.fillAmount = revivalCount / revivalTime;
 
-        // Debug.Log(revivalCount+", "+revivalTime);
-        if (revivalCount >= revivalTime)
+        Debug.Log(revivalCount);
+
+        // Revive the player
+        isDowned = false;
+        currentHealth = reviveHealth;
+
+        if (isPlayerOne)
         {
-            // Revive the player
-            isDowned = false;
-            currentHealth = reviveHealth;
-
-            if (isPlayerOne)
-            {
-                player1Movement.isRevived(); // Restore movement speed
-            }
-            else
-            {
-                player2Movement.isRevived();
-            }
-
-            animator.SetBool("isDead", false);
-            revivalCount = 0;
-            ReviveProgress.targetObject = null;
-            reviveButtonText.gameObject.SetActive(false);
-            reviveButtonImage.gameObject.SetActive(false);
-
-            // Disable revive text
-            if (reviveText != null)
-            {
-                reviveText.gameObject.SetActive(false);
-            }
-            if (reviveTextBackground != null)
-            {
-                reviveTextBackground.gameObject.SetActive(false);
-            }
-
-            // Grant immunity after revival
-            StartCoroutine(GrantImmunity());
+            player1Movement.isRevived(); // Restore movement speed
         }
+        else
+        {
+            player2Movement.isRevived();
+        }
+
+        animator.SetBool("isDead", false);
+        revivalCount = 0;
+        ReviveProgress.targetObject = null;
+        reviveButtonText.gameObject.SetActive(false);
+        reviveButtonImage.gameObject.SetActive(false);
+
+        // Disable revive text
+        if (reviveText != null)
+        {
+            reviveText.gameObject.SetActive(false);
+        }
+        if (reviveTextBackground != null)
+        {
+            reviveTextBackground.gameObject.SetActive(false);
+        }
+
+        // Grant immunity after revival
+        StartCoroutine(GrantImmunity());
     }
 
     private IEnumerator GradualReviveDecrease()
@@ -386,12 +389,15 @@ public class PlayerHealthSystem : MonoBehaviour
             {
                 reviveAudioSource.pitch = Mathf.Lerp(minPitch, maxPitch, progress);
             }
-
             if (progress >= 1f)
             {
-                nearbyAlivePlayer.RevivePlayer();
+                Debug.Log("Player is revived");
+                nearbyAlivePlayer.RevivePlayer(); // Revive the downed player
                 isReviving = false;
-                reviveAudioSource.Stop();
+                if (reviveAudioSource != null)
+                {
+                    reviveAudioSource.Stop();
+                }
                 break;
             }
 

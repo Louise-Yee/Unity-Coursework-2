@@ -6782,14 +6782,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 78
-  m_RefResolutionX: 1920
-  m_RefResolutionY: 1080
+  m_RefResolutionX: 600
+  m_RefResolutionY: 800
   m_UpscaleRT: 0
   m_PixelSnapping: 1
   m_CropFrameX: 0
@@ -22806,11 +22806,7 @@ MonoBehaviour:
   - {fileID: 2020330377}
   - {fileID: 1606575051}
   - {fileID: 270984460}
-  gearImages:
-  - {fileID: 1384096882}
-  - {fileID: 424352292}
-  - {fileID: 358785850}
-  - {fileID: 876399045}
+  gearImages: []
   healthPickupSound: {fileID: 8300000, guid: decd49c673a06bf4aa990566aa146473, type: 3}
   grenadePickupSound: {fileID: 8300000, guid: ebb6203ed6457704c9ea16114baf90b9, type: 3}
 --- !u!82 &1727250752
@@ -23355,7 +23351,7 @@ MonoBehaviour:
   audioSource: {fileID: 1761049747}
   footstepInterval: 0.5
   shootKey: 118
-  shootAnimationDuration: 0.3
+  shootAnimationDuration: 0.15
 --- !u!50 &1761049739
 Rigidbody2D:
   serializedVersion: 4
@@ -23532,7 +23528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4647f6ffe5a970e4caafade083f2fd2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 1
   pushForce: 2
   reviveHealth: 5
   isPlayerOne: 1

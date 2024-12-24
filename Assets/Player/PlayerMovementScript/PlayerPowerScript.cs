@@ -5,11 +5,13 @@ public class PlayerInventory : MonoBehaviour
 {
     // Maximum number of grenades the player can hold
     private const int maxGrenades = 3;
+
     // Maximum number of gears the player can hold
     private const int maxGears = 4;
 
     // Current number of grenades
     private int grenadeCount = 0;
+
     // Current number of gears
     private int gearCount = 0;
 
@@ -179,7 +181,8 @@ public class PlayerInventory : MonoBehaviour
     // Trigger to simulate picking up a grenade or health item
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (lastCollider == null || lastCollider != other){
+        if (lastCollider == null || lastCollider != other)
+        {
             if (other.CompareTag("GrenadeDrop") && animator.GetBool("isDead") == false)
             {
                 lastCollider = other;
@@ -194,7 +197,11 @@ public class PlayerInventory : MonoBehaviour
             }
 
             // when player is not at max health then heals
-            if (other.CompareTag("HealthDrop") && !playerHealth.IsAtMaxHealth && animator.GetBool("isDead") == false)
+            if (
+                other.CompareTag("HealthDrop")
+                && !playerHealth.IsAtMaxHealth
+                && animator.GetBool("isDead") == false
+            )
             {
                 lastCollider = other;
                 Debug.Log("health pick up");
@@ -205,7 +212,7 @@ public class PlayerInventory : MonoBehaviour
 
                 Destroy(other.gameObject); // Remove the health pickup from the scene
             }
-            if (other.CompareTag("GearDrop") && gameObject.name=="Player 2")
+            if (other.CompareTag("GearDrop") && gameObject.name == "Player 2")
             {
                 lastCollider = other;
                 Debug.Log("Gear pick up");
