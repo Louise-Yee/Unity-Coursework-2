@@ -13,7 +13,7 @@ public class PlayerInventory : MonoBehaviour
     private int grenadeCount = 0;
 
     // Current number of gears
-    private int gearCount = 0;
+    public int gearCount = 0;
 
     // Player identifier
     public int playerID = 1; // Set this in the inspector or dynamically
@@ -42,7 +42,7 @@ public class PlayerInventory : MonoBehaviour
     private Collider2D lastCollider;
 
     // UI or debugging log to show grenade count (optional)
-    void UpdateUI()
+    public void UpdateUI()
     {
         // Iterate through all grenade images
         for (int i = 0; i < grenadeImages.Length; i++)

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         mainMenu.SetActive(true);
         rural.SetActive(false);
         city.SetActive(false);
-        rural.SetActive(false);
+        rooftop.SetActive(false);
         zombieSpawnNorth.SetActive(false);
         zombieSpawnSouth.SetActive(false);
         zombieSpawnWest.SetActive(false);
@@ -85,6 +85,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadLevel1());
     }
     IEnumerator LoadLevel1(){
+        zombieSpawnNorth.SetActive(true);
+        zombieSpawnSouth.SetActive(true);
         GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
         // Loop through each GameObject and check its name
         foreach (GameObject obj in allGameObjects)
@@ -101,8 +103,6 @@ public class GameManager : MonoBehaviour
         rural.SetActive(false);
         city.SetActive(true);
         player2GearPanel.SetActive(true);
-        zombieSpawnNorth.SetActive(true);
-        zombieSpawnSouth.SetActive(true);
         ZombieSpawner.powerCount = 12;
         ZombieSpawner.maxSpawmTime = 4f;
         ZombieSpawner.maxSpawmTime = 7f;
@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadLevel2());
     }
     IEnumerator LoadLevel2(){
+        zombieSpawnEast.SetActive(false);
         GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
         // Loop through each GameObject and check its name
         foreach (GameObject obj in allGameObjects)
@@ -127,7 +128,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         city.SetActive(false);
         rooftop.SetActive(true);
-        zombieSpawnEast.SetActive(false);
         ZombieSpawner.powerCount = 15;
         ZombieSpawner.maxSpawmTime = 3f;
         ZombieSpawner.maxSpawmTime = 5f;
