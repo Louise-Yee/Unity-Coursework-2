@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -25,16 +26,34 @@ public class Player1Movement : MonoBehaviour
     private float shootTimer = 0f;
     private ShootingScript reloadState;
 
+    // New variable to track if the player is moving automatically
+    public bool isAutoMoving = true;
+    private Dictionary<int, Vector2> positionDict;
+    private int positionKey = 1;
+
     void Start()
     {
         SetupComponents();
+        // Initialize the dictionary
+        positionDict = new Dictionary<int, Vector2>();
+
+        // Example of adding entries to the dictionary
+        positionDict.Add(1, new Vector2(-1, 0));
+        positionDict.Add(2, new Vector2(12.23259f, 0.425317f));
+        positionDict.Add(3, new Vector2(-1, 0));
     }
 
     void Update()
     {
-        HandleInput();
-        UpdateMovementAndAnimation();
-        UpdateShooting();
+        if (!isAutoMoving){
+            HandleInput();
+            UpdateMovementAndAnimation();
+            UpdateShooting();
+        }
+        else{
+            // AutoMoveToPosition(new Vector2(-1, 0));
+            AutoMoveToPosition(positionDict[positionKey]);
+        }
     }
 
     private void FixedUpdate()
@@ -70,6 +89,22 @@ public class Player1Movement : MonoBehaviour
         }
     }
 
+    public void AutoMoveToPosition(Vector2 targetPosition){
+        // If the player reaches the target position, stop auto-moving
+        if (isAutoMoving && Vector2.Distance(transform.position, targetPosition) < 0.1f)
+        {
+            isAutoMoving = false; // Stop auto-movement when close to target
+            moveInput = Vector2.zero; // Stop movement
+            positionKey++;
+        }
+        
+        // If still auto-moving, set move input towards target
+        if (isAutoMoving && Vector2.Distance(transform.position, targetPosition) >= 0.1f)
+        {
+            MoveToPosition(targetPosition);
+        }
+    }
+
     private void ProcessMovementInput()
     {
         moveInput.x =
@@ -87,6 +122,20 @@ public class Player1Movement : MonoBehaviour
         {
             lastMoveDirection = moveInput;
         }
+    }
+
+    private void MoveToPosition(Vector2 targetPosition)
+    {
+        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+
+        // Set move input towards the target position
+        moveInput = direction; 
+        lastMoveDirection = direction; // Update last move direction for animation
+
+        // Ensure animator is updated for walking animation
+        animator.SetFloat("MoveX", moveInput.x);
+        animator.SetFloat("MoveY", moveInput.y);
+        animator.SetFloat("MoveMagnitude", moveInput.magnitude);
     }
 
     private void UpdateMovementAndAnimation()

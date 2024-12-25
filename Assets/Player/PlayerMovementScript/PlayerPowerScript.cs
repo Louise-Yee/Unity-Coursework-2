@@ -92,6 +92,9 @@ public class PlayerInventory : MonoBehaviour
                 );
             }
         }
+        if (gearCount == maxGears){
+            GameManager.allGearsCollected = true;
+        }
     }
 
     // Method to pick up a grenade
