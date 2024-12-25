@@ -19,7 +19,6 @@ public class ZombieSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(transform.name+", "+temp1+", "+spawnCount);
         // make sure we have prefabs to spawn
         if (zombiePrefab.Length > 0 && temp1 < spawnCount)
         {
@@ -35,6 +34,9 @@ public class ZombieSpawner : MonoBehaviour
                     // Change x value by a random number between -2 and 2
                     float randomXChange = Random.Range(-2f, 2f);
                     newZombie.transform.position = new Vector2(transform.position.x + randomXChange, transform.position.y);
+                }
+                else if (transform.name.Contains("West (1)") || transform.name.Contains("West (2)")){
+                    newZombie.transform.position = new Vector2(transform.position.x, transform.position.y);
                 }
                 else{
                     // Change x value by a random number between -2 and 2
