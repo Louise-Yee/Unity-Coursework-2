@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 19e49da7c93ef7045a2a1d70e257bcea
+guid: 6533156330bdddc4791bec845c09e994
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,39 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Helicopter_0
+      name: HelicopterPad_0
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
-        width: 128
-        height: 128
+        x: 0
+        y: 160
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 51, y: -11}
-        - {x: 15, y: -21}
-        - {x: 30, y: -7}
-        - {x: 31, y: -1}
-        - {x: -59, y: -1}
-        - {x: -59, y: -6}
-        - {x: -18, y: -7}
-        - {x: -19, y: -12}
-        - {x: -32, y: -17}
-        - {x: -44, y: -32}
-        - {x: -45, y: -46}
-        - {x: 5, y: -46}
-        - {x: 48, y: -16}
-        - {x: 54, y: -15}
-        - {x: 60, y: -16}
-        - {x: 59, y: -8}
-        - {x: 55, y: -3}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17ffd44daada3a54eb1530309e3a3e92
-      internalID: 1121521912
+      spriteID: 0864d6fae2e4a784a940212ea419b8bb
+      internalID: -629996138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HelicopterPad_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6ea221d173db73459a5ecef8ce38929
+      internalID: -1034344351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HelicopterPad_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aded1d706bf6df43acb8f596a3cb0b0
+      internalID: 310874078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HelicopterPad_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ee8cc09e07ddc640b0f137ce899f7ef
+      internalID: 1827273568
       vertices: []
       indices: 
       edges: []
@@ -145,7 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Helicopter_0: 1121521912
+      HelicopterPad_0: -629996138
+      HelicopterPad_1: -1034344351
+      HelicopterPad_2: 310874078
+      HelicopterPad_3: 1827273568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
