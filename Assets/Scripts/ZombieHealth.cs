@@ -6,10 +6,10 @@ public class zombieHealth : MonoBehaviour
     public float currentHealth;
     private Animator animator; // Reference to the Animator component
     private ZombieDrop zombieDrop; // Reference to ZombieDrop script
-    private Collider2D zombieCollider; // Reference to the Zombie's Collider2D
+    public Collider2D zombieCollider; // Reference to the Zombie's Collider2D
 
     [Header("Audio")]
-    public AudioClip zombieDieSound; // Sound when zombie dies
+    public AudioClip zombieHitSound; // Sound when zombie dies
     private AudioSource audioSource; // Reference to AudioSource component
 
     void Start()
@@ -25,18 +25,24 @@ public class zombieHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string obj)
     {
         currentHealth -= damage;
+        PlayAudio(zombieHitSound);
         if (currentHealth <= 0)
         {
+            if (obj.Contains("Bullet2") || obj.Contains("GrenadePrefab2")){
+                GameManager.p2ZombieKilled++;
+            }
+            else if (obj.Contains("Bullet") || obj.Contains("GrenadePrefab")){
+                GameManager.p1ZombieKilled++;
+            }
             Die();
         }
     }
 
     void Die()
     {
-        PlayAudio(zombieDieSound);
         animator.SetBool("isDead", true);
         if (zombieCollider != null)
         {

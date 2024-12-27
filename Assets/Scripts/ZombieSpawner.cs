@@ -10,7 +10,7 @@ public class ZombieSpawner : MonoBehaviour
     public float spawnInterval = 3f;
     public static float minSpawmTime = 2f;
     public static float maxSpawmTime = 4f;
-    public int spawnCount = 15; // The number of zombies that should spawn
+    public int spawnCount = 30; // The number of zombies that should spawn
     public static int powerCount = 6; // The number of zombies that contains power
     public int temp1 = 0;
     public int temp2 = 0;
@@ -62,6 +62,7 @@ public class ZombieSpawner : MonoBehaviour
                         spriteRenderer.color = Color.red; // Paint the zombie red
                     }
                     newZombie.name = "PoweredZombie";
+                    newZombie.GetComponent<zombieHealth>().maxHealth = 2;
                     temp2+=1;
                 }
 

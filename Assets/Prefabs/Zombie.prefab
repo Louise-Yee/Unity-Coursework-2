@@ -196,9 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a3ca13189a12f45bce050b5416ef53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
   currentHealth: 0
-  zombieDieSound: {fileID: 8300000, guid: 16e1887ab55e8564ab26a0fe0f6d5c66, type: 3}
+  zombieHitSound: {fileID: 8300000, guid: 16e1887ab55e8564ab26a0fe0f6d5c66, type: 3}
 --- !u!70 &1540775389811834526
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
