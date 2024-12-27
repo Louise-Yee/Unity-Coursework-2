@@ -6,7 +6,7 @@ public class Grenade : MonoBehaviour
 {
     public float explosionDelay = 1.5f; // Time before the grenade explodes
     public float explosionRadius = 1f; // Radius of the explosion
-    public int damage = 1; // Damage dealt to zombies
+    private int damage = 2; // Damage dealt to zombies
     public Animator animator; // Reference to the Animator component
     public Rigidbody2D rb; // Rigidbody for physics-based movement
     private bool hasExploded = false; // To prevent multiple explosions
@@ -114,10 +114,10 @@ public class Grenade : MonoBehaviour
                     // Attempt to get the zombieHealth script on the zombie
                     zombieHealth zombie = hitCollider.GetComponent<zombieHealth>();
 
-                    if (zombie != null)
+                    if (zombie != null && !zombie.IsDead() && zombie.currentHealth!=0)
                     {
                         // Call the TakeDamage function with the grenade's damage
-                        zombie.TakeDamage(damage);
+                        zombie.TakeDamage(damage,gameObject.name);
                     }
                 }
                 else if (hitCollider.CompareTag("Vehicle")){

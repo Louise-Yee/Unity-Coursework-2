@@ -35,12 +35,15 @@ public class Player1Movement : MonoBehaviour
     {
         SetupComponents();
         // Initialize the dictionary
-        positionDict = new Dictionary<int, Vector2>();
-
-        // Example of adding entries to the dictionary
-        positionDict.Add(1, new Vector2(-1, 0));
-        positionDict.Add(2, new Vector2(12.23259f, 0.425317f));
-        positionDict.Add(3, new Vector2(-1, 0));
+        positionDict = new Dictionary<int, Vector2>
+        {
+            // Example of adding entries to the dictionary
+            { 1, new Vector2(-1, 0) },
+            { 2, new Vector2(12.23259f, 0.425317f) },
+            { 3, new Vector2(-1, 0) },
+            { 4, new Vector2(3.5858f, 3.5184f) },
+            { 5, new Vector2(-1, 0) }
+        };
     }
 
     void Update()

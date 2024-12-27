@@ -8,7 +8,7 @@ public class StartHeliProgress : MonoBehaviour
     [SerializeField] Image image;
     private Collider2D playerNearby;
     float startTime = 0;
-    private bool completed = false;
+    public bool completed = false;
     // Start is called before the first frame update
     void Start()
     {

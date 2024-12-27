@@ -13,11 +13,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject player2UI;
     [SerializeField] GameObject speech;
     [SerializeField] TextMeshProUGUI speechText;
+    [SerializeField] GameObject mission;
+    [SerializeField] TextMeshProUGUI missionText;
+    [SerializeField] GameObject terrence;
+    [SerializeField] GameObject phillip;
+    [SerializeField] GameObject josh;
     [SerializeField] GameObject player2GearPanel;
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject rural;
     [SerializeField] GameObject city;
     [SerializeField] GameObject rooftop;
+    [SerializeField] GameObject helicopter;
     [SerializeField] GameObject zombieSpawnNorth;
     [SerializeField] GameObject zombieSpawnSouth;
     [SerializeField] GameObject zombieSpawnWest;
@@ -45,6 +51,7 @@ public class GameManager : MonoBehaviour
         player1UI.SetActive(false);
         player2UI.SetActive(false);
         speech.SetActive(false);
+        mission.SetActive(false);
         mainMenu.SetActive(true);
         rural.SetActive(false);
         city.SetActive(false);
@@ -59,51 +66,51 @@ public class GameManager : MonoBehaviour
         
         speechDict = new Dictionary<int, string>
         {
-            { 0, "Terrence: Hey man, I should be heading home now. It was nice talking to you." },
-            { 1, "Phillip: Yeah dude, just hit me up again if we wanna hangout…" },
-            { 2, "Phillip: Sup Josh…" },
-            { 3, "Josh: Dude, have you seen the news? There is a zombie outbreak going on right now!" },
-            { 4, "Phillip: What? How bad is it?" },
-            { 5, "Josh: It’s everywhere! I am in the city right now and it’s out of control here! Where are you right now?" },
-            { 6, "Phillip: Me and Terrence are just outside town; we were both just hanging out in my place." },
-            { 7, "Josh: Well, get yourselves prepared because I heard the zombies are rampaging in every direction right now, some of them are probably coming to your place right now." },
-            { 8, "Phillip: Wait, if the zombies are everywhere right now, where do we go?" },
-            { 9, "Josh: Ok, here is the plan. There is a chopper at the top of the apartment in where I live. I heard there is a safe zone in the North, where the military has things under control. You know where my apartment is right?" },
-            { 10, "Phillip: Yeah, we will be heading to where you are right now." },
-            { 11, "Josh: Cool, come before it gets worse! Ciao." },
-            { 12, "Terrence: How are we gonna get to the city?" },
-            { 13, "Phillip: Here is a pistol. We are gonna have to fight our way to the city. You know how to use guns right?" },
-            { 14, "Terrence: Yeah, I do, but it’s been a while though." },
-            { 15, "Phillip: Whatever, let’s get to the city." },
-            { 16, "Terrence: Oh shoot! Here we go! Start shooting!" },
-            { 17, "Terrence: Phew, I hope that was all the zombies from the city." },
-            { 18, "Phillip: That’s not possible, the city has tens of thousands of people and we just killed around 60." },
-            { 19, "Terrence: Fair enough. Come on, let’s get to the city." },
-            { 21, "Josh: Where the hell are you guys?" },
-            { 22, "Phillip: We are literally just outside the apartment. What about you?" },
-            { 23, "Josh: Well, I am beside the chopper, and we have a problem. Some parts inside the chopper are rusted and broken since it hasn’t been flown for ages. The engine is dead." },
-            { 24, "Phillip: I believe I can fix the chopper. I just need a few parts from some vehicles if that’s one way." },
-            { 25, "Josh: You just have to get some parts from, say, cars, and apply it to the chopper so that it works again, but even if we are able to fix it, we still need someone who can fly it." },
-            { 26, "Terrence: I can fly. I was a pilot before I retired a few months ago." },
-            { 27, "Josh: Cool, I guess we are not done after all." },
-            { 28, "Phillip: Ok, we will meet you soon…" },
-            { 29, "Josh: Guys, we have another problem, these…" },
-            { 30, "Terrence: What the hell just happened?" },
-            { 31, "Phillip: I don’t know, but hopefully he’s alright. Come on, we gotta get some parts from these cars. But it will take a while for me to get them." },
-            { 32, "Terrence: Why don’t we just use grenades, blow up the car and then get the parts?" },
-            { 33, "Phillip: Good idea. We need to blow up all four of these cars. Remember, both of us need to stay alive if we want to survive." },
-            { 34, "Terrence: Quickly, get the parts, and defend yourself!" },
-            { 35, "Phillip: Alright, I got all the parts that I could use to fix the chopper." },
-            { 36, "Terrence: Cool, let’s go upstairs. I don’t want to see a single blood thirsty zombie again." },
-            { 38, "Phillip: Josh is not here…" },
-            { 39, "Terrence: It looks like he got killed by the zombie hordes." },
-            { 40, "Phillip: Quick! I am gonna fix the chopper, give me some time." },
-            { 41, "Terrence: Uh Phillip…" },
-            { 42, "Terrence: Fix FASTER! I will hold them off." },
-            { 43, "Phillip: I will try ASAP!" },
-            { 44, "Phillip: I fixed it, Terrence. Quick, come get in and start the chopper." },
-            { 45, "Terrence: Ok, let me start the engine." },
-            { 46, "Terrence: GET IN! LET’S GO!" }
+            { 0, "<b>Terrence:</b>\nHey man, I should be heading home now. It was nice talking to you." },
+            { 1, "<b>Phillip:</b>\nYeah dude, just hit me up again if we wanna hangout…" },
+            { 2, "<b>Phillip:</b>\nSup Josh…" },
+            { 3, "<b>Josh:</b>\nDude, have you seen the news? There is a zombie outbreak going on right now!" },
+            { 4, "<b>Phillip:</b>\nWhat? How bad is it?" },
+            { 5, "<b>Josh:</b>\nIt’s everywhere! I am in the city right now and it’s out of control here! Where are you right now?" },
+            { 6, "<b>Phillip:</b>\nMe and Terrence are just outside town; we were both just hanging out in my place." },
+            { 7, "<b>Josh:</b>\nWell, get yourselves prepared because I heard the zombies are rampaging in every direction right now, some of them are probably coming to your place right now." },
+            { 8, "<b>Phillip:</b>\nWait, if the zombies are everywhere right now, where do we go?" },
+            { 9, "<b>Josh:</b>\nOk, here is the plan. There is a chopper at the top of the apartment in where I live. I heard there is a safe zone in the North, where the military has things under control. You know where my apartment is right?" },
+            { 10, "<b>Phillip:</b>\nYeah, we will be heading to where you are right now." },
+            { 11, "<b>Josh:</b>\nCool, come before it gets worse! Ciao." },
+            { 12, "<b>Terrence:</b>\nHow are we gonna get to the city?" },
+            { 13, "<b>Phillip:</b>\nHere is a pistol. We are gonna have to fight our way to the city. You know how to use guns right?" },
+            { 14, "<b>Terrence:</b>\nYeah, I do, but it’s been a while though." },
+            { 15, "<b>Phillip:</b>\nWhatever, let’s get to the city." },
+            { 16, "<b>Terrence:</b>\nOh shoot! Here we go! Start shooting!" },
+            { 17, "<b>Terrence:</b>\nPhew, I hope that was all the zombies from the city." },
+            { 18, "<b>Phillip:</b>\nThat’s not possible, the city has tens of thousands of people and we just killed around 60." },
+            { 19, "<b>Terrence:</b>\nFair enough. Come on, let’s get to the city." },
+            { 21, "<b>Josh:</b>\nWhere the hell are you guys?" },
+            { 22, "<b>Phillip:</b>\nWe are literally just outside the apartment. What about you?" },
+            { 23, "<b>Josh:</b>\nWell, I am beside the chopper, and we have a problem. Some parts inside the chopper are rusted and broken since it hasn’t been flown for ages. The engine is dead." },
+            { 24, "<b>Phillip:</b>\nI believe I can fix the chopper. I just need a few parts from some vehicles if that’s one way." },
+            { 25, "<b>Josh:</b>\nYou just have to get some parts from, say, cars, and apply it to the chopper so that it works again, but even if we are able to fix it, we still need someone who can fly it." },
+            { 26, "<b>Terrence:</b>\nI can fly. I was a pilot before I retired a few months ago." },
+            { 27, "<b>Josh:</b>\nCool, I guess we are not done after all." },
+            { 28, "<b>Phillip:</b>\nOk, we will meet you soon…" },
+            { 29, "<b>Josh:</b>\nGuys, we have another problem, these…" },
+            { 30, "<b>Terrence:</b>\nWhat the hell just happened?" },
+            { 31, "<b>Phillip:</b>\nI don’t know, but hopefully he’s alright. Come on, we gotta get some parts from these cars. But it will take a while for me to get them." },
+            { 32, "<b>Terrence:</b>\nWhy don’t we just use grenades, blow up the car and then get the parts?" },
+            { 33, "<b>Phillip:</b>\nGood idea. We need to blow up all four of these cars. Remember, both of us need to stay alive if we want to survive." },
+            { 34, "<b>Terrence:</b>\nQuickly, get the parts, and defend yourself!" },
+            { 35, "<b>Phillip:</b>\nAlright, I got all the parts that I could use to fix the chopper." },
+            { 36, "<b>Terrence:</b>\nCool, let’s go upstairs. I don’t want to see a single blood thirsty zombie again." },
+            { 38, "<b>Phillip:</b>\nJosh is not here…" },
+            { 39, "<b>Terrence:</b>\nIt looks like he got killed by the zombie hordes." },
+            { 40, "<b>Phillip:</b>\nQuick! I am gonna fix the chopper, give me some time." },
+            { 41, "<b>Terrence:</b>\nUh Phillip…" },
+            { 42, "<b>Terrence:</b>\nFix FASTER! I will hold them off." },
+            { 43, "<b>Phillip:</b>\nI will try ASAP!" },
+            { 44, "<b>Phillip:</b>\nI fixed it, Terrence. Quick, come get in and start the chopper." },
+            { 45, "<b>Terrence:</b>\nOk, let me start the engine." },
+            { 46, "<b>Terrence:</b>\nGET IN! LET’S GO!" }
         };
         
     }
@@ -116,23 +123,6 @@ public class GameManager : MonoBehaviour
         player2.SetActive(true);
         player1.transform.position = new Vector3(1.1f, 2.87f, 0);
         player2.transform.position = new Vector3(3.1f, 2.87f, 0);
-        // p1.AutoMoveToPosition(new Vector2(-1, 0));
-        // p2.AutoMoveToPosition(new Vector2(1, 0));
-
-        // transitionAnim.gameObject.SetActive(true);
-        // player1.SetActive(true);
-        // player2.SetActive(true);
-        // player1UI.SetActive(true);
-        // player2UI.SetActive(true);
-        // player2GearPanel.SetActive(false);
-        // mainMenu.SetActive(false);
-        // rural.SetActive(true);
-        // zombieSpawnNorth.SetActive(false);
-        // zombieSpawnSouth.SetActive(false);
-        // zombieSpawnWest.SetActive(true);
-        // zombieSpawnWest1.SetActive(false);
-        // zombieSpawnWest2.SetActive(false);
-        // zombieSpawnEast.SetActive(true);
     }
     
     void Update(){
@@ -145,7 +135,6 @@ public class GameManager : MonoBehaviour
                 speechText.text = speechDict[speechKey];
             }
             else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey == 20 && !level1Done){
-                speech.SetActive(false);
                 NextLevel2();
             }
             else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey >= 21 && speechKey <= 36 && level1Done){
@@ -154,87 +143,129 @@ public class GameManager : MonoBehaviour
                 speechText.text = speechDict[speechKey];
             }
             else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey == 37 && !level2Done){
-                speech.SetActive(false);
                 NextLevel3();
             }
-            else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey >= 38 && speechKey <= 46 && level2Done){
+            else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey >= 38 && speechKey <= 43 && level2Done){
                 transitionAnim.gameObject.SetActive(false);
                 speech.SetActive(true);
                 speechText.text = speechDict[speechKey];
             }
+            SwitchCharacter();
         }
         else{
             player1UI.SetActive(true);
             player2UI.SetActive(true);
             speech.SetActive(false);
-            if (level1Done && !level2Done){
+            terrence.SetActive(false);
+            phillip.SetActive(false);
+            josh.SetActive(false);
+            if (!level1Done && !level2Done){
+                player2GearPanel.SetActive(false);
+            }
+            else if (level1Done && !level2Done){
                 player2GearPanel.SetActive(true);
-                zombieSpawnNorth.SetActive(true);
-                zombieSpawnSouth.SetActive(true);
+            }
+            int count = 0;
+            int sumSpawned = 0;
+            int carCount = 0;
+            // Find all GameObjects in the scene
+            GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
+
+            // Loop through each GameObject and check its name
+            foreach (GameObject obj in allGameObjects)
+            {
+                if (obj.name.StartsWith("ZombieSpawner"))
+                {
+                    sumSpawned+=obj.GetComponent<ZombieSpawner>().temp1;
+                }
+                if (obj.tag.Equals("Zombie")){
+                    count++;
+                }
+                if (obj.name.StartsWith("citycar")){
+                    carCount++;
+                }
+            }
+            if (sumSpawned==60 && count==0 && !level1Done && !level2Done){
+                mission.SetActive(false);
+                speech.SetActive(true);
+                inGame = false;
+            }
+            else if (sumSpawned==100 && count==0 && level1Done && !level2Done && allGearsCollected){
+                mission.SetActive(false);
+                speech.SetActive(true);
+                inGame = false;
+            }
+            else if (level1Done && level2Done && allGearsCollected && helicopter.GetComponent<FixProgress>().completed && !helicopter.GetComponent<StartHeliProgress>().completed && (speechKey==44 || speechKey==45)){
+                speech.SetActive(true);
+                speechText.text = speechDict[speechKey];
+                SwitchCharacter();
+            }
+            else if (level1Done && level2Done && allGearsCollected && helicopter.GetComponent<FixProgress>().completed && helicopter.GetComponent<StartHeliProgress>().completed && speechKey==46){
+                mission.SetActive(false);
+                speech.SetActive(true);
+                speechText.text = speechDict[speechKey];
+                SwitchCharacter();
+            }
+            if (!level1Done && !level2Done){
+                missionText.text = "<b>Mission:</b>\nKill all 60 zombies. ("+(p1ZombieKilled+p2ZombieKilled)+"/60)";
+            }
+            else if (level1Done && !level2Done){
+                missionText.text = "<b>Mission:</b>\nKill all 100 zombies. ("+(p1ZombieKilled+p2ZombieKilled-60)+"/100)\nBlow up the 4 cars using grenades to get gears. ("+(4-carCount)+"/4)\nCollect all 4 gears. ("+player2.GetComponent<PlayerInventory>().gearCount+"/4)";
             }
             else if (level1Done && level2Done){
-                zombieSpawnWest1.SetActive(true);
-                zombieSpawnWest2.SetActive(true);
-            }
-            else{
-                player2GearPanel.SetActive(false);
-                zombieSpawnNorth.SetActive(false);
-                zombieSpawnSouth.SetActive(false);
-            }
-            // zombieSpawnWest.SetActive(true);
-            // zombieSpawnWest1.SetActive(false);
-            // zombieSpawnWest2.SetActive(false);
-            // zombieSpawnEast.SetActive(true);
-        }
-        int count = 0;
-        int sumSpawned = 0;
-        // Find all GameObjects in the scene
-        GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
-
-        // Loop through each GameObject and check its name
-        foreach (GameObject obj in allGameObjects)
-        {
-            if (obj.name.StartsWith("ZombieSpawner"))
-            {
-                sumSpawned+=obj.GetComponent<ZombieSpawner>().temp1;
-            }
-            if (obj.tag.Equals("Zombie")){
-                count++;
+                missionText.text = "<b>Mission:</b>\nFix the helicopter. ("+(4-player2.GetComponent<PlayerInventory>().gearCount)+"/4)\nStart the helicopter.";
             }
         }
-        if (sumSpawned==60 && count==0){
-            speech.SetActive(true);
-            inGame = false;
-        }
-        else if (sumSpawned==160 && count==0 && allGearsCollected){
-            speech.SetActive(true);
-            inGame = false;
-        }
-        // // for now, press J after all the zombies in the second round are eliminated
-        // if (Input.GetKey(KeyCode.J) && sumSpawned==160 && count==0 && allGearsCollected){
-        //     NextLevel3();
-        // }
         player1killed.text = "Zombies killed: "+p1ZombieKilled;
         player2killed.text = "Zombies killed: "+p2ZombieKilled;
+    }
+
+    public void SwitchCharacter(){
+        // Check if speechKey exists in the dictionary
+        if (!speechDict.ContainsKey(speechKey)) {
+            return; // Exit early if speechKey is missing
+        }
+        if (speechDict[speechKey].Contains("<b>Terrence:</b>")){
+            terrence.SetActive(true);
+            phillip.SetActive(false);
+            josh.SetActive(false);
+        }
+        else if (speechDict[speechKey].Contains("<b>Phillip:</b>")){
+            terrence.SetActive(false);
+            phillip.SetActive(true);
+            josh.SetActive(false);
+        }
+        else if (speechDict[speechKey].Contains("<b>Josh:</b>")){
+            terrence.SetActive(false);
+            phillip.SetActive(false);
+            josh.SetActive(true);
+        }
     }
 
     public void Skip(){
         if (speechKey==16){
             inGame = true;
+            zombieSpawnWest.SetActive(true);
+            zombieSpawnEast.SetActive(true);
+            mission.SetActive(true);
         }
         else if (speechKey==19){
             p1Movement.isAutoMoving = true;
             p2Movement.isAutoMoving = true;
+            speech.SetActive(false);
         }
-        else if (speechKey==33){
+        else if (speechKey==34){
             inGame = true;
+            zombieSpawnNorth.SetActive(true);
+            zombieSpawnSouth.SetActive(true);
+            mission.SetActive(true);
             GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
             // Loop through each GameObject and check its name
             foreach (GameObject obj in allGameObjects)
             {
                 if (obj.name.StartsWith("ZombieSpawner"))
                 {
-                    obj.GetComponent<ZombieSpawner>().spawnCount=40;
+                    obj.GetComponent<ZombieSpawner>().spawnCount=25;
                     obj.GetComponent<ZombieSpawner>().temp1=0;
                     obj.GetComponent<ZombieSpawner>().temp2=0;
                 }
@@ -243,9 +274,13 @@ public class GameManager : MonoBehaviour
         else if (speechKey==36){
             p1Movement.isAutoMoving = true;
             p2Movement.isAutoMoving = true;
+            speech.SetActive(false);
         }
-        else if (speechKey==33){
+        else if (speechKey==43){
             inGame = true;
+            zombieSpawnWest1.SetActive(true);
+            zombieSpawnWest2.SetActive(true);
+            mission.SetActive(true);
             GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
             // Loop through each GameObject and check its name
             foreach (GameObject obj in allGameObjects)
@@ -268,26 +303,12 @@ public class GameManager : MonoBehaviour
         transitionAnim.gameObject.SetActive(true);
         player1.SetActive(false);
         player2.SetActive(false);
-        // zombieSpawnNorth.SetActive(true);
-        // zombieSpawnSouth.SetActive(true);
-        // GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
-        // // Loop through each GameObject and check its name
-        // foreach (GameObject obj in allGameObjects)
-        // {
-        //     if (obj.name.StartsWith("ZombieSpawner"))
-        //     {
-        //         obj.GetComponent<ZombieSpawner>().spawnCount=40;
-        //         obj.GetComponent<ZombieSpawner>().temp1=0;
-        //         obj.GetComponent<ZombieSpawner>().temp2=0;
-        //     }
-        // }
         transitionAnim.SetTrigger("End");
         level1Done = true;
         yield return new WaitForSeconds(1);
         rural.SetActive(false);
         city.SetActive(true);
-        // player2GearPanel.SetActive(true);
-        ZombieSpawner.powerCount = 12;
+        ZombieSpawner.powerCount = 20;
         ZombieSpawner.maxSpawmTime = 4f;
         ZombieSpawner.maxSpawmTime = 7f;
         transitionAnim.SetTrigger("Start");
@@ -310,19 +331,6 @@ public class GameManager : MonoBehaviour
         zombieSpawnSouth.SetActive(false);
         zombieSpawnEast.SetActive(false);
         zombieSpawnWest.SetActive(false);
-        // zombieSpawnWest1.SetActive(true);
-        // zombieSpawnWest2.SetActive(true);
-        // GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
-        // // Loop through each GameObject and check its name
-        // foreach (GameObject obj in allGameObjects)
-        // {
-        //     if (obj.name.StartsWith("ZombieSpawner"))
-        //     {
-        //         obj.GetComponent<ZombieSpawner>().spawnCount=int.MaxValue;
-        //         obj.GetComponent<ZombieSpawner>().temp1=0;
-        //         obj.GetComponent<ZombieSpawner>().temp2=0;
-        //     }
-        // }
         transitionAnim.SetTrigger("End");
         level2Done = true;
         yield return new WaitForSeconds(1);
@@ -334,8 +342,8 @@ public class GameManager : MonoBehaviour
         transitionAnim.SetTrigger("Start");
         player1.SetActive(true);
         player2.SetActive(true);
-        // player1.transform.position = new Vector3(-11.87f, 0, 0);
-        // player2.transform.position = new Vector3(-9.87f, 0, 0);
+        player1.transform.position = new Vector3(-11.46f, -1.51f, 0);
+        player2.transform.position = new Vector3(-9.86f, -1.46f, 0);
         p1Movement.isAutoMoving = true;
         p2Movement.isAutoMoving = true;
         speechKey++;
