@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class StartHeliProgress : MonoBehaviour
 {
     [SerializeField] Image image;
+    [SerializeField] AudioSource audioSource;
     private Collider2D playerNearby;
-    float startTime = 0;
+    private float startTime = 0;
+    private int count = 0;
     public bool completed = false;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,13 @@ public class StartHeliProgress : MonoBehaviour
                 startTime = 0;
             }
         }
+        if (completed && !audioSource.isPlaying){
+            // Play audio when completed
+            PlayAudio();
+        }
+        if (count == 2){
+            MoveUp();
+        }
     }
 
     void StartEngine(){
@@ -39,10 +48,28 @@ public class StartHeliProgress : MonoBehaviour
         }
     }
 
+    void PlayAudio()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+    }
+
+    void MoveUp()
+    {
+        // Move the GameObject up slowly
+        transform.position += new Vector3(0, Time.deltaTime * 3f, 0); // Adjust speed as necessary
+    }
+
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.name == "Player 1" && !completed){
             playerNearby = collider;
             image.gameObject.SetActive(true);
+        }
+        if ((collider.name == "Player 1" || collider.name == "Player 2") && completed){
+            collider.gameObject.SetActive(false);
+            count++;
         }
     }
 

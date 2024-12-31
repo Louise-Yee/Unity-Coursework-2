@@ -83,12 +83,11 @@ public class PlayerInventory : MonoBehaviour
             }
             else
             {
-                // gears the player doesn't have: 50% opacity
                 gearImages[i].color = new Color(
                     gearImages[i].color.r,
                     gearImages[i].color.g,
                     gearImages[i].color.b,
-                    0.01f
+                    0.3f
                 );
             }
         }
@@ -186,7 +185,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (lastCollider == null || lastCollider != other)
         {
-            if (other.CompareTag("GrenadeDrop") && animator.GetBool("isDead") == false)
+            if (other.CompareTag("GrenadeDrop") && animator.GetBool("isDown") == false)
             {
                 lastCollider = other;
                 if (grenadeCount < maxGrenades)
@@ -203,7 +202,7 @@ public class PlayerInventory : MonoBehaviour
             if (
                 other.CompareTag("HealthDrop")
                 && !playerHealth.IsAtMaxHealth
-                && animator.GetBool("isDead") == false
+                && animator.GetBool("isDown") == false
             )
             {
                 lastCollider = other;

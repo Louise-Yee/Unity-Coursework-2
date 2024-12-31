@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class vehicleHealth : MonoBehaviour
 {
-    public float maxHealth = 2f;
+    private float maxHealth = 4f;
     private float currentHealth;
     private VehicleDrop vehicleDrop; // Reference to VehicleDrop script
     private Collider2D vehicleCollider; // Reference to the Vehicle's Collider2D
@@ -21,7 +21,7 @@ public class vehicleHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth == 1){
+        if (currentHealth == 2){
             smoke.SetActive(true);
         }
         if (currentHealth <= 0)
