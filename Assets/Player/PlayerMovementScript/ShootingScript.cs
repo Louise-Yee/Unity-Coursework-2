@@ -83,7 +83,7 @@ public class ShootingScript : MonoBehaviour
         if (
             isPlayerOne
             && Input.GetKeyDown(shootKeyP1)
-            && !animator.GetBool("isDead")
+            && !animator.GetBool("isDown")
             && !isReloading
         )
         {
@@ -92,7 +92,7 @@ public class ShootingScript : MonoBehaviour
         else if (
             !isPlayerOne
             && Input.GetKeyDown(shootKeyP2)
-            && !animator.GetBool("isDead")
+            && !animator.GetBool("isDown")
             && !isReloading
         )
         {

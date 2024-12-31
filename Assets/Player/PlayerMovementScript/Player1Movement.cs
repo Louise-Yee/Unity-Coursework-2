@@ -164,7 +164,7 @@ public class Player1Movement : MonoBehaviour
 
     private void UpdateFootsteps()
     {
-        if (moveInput != Vector2.zero && !animator.GetBool("isDead"))
+        if (moveInput != Vector2.zero && !animator.GetBool("isDown"))
         {
             footstepTimer -= Time.deltaTime;
             if (footstepTimer <= 0f && audioSource != null && footstepSound != null)

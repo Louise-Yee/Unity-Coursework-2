@@ -32,17 +32,35 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject zombieSpawnEast;
     [SerializeField] Text player1killed;
     [SerializeField] Text player2killed;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] terrenceVoice;
+    [SerializeField] AudioClip[] phillipVoice;
+    [SerializeField] AudioClip[] joshVoice;
+    [SerializeField] AudioClip[] altTerrenceVoice;
+    [SerializeField] AudioClip[] altPhillipVoice;
     public static int p1ZombieKilled = 0;
     public static int p2ZombieKilled = 0;
+    private int terrenceIndex = 0;
+    private int phillipIndex = 0;
+    private int altTerrenceIndex = 0;
+    private int altPhillipIndex = 0;
+    private int joshIndex = 0;
     public static bool allGearsCollected = false;
     private Player1Movement p1Movement;
     private Player2Movement p2Movement;
     private Dictionary<int, string> speechDict;
+    private Dictionary<int, string> alternate1Dict;
+    private Dictionary<int, string> alternate2Dict;
     private int speechKey = 0;
+    private int alternate1Key = 0;
+    private int alternate2Key = 0;
     private bool inGame = false;
     private bool level1Done = false;
     private bool level2Done = false;
-    private bool level3Done = false;
+    public static bool player1Dead = false;
+    public static bool player2Dead = false;
+    private bool isPlaying = false;
+    private bool isPaused = false;
     void Start(){
         p1Movement = player1.GetComponent<Player1Movement>();
         p2Movement = player2.GetComponent<Player2Movement>();
@@ -84,7 +102,7 @@ public class GameManager : MonoBehaviour
             { 15, "<b>Phillip:</b>\nWhatever, let’s get to the city." },
             { 16, "<b>Terrence:</b>\nOh shoot! Here we go! Start shooting!" },
             { 17, "<b>Terrence:</b>\nPhew, I hope that was all the zombies from the city." },
-            { 18, "<b>Phillip:</b>\nThat’s not possible, the city has tens of thousands of people and we just killed around 60." },
+            { 18, "<b>Phillip:</b>\nThat’s not possible, the city has tens of thousands of people and we just killed around 30." },
             { 19, "<b>Terrence:</b>\nFair enough. Come on, let’s get to the city." },
             { 21, "<b>Josh:</b>\nWhere the hell are you guys?" },
             { 22, "<b>Phillip:</b>\nWe are literally just outside the apartment. What about you?" },
@@ -112,7 +130,18 @@ public class GameManager : MonoBehaviour
             { 45, "<b>Terrence:</b>\nOk, let me start the engine." },
             { 46, "<b>Terrence:</b>\nGET IN! LET’S GO!" }
         };
-        
+        alternate1Dict = new Dictionary<int, string>
+        {
+            { 0, "<b>Terrence:</b>\nShoot! Phillip is gone. I just hope that Josh is still alive and he knows how to fix the chopper." },
+            { 2, "<b>Terrence:</b>\nJosh, where are you? JOSH? Dang it, I guess he got killed by the zombies." },
+            { 3, "<b>Terrence:</b>\nOh no, I am dead" }
+        };
+        alternate2Dict = new Dictionary<int, string>
+        {
+            { 0, "<b>Phillip:</b>\nShoot! Terrence is gone. I just hope Josh knows how to fly the damn chopper." },
+            { 2, "<b>Phillip:</b>\nJosh, where are you? I got all the parts, JOSH? Dang it, I guess he’s dead." },
+            { 3, "<b>Phillip:</b>\nOh no, I am next" }
+        };
     }
 
     public void ClickedPlay(){
@@ -129,28 +158,106 @@ public class GameManager : MonoBehaviour
         if (!inGame){
             player1UI.SetActive(false);
             player2UI.SetActive(false);
-            if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey >= 0 && speechKey <=19){
-                transitionAnim.gameObject.SetActive(false);
-                speech.SetActive(true);
-                speechText.text = speechDict[speechKey];
+            // Debug.Log(player1Dead+", "+player2Dead);
+            if (!player1Dead && !player2Dead){
+                if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey >= 0 && speechKey <=19){
+                    transitionAnim.gameObject.SetActive(false);
+                    if (!isPaused){
+                        speech.SetActive(true);
+                        speechText.text = speechDict[speechKey];
+                    }
+                    else{
+                        speech.SetActive(false);
+                    }
+                }
+                else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey == 20 && !level1Done){
+                    NextLevel2();
+                }
+                else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey >= 21 && speechKey <= 36 && level1Done){
+                    transitionAnim.gameObject.SetActive(false);
+                    if (!isPaused){
+                        speech.SetActive(true);
+                        speechText.text = speechDict[speechKey];
+                    }
+                    else{
+                        speech.SetActive(false);
+                    }
+                }
+                else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey == 37 && !level2Done){
+                    NextLevel3();
+                }
+                else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey >= 38 && speechKey <= 43 && level2Done){
+                    transitionAnim.gameObject.SetActive(false);
+                    if (!isPaused){
+                        speech.SetActive(true);
+                        speechText.text = speechDict[speechKey];
+                    }
+                    else{
+                        speech.SetActive(false);
+                    }
+                }
+                SwitchCharacter();
             }
-            else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey == 20 && !level1Done){
-                NextLevel2();
+            else if (player1Dead && !player2Dead){
+                if (!p2Movement.isAutoMoving && alternate2Key == 0){
+                    transitionAnim.gameObject.SetActive(false);
+                    if (!isPaused){
+                        speech.SetActive(true);
+                        phillip.SetActive(true);
+                        speechText.text = alternate2Dict[alternate2Key];
+                    }
+                    else{
+                        speech.SetActive(false);
+                        phillip.SetActive(false);
+                    }
+                }
+                else if (!p2Movement.isAutoMoving && alternate2Key == 1 && !level2Done){
+                    NextLevel3();
+                }
+                else if (!p2Movement.isAutoMoving && alternate2Key >= 2 && alternate2Key <= 3 && level2Done){
+                    transitionAnim.gameObject.SetActive(false);
+                    if (!isPaused){
+                        speech.SetActive(true);
+                        phillip.SetActive(true);
+                        speechText.text = alternate2Dict[alternate2Key];
+                    }
+                    else{
+                        speech.SetActive(false);
+                        phillip.SetActive(false);
+                    }
+                }
+                SwitchCharacter();
             }
-            else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey >= 21 && speechKey <= 36 && level1Done){
-                transitionAnim.gameObject.SetActive(false);
-                speech.SetActive(true);
-                speechText.text = speechDict[speechKey];
+            else if (!player1Dead && player2Dead){
+                if (!p1Movement.isAutoMoving && alternate1Key == 0){
+                    transitionAnim.gameObject.SetActive(false);
+                    if (!isPaused){
+                        speech.SetActive(true);
+                        terrence.SetActive(true);
+                        speechText.text = alternate1Dict[alternate1Key];
+                    }
+                    else{
+                        speech.SetActive(false);
+                        terrence.SetActive(false);
+                    }
+                }
+                else if (!p1Movement.isAutoMoving && alternate1Key == 1 && !level2Done){
+                    NextLevel3();
+                }
+                else if (!p1Movement.isAutoMoving && alternate1Key >= 2 && alternate1Key <= 3 && level2Done){
+                    transitionAnim.gameObject.SetActive(false);
+                    if (!isPaused){
+                        speech.SetActive(true);
+                        terrence.SetActive(true);
+                        speechText.text = alternate1Dict[alternate1Key];
+                    }
+                    else{
+                        speech.SetActive(false);
+                        terrence.SetActive(false);
+                    }
+                }
+                SwitchCharacter();
             }
-            else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey == 37 && !level2Done){
-                NextLevel3();
-            }
-            else if (!p1Movement.isAutoMoving && !p2Movement.isAutoMoving && speechKey >= 38 && speechKey <= 43 && level2Done){
-                transitionAnim.gameObject.SetActive(false);
-                speech.SetActive(true);
-                speechText.text = speechDict[speechKey];
-            }
-            SwitchCharacter();
         }
         else{
             player1UI.SetActive(true);
@@ -185,35 +292,57 @@ public class GameManager : MonoBehaviour
                     carCount++;
                 }
             }
-            if (sumSpawned==60 && count==0 && !level1Done && !level2Done){
+            if (sumSpawned==30 && count==0 && !level1Done && !level2Done){
                 mission.SetActive(false);
-                speech.SetActive(true);
                 inGame = false;
             }
-            else if (sumSpawned==100 && count==0 && level1Done && !level2Done && allGearsCollected){
-                mission.SetActive(false);
-                speech.SetActive(true);
-                inGame = false;
+            else if (!player1Dead && !player2Dead){
+                if (sumSpawned==80 && count==0 && level1Done && !level2Done && allGearsCollected){
+                    mission.SetActive(false);
+                    inGame = false;
+                }
+                else if (level1Done && level2Done && allGearsCollected && helicopter.GetComponent<FixProgress>().completed && !helicopter.GetComponent<StartHeliProgress>().completed && (speechKey==44 || speechKey==45)){
+                    if (!isPaused){
+                        speech.SetActive(true);
+                        speechText.text = speechDict[speechKey];
+                    }
+                    else{
+                        speech.SetActive(false);
+                    }
+                    SwitchCharacter();
+                }
+                else if (level1Done && level2Done && allGearsCollected && helicopter.GetComponent<FixProgress>().completed && helicopter.GetComponent<StartHeliProgress>().completed && speechKey==46){
+                    mission.SetActive(false);
+                    if (!isPaused){
+                        speech.SetActive(true);
+                        speechText.text = speechDict[speechKey];
+                    }
+                    else{
+                        speech.SetActive(false);
+                    }
+                    SwitchCharacter();
+                }
+                if (level1Done && level2Done){
+                    missionText.text = "<b>Mission:</b>\nFix the helicopter. ("+(4-player2.GetComponent<PlayerInventory>().gearCount)+"/4)\nStart the helicopter.";
+                }
             }
-            else if (level1Done && level2Done && allGearsCollected && helicopter.GetComponent<FixProgress>().completed && !helicopter.GetComponent<StartHeliProgress>().completed && (speechKey==44 || speechKey==45)){
-                speech.SetActive(true);
-                speechText.text = speechDict[speechKey];
-                SwitchCharacter();
+            else if (player1Dead && !player2Dead){
+                if (sumSpawned==40 && count==0 && level1Done && !level2Done && allGearsCollected){
+                    mission.SetActive(false);
+                    inGame = false;
+                }
             }
-            else if (level1Done && level2Done && allGearsCollected && helicopter.GetComponent<FixProgress>().completed && helicopter.GetComponent<StartHeliProgress>().completed && speechKey==46){
-                mission.SetActive(false);
-                speech.SetActive(true);
-                speechText.text = speechDict[speechKey];
-                SwitchCharacter();
+            else if (!player1Dead && player2Dead){
+                if (sumSpawned==40 && count==0 && level1Done && !level2Done){
+                    mission.SetActive(false);
+                    inGame = false;
+                }
             }
             if (!level1Done && !level2Done){
-                missionText.text = "<b>Mission:</b>\nKill all 60 zombies. ("+(p1ZombieKilled+p2ZombieKilled)+"/60)";
+                missionText.text = "<b>Mission:</b>\nKill all 30 zombies. ("+(p1ZombieKilled+p2ZombieKilled)+"/30)";
             }
             else if (level1Done && !level2Done){
-                missionText.text = "<b>Mission:</b>\nKill all 100 zombies. ("+(p1ZombieKilled+p2ZombieKilled-60)+"/100)\nBlow up the 4 cars using grenades to get gears. ("+(4-carCount)+"/4)\nCollect all 4 gears. ("+player2.GetComponent<PlayerInventory>().gearCount+"/4)";
-            }
-            else if (level1Done && level2Done){
-                missionText.text = "<b>Mission:</b>\nFix the helicopter. ("+(4-player2.GetComponent<PlayerInventory>().gearCount)+"/4)\nStart the helicopter.";
+                missionText.text = "<b>Mission:</b>\nKill all 80 zombies. ("+(p1ZombieKilled+p2ZombieKilled-30)+"/80)\nBlow up the 4 cars using grenades to get gears. ("+(4-carCount)+"/4)\nCollect all 4 gears. ("+player2.GetComponent<PlayerInventory>().gearCount+"/4)";
             }
         }
         player1killed.text = "Zombies killed: "+p1ZombieKilled;
@@ -221,79 +350,177 @@ public class GameManager : MonoBehaviour
     }
 
     public void SwitchCharacter(){
-        // Check if speechKey exists in the dictionary
-        if (!speechDict.ContainsKey(speechKey)) {
-            return; // Exit early if speechKey is missing
+        if (!player1Dead && !player2Dead){
+            // Check if speechKey exists in the dictionary
+            if (!speechDict.ContainsKey(speechKey)) {
+                return; // Exit early if speechKey is missing
+            }
+            if (speechDict[speechKey].Contains("<b>Terrence:</b>")){
+                terrence.SetActive(true);
+                phillip.SetActive(false);
+                josh.SetActive(false);
+                if (!isPlaying && speech.activeSelf){
+                    audioSource.clip = terrenceVoice[terrenceIndex];
+                    terrenceIndex++;
+                    isPlaying = true;
+                    audioSource.Play();
+                }
+            }
+            else if (speechDict[speechKey].Contains("<b>Phillip:</b>")){
+                terrence.SetActive(false);
+                phillip.SetActive(true);
+                josh.SetActive(false);
+                if (!isPlaying && speech.activeSelf){
+                    audioSource.clip = phillipVoice[phillipIndex];
+                    phillipIndex++;
+                    isPlaying = true;
+                    audioSource.Play();
+                }
+            }
+            else if (speechDict[speechKey].Contains("<b>Josh:</b>")){
+                terrence.SetActive(false);
+                phillip.SetActive(false);
+                josh.SetActive(true);
+                if (!isPlaying && speech.activeSelf){
+                    audioSource.clip = joshVoice[joshIndex];
+                    joshIndex++;
+                    isPlaying = true;
+                    audioSource.Play();
+                }
+            }
         }
-        if (speechDict[speechKey].Contains("<b>Terrence:</b>")){
-            terrence.SetActive(true);
-            phillip.SetActive(false);
-            josh.SetActive(false);
+        else if (player1Dead && !player2Dead){
+            if (!alternate2Dict.ContainsKey(alternate2Key)) {
+                return;
+            }
+            if (!isPlaying && speech.activeSelf){
+                audioSource.clip = altPhillipVoice[altPhillipIndex];
+                altPhillipIndex++;
+                isPlaying = true;
+                audioSource.Play();
+            }
         }
-        else if (speechDict[speechKey].Contains("<b>Phillip:</b>")){
-            terrence.SetActive(false);
-            phillip.SetActive(true);
-            josh.SetActive(false);
-        }
-        else if (speechDict[speechKey].Contains("<b>Josh:</b>")){
-            terrence.SetActive(false);
-            phillip.SetActive(false);
-            josh.SetActive(true);
+        else if (!player1Dead && player2Dead){
+            if (!alternate1Dict.ContainsKey(alternate1Key)) {
+                return;
+            }
+            if (!isPlaying && speech.activeSelf){
+                audioSource.clip = altTerrenceVoice[altTerrenceIndex];
+                altTerrenceIndex++;
+                isPlaying = true;
+                audioSource.Play();
+            }
         }
     }
 
     public void Skip(){
-        if (speechKey==16){
-            inGame = true;
-            zombieSpawnWest.SetActive(true);
-            zombieSpawnEast.SetActive(true);
-            mission.SetActive(true);
-        }
-        else if (speechKey==19){
-            p1Movement.isAutoMoving = true;
-            p2Movement.isAutoMoving = true;
-            speech.SetActive(false);
-        }
-        else if (speechKey==34){
-            inGame = true;
-            zombieSpawnNorth.SetActive(true);
-            zombieSpawnSouth.SetActive(true);
-            mission.SetActive(true);
-            GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
-            // Loop through each GameObject and check its name
-            foreach (GameObject obj in allGameObjects)
-            {
-                if (obj.name.StartsWith("ZombieSpawner"))
+        if (!player1Dead && !player2Dead){
+            if (speechKey==16){
+                inGame = true;
+                zombieSpawnWest.SetActive(true);
+                zombieSpawnEast.SetActive(true);
+                mission.SetActive(true);
+            }
+            else if (speechKey==19){
+                p1Movement.isAutoMoving = true;
+                p2Movement.isAutoMoving = true;
+                speech.SetActive(false);
+            }
+            else if (speechKey==34){
+                inGame = true;
+                zombieSpawnNorth.SetActive(true);
+                zombieSpawnSouth.SetActive(true);
+                mission.SetActive(true);
+                GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
+                // Loop through each GameObject and check its name
+                foreach (GameObject obj in allGameObjects)
                 {
-                    obj.GetComponent<ZombieSpawner>().spawnCount=25;
-                    obj.GetComponent<ZombieSpawner>().temp1=0;
-                    obj.GetComponent<ZombieSpawner>().temp2=0;
+                    if (obj.name.StartsWith("ZombieSpawner"))
+                    {
+                        obj.GetComponent<ZombieSpawner>().spawnCount=20;
+                        obj.GetComponent<ZombieSpawner>().temp1=0;
+                        obj.GetComponent<ZombieSpawner>().temp2=0;
+                    }
                 }
             }
-        }
-        else if (speechKey==36){
-            p1Movement.isAutoMoving = true;
-            p2Movement.isAutoMoving = true;
-            speech.SetActive(false);
-        }
-        else if (speechKey==43){
-            inGame = true;
-            zombieSpawnWest1.SetActive(true);
-            zombieSpawnWest2.SetActive(true);
-            mission.SetActive(true);
-            GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
-            // Loop through each GameObject and check its name
-            foreach (GameObject obj in allGameObjects)
-            {
-                if (obj.name.StartsWith("ZombieSpawner"))
+            else if (speechKey==36){
+                p1Movement.isAutoMoving = true;
+                p2Movement.isAutoMoving = true;
+                speech.SetActive(false);
+            }
+            else if (speechKey==43){
+                inGame = true;
+                zombieSpawnWest1.SetActive(true);
+                zombieSpawnWest2.SetActive(true);
+                mission.SetActive(true);
+                GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
+                // Loop through each GameObject and check its name
+                foreach (GameObject obj in allGameObjects)
                 {
-                    obj.GetComponent<ZombieSpawner>().spawnCount=int.MaxValue;
-                    obj.GetComponent<ZombieSpawner>().temp1=0;
-                    obj.GetComponent<ZombieSpawner>().temp2=0;
+                    if (obj.name.StartsWith("ZombieSpawner"))
+                    {
+                        obj.GetComponent<ZombieSpawner>().spawnCount=int.MaxValue;
+                        obj.GetComponent<ZombieSpawner>().temp1=0;
+                        obj.GetComponent<ZombieSpawner>().temp2=0;
+                    }
                 }
             }
+            speechKey++;
+            isPlaying = false;
+            audioSource.Stop();
         }
-        speechKey++;
+        else if (player1Dead && !player2Dead){
+            if (alternate2Key==0){
+                p2Movement.isAutoMoving = true;
+                speech.SetActive(false);
+                phillip.SetActive(false);
+            }
+            else if (alternate2Key==3){
+                inGame = true;
+                zombieSpawnWest1.SetActive(true);
+                zombieSpawnWest2.SetActive(true);
+                GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
+                // Loop through each GameObject and check its name
+                foreach (GameObject obj in allGameObjects)
+                {
+                    if (obj.name.StartsWith("ZombieSpawner"))
+                    {
+                        obj.GetComponent<ZombieSpawner>().spawnCount=int.MaxValue;
+                        obj.GetComponent<ZombieSpawner>().temp1=0;
+                        obj.GetComponent<ZombieSpawner>().temp2=0;
+                    }
+                }
+            }
+            alternate2Key++;
+            isPlaying = false;
+            audioSource.Stop();
+        }
+        else if (!player1Dead && player2Dead){
+            if (alternate1Key==0){
+                p1Movement.isAutoMoving = true;
+                speech.SetActive(false);
+                terrence.SetActive(false);
+            }
+            else if (alternate1Key==3){
+                inGame = true;
+                zombieSpawnWest1.SetActive(true);
+                zombieSpawnWest2.SetActive(true);
+                GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
+                // Loop through each GameObject and check its name
+                foreach (GameObject obj in allGameObjects)
+                {
+                    if (obj.name.StartsWith("ZombieSpawner"))
+                    {
+                        obj.GetComponent<ZombieSpawner>().spawnCount=int.MaxValue;
+                        obj.GetComponent<ZombieSpawner>().temp1=0;
+                        obj.GetComponent<ZombieSpawner>().temp2=0;
+                    }
+                }
+            }
+            alternate1Key++;
+            isPlaying = false;
+            audioSource.Stop();
+        }
     }
 
     public void NextLevel2(){
@@ -307,9 +534,10 @@ public class GameManager : MonoBehaviour
         level1Done = true;
         yield return new WaitForSeconds(1);
         rural.SetActive(false);
+        DestroyDrops();
         city.SetActive(true);
         ZombieSpawner.powerCount = 20;
-        ZombieSpawner.maxSpawmTime = 4f;
+        ZombieSpawner.minSpawmTime = 4f;
         ZombieSpawner.maxSpawmTime = 7f;
         transitionAnim.SetTrigger("Start");
         player1.SetActive(true);
@@ -335,17 +563,64 @@ public class GameManager : MonoBehaviour
         level2Done = true;
         yield return new WaitForSeconds(1);
         city.SetActive(false);
+        DestroyDrops();
         rooftop.SetActive(true);
         ZombieSpawner.powerCount = int.MaxValue;
-        ZombieSpawner.maxSpawmTime = 1f;
-        ZombieSpawner.maxSpawmTime = 2f;
+        if (player1Dead || player2Dead){
+            ZombieSpawner.minSpawmTime = 0.1f;
+            ZombieSpawner.maxSpawmTime = 0.9f;
+        }
+        else{
+            ZombieSpawner.minSpawmTime = 1f;
+            ZombieSpawner.maxSpawmTime = 2f;
+        }
         transitionAnim.SetTrigger("Start");
-        player1.SetActive(true);
-        player2.SetActive(true);
-        player1.transform.position = new Vector3(-11.46f, -1.51f, 0);
-        player2.transform.position = new Vector3(-9.86f, -1.46f, 0);
-        p1Movement.isAutoMoving = true;
-        p2Movement.isAutoMoving = true;
-        speechKey++;
+        if (!player1Dead && !player2Dead){
+            player1.SetActive(true);
+            player2.SetActive(true);
+            player1.transform.position = new Vector3(-11.46f, -1.51f, 0);
+            player2.transform.position = new Vector3(-9.86f, -1.46f, 0);
+            p1Movement.isAutoMoving = true;
+            p2Movement.isAutoMoving = true;
+            speechKey++;
+        }
+        else if (player1Dead && !player2Dead){
+            Destroy(player1);
+            player2.SetActive(true);
+            player2.transform.position = new Vector3(-9.86f, -1.46f, 0);
+            p2Movement.isAutoMoving = true;
+            alternate2Key++;
+        }
+        else if (!player1Dead && player2Dead){
+            Destroy(player2);
+            player1.SetActive(true);
+            player1.transform.position = new Vector3(-11.46f, -1.51f, 0);
+            p1Movement.isAutoMoving = true;
+            alternate1Key++;
+        }
+    }
+    public void DestroyDrops(){
+        GameObject[] allGameObjects = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in allGameObjects)
+        {
+            if (obj.tag.Equals("GrenadeDrop") || obj.tag.Equals("HealthDrop")){
+                Destroy(obj);
+            }
+        }
+    }
+    public void Pause()
+    {
+        isPaused = true;
+        audioSource.Pause();
+        Time.timeScale = 0f;
+    }
+    public void Resume()
+    {
+        isPaused = false;
+        if (!audioSource.isPlaying && audioSource.time > 0){
+            audioSource.Play();
+        }
+        Time.timeScale = 1f;
     }
 }
