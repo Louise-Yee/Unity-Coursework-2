@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
-    public float maxHealth = 10; // Maximum health
-    private float currentHealth; // Current health
-    private float dyingHealth = 20; // Dying health
+    public float maxHealth = 20; // Maximum health
+    public float currentHealth; // Current health
+    public float dyingHealth = 20; // Dying health
     public float pushForce = 2f; // Force to push the zombie away
     private float revivalTime = 5f; // Time required to revive the player
     private float revivalCount = 0f;
@@ -75,6 +75,40 @@ public class PlayerHealthSystem : MonoBehaviour
         }
     }
 
+    public void Reset(){
+        dyingHealth = 20;
+        isDead = false;
+        isDowned = false;
+        isImmune = false;
+        isBeingRevived = false;
+        animator = GetComponent<Animator>();
+        if (isPlayerOne)
+        {
+            player1Movement = GetComponent<Player1Movement>();
+        }
+        else
+        {
+            player2Movement = GetComponent<Player2Movement>();
+        }
+
+        // Initialize the player's health
+        currentHealth = maxHealth;
+        revivalPrompt.SetActive(false); // Hide prompt initially
+
+        // Initialize UI
+        UpdateHealthUI();
+
+        // Disable revive text initially
+        if (reviveText != null)
+        {
+            reviveText.gameObject.SetActive(false);
+        }
+        if (reviveTextBackground != null)
+        {
+            reviveTextBackground.gameObject.SetActive(false);
+        }
+    }
+
     void Update()
     {
         if (isDead){
@@ -84,6 +118,7 @@ public class PlayerHealthSystem : MonoBehaviour
             else{
                 GameManager.player2Dead = true;
             }
+            reviveText.text = "Dead";
         }
         // Check for game over
         if (currentHealth <= 0 && !isDowned)
@@ -124,7 +159,7 @@ public class PlayerHealthSystem : MonoBehaviour
                 healthImage.fillAmount = fillAmount;
                 healthImage.color = new Color(1,0.001546457f,1);
                 if (!isBeingRevived){
-                    dyingHealth -= Time.deltaTime/3;
+                    dyingHealth -= Time.deltaTime/2;
                     if (dyingHealth <= 0){
                         isDead = true;
                     }

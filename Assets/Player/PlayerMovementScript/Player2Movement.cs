@@ -46,6 +46,25 @@ public class Player2Movement : MonoBehaviour
         };
     }
 
+    public void Reset(){
+        moveSpeed = 5f;
+        isShooting = false;
+        shootTimer = 0;
+        isAutoMoving = true;
+        positionKey = 1;
+        SetupComponents();
+        // Initialize the dictionary
+        positionDict = new Dictionary<int, Vector2>
+        {
+            // Example of adding entries to the dictionary
+            { 1, new Vector2(1, 0) },
+            { 2, new Vector2(12.23259f, -1.696002f) },
+            { 3, new Vector2(1, 0) },
+            { 4, new Vector2(5.3726f, 3.5184f) },
+            { 5, new Vector2(1, 0) }
+        };
+    }
+
     void Update()
     {
         if (!isAutoMoving){
@@ -110,14 +129,20 @@ public class Player2Movement : MonoBehaviour
 
     private void ProcessMovementInput()
     {
-        moveInput.x =
-            Input.GetKey(KeyCode.LeftArrow) ? -1
-            : Input.GetKey(KeyCode.RightArrow) ? 1
-            : 0;
-        moveInput.y =
-            Input.GetKey(KeyCode.UpArrow) ? 1
-            : Input.GetKey(KeyCode.DownArrow) ? -1
-            : 0;
+        if (GameManager.player2Dead){
+            moveInput.x = 0;
+            moveInput.y = 0;
+        }
+        else{
+            moveInput.x =
+                Input.GetKey(KeyCode.LeftArrow) ? -1
+                : Input.GetKey(KeyCode.RightArrow) ? 1
+                : 0;
+            moveInput.y =
+                Input.GetKey(KeyCode.UpArrow) ? 1
+                : Input.GetKey(KeyCode.DownArrow) ? -1
+                : 0;
+        }
         moveInput.Normalize();
 
         // Update last move direction only when actually moving

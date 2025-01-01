@@ -249,6 +249,33 @@ public class PlayerInventory : MonoBehaviour
         UpdateUI();
     }
 
+    // Initialize the player movement script based on player ID
+    public void Reset()
+    {
+        grenadeCount = 0;
+        gearCount = 0;
+        animator = GetComponent<Animator>();
+        if (playerID == 1)
+        {
+            playerMovement = GetComponent<Player1Movement>();
+        }
+        else if (playerID == 2)
+        {
+            playerMovement = GetComponent<Player2Movement>();
+        }
+
+        if (playerMovement == null) { }
+
+        playerHealth = GetComponent<PlayerHealthSystem>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        // Initialize UI on start
+        UpdateUI();
+    }
+
     // Update method to check for player-specific inputs
     void Update()
     {

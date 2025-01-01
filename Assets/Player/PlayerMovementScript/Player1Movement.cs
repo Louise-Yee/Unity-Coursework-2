@@ -46,6 +46,25 @@ public class Player1Movement : MonoBehaviour
         };
     }
 
+    public void Reset(){
+        moveSpeed = 5f;
+        isShooting = false;
+        shootTimer = 0;
+        isAutoMoving = true;
+        positionKey = 1;
+        SetupComponents();
+        // Initialize the dictionary
+        positionDict = new Dictionary<int, Vector2>
+        {
+            // Example of adding entries to the dictionary
+            { 1, new Vector2(-1, 0) },
+            { 2, new Vector2(12.23259f, 0.425317f) },
+            { 3, new Vector2(-1, 0) },
+            { 4, new Vector2(3.5858f, 3.5184f) },
+            { 5, new Vector2(-1, 0) }
+        };
+    }
+
     void Update()
     {
         if (!isAutoMoving){
@@ -110,14 +129,20 @@ public class Player1Movement : MonoBehaviour
 
     private void ProcessMovementInput()
     {
-        moveInput.x =
-            Input.GetKey(KeyCode.A) ? -1
-            : Input.GetKey(KeyCode.D) ? 1
-            : 0;
-        moveInput.y =
-            Input.GetKey(KeyCode.W) ? 1
-            : Input.GetKey(KeyCode.S) ? -1
-            : 0;
+        if (GameManager.player1Dead){
+            moveInput.x = 0;
+            moveInput.y = 0;
+        }
+        else{
+            moveInput.x =
+                Input.GetKey(KeyCode.A) ? -1
+                : Input.GetKey(KeyCode.D) ? 1
+                : 0;
+            moveInput.y =
+                Input.GetKey(KeyCode.W) ? 1
+                : Input.GetKey(KeyCode.S) ? -1
+                : 0;
+        }
         moveInput.Normalize();
 
         // Update last move direction only when actually moving

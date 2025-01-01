@@ -11,10 +11,20 @@ public class StartHeliProgress : MonoBehaviour
     private float startTime = 0;
     private int count = 0;
     public bool completed = false;
+    public bool gameCompleted = false;
     // Start is called before the first frame update
     void Start()
     {
         image.gameObject.SetActive(false);
+    }
+
+    public void Reset(){
+        image.gameObject.SetActive(false);
+        startTime = 0;
+        count = 0;
+        completed = false;
+        gameCompleted = false;
+        transform.position = new Vector3(7.78f, 3.45f, 0);
     }
 
     // Update is called once per frame
@@ -33,6 +43,7 @@ public class StartHeliProgress : MonoBehaviour
             PlayAudio();
         }
         if (count == 2){
+            gameCompleted = true;
             MoveUp();
         }
     }
