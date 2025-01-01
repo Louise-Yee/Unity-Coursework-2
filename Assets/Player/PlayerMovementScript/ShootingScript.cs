@@ -68,6 +68,30 @@ public class ShootingScript : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        isReloading = false;
+        // Get the Animator component attached to the GameObject
+        animator = GetComponent<Animator>();
+
+        // Initialize bullets
+        currentBullets = maxBullets;
+
+        // Initialize UI
+        UpdateBulletCountUI();
+        if (reloadSpinner != null)
+        {
+            reloadSpinner.gameObject.SetActive(false); // Hide reload spinner initially
+        }
+
+        // Get AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
+
     void Update()
     {
         // Get current direction inputs

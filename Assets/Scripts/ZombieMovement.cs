@@ -56,6 +56,9 @@ public class ZombieMovement : MonoBehaviour
         {
             if (player != null)
             {
+                if (player.gameObject.GetComponent<PlayerHealthSystem>().isDead){
+                    continue;
+                }
                 float distance = Vector2.Distance(transform.position, player.position);
                 if (distance < minDistance)
                 {

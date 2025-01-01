@@ -17,6 +17,13 @@ public class FixProgress : MonoBehaviour
         scrollbar.gameObject.SetActive(false);
     }
 
+    public void Reset(){
+        completed = false;
+        image.gameObject.SetActive(false);
+        scrollbar.gameObject.SetActive(false);
+        fixTime = 0;
+    }
+
     // Update is called once per frame
     void Update()
     {

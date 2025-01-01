@@ -18,6 +18,15 @@ public class vehicleHealth : MonoBehaviour
         vehicleCollider = GetComponent<Collider2D>(); // Get the Zombie's Collider2D component
     }
 
+    public void Reset(){
+        gameObject.SetActive(true);
+        smoke.SetActive(false);
+        scratch.SetActive(false);
+        currentHealth = maxHealth;
+        vehicleDrop = GetComponent<VehicleDrop>(); // Get the ZombieDrop component
+        vehicleCollider = GetComponent<Collider2D>(); // Get the Zombie's Collider2D component
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -44,6 +53,7 @@ public class vehicleHealth : MonoBehaviour
         if (scratch != null){
             scratch.SetActive(true);
         }
-        Destroy(gameObject); // Destroy the zombie after 1 second
+        // Destroy(gameObject); // Destroy the zombie after 1 second
+        gameObject.SetActive(false);
     }
 }
