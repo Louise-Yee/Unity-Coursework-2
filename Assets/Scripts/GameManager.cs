@@ -11,8 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject player2;
     [SerializeField] GameObject player1UI;
     [SerializeField] GameObject player2UI;
-    [SerializeField] GameObject player1TutorialUI
-    ;
+    [SerializeField] GameObject player1TutorialUI;
     [SerializeField] GameObject player2TutorialUI;
 
     [SerializeField] GameObject gameCompleted;
@@ -95,24 +94,24 @@ public class GameManager : MonoBehaviour
         speechDict = new Dictionary<int, string>
         {
             { 0, "<b>Terrence:</b>\nHey man, I should be heading home now. It was nice talking to you." },
-            { 1, "<b>Phillip:</b>\nYeah dude, just hit me up again if we wanna hangout…" },
+            { 1, "<b>Phillip:</b>\nYeah dude, just hit me up if we wanna hangout…" },
             { 2, "<b>Phillip:</b>\nSup Josh…" },
             { 3, "<b>Josh:</b>\nDude, have you seen the news? There is a zombie outbreak going on right now!" },
             { 4, "<b>Phillip:</b>\nWhat? How bad is it?" },
-            { 5, "<b>Josh:</b>\nIt’s everywhere! I am in the city right now and it’s out of control here! Where are you right now?" },
-            { 6, "<b>Phillip:</b>\nMe and Terrence are just outside town; we were both just hanging out in my place." },
-            { 7, "<b>Josh:</b>\nWell, get yourselves prepared because I heard the zombies are rampaging in every direction right now, some of them are probably coming to your place right now." },
+            { 5, "<b>Josh:</b>\nIt’s everywhere! I am in the city right now and it’s out of control here! Where are you?" },
+            { 6, "<b>Phillip:</b>\nTerrence and I are just outside town; we were both just hanging out in my place." },
+            { 7, "<b>Josh:</b>\nWell, get yourselves prepared, because I heard the zombies are rampaging in every direction right now, some of them are probably coming to your place." },
             { 8, "<b>Phillip:</b>\nWait, if the zombies are everywhere right now, where do we go?" },
             { 9, "<b>Josh:</b>\nOk, here is the plan. There is a chopper at the top of the apartment in where I live. I heard there is a safe zone in the North, where the military has things under control. You know where my apartment is right?" },
-            { 10, "<b>Phillip:</b>\nYeah, we will be heading to where you are right now." },
-            { 11, "<b>Josh:</b>\nCool, come before it gets worse! Ciao." },
+            { 10, "<b>Phillip:</b>\nYeah, we will be heading where you are." },
+            { 11, "<b>Josh:</b>\nCool, come on, before it gets worse!" },
             { 12, "<b>Terrence:</b>\nHow are we gonna get to the city?" },
             { 13, "<b>Phillip:</b>\nHere is a pistol. We are gonna have to fight our way to the city. You know how to use guns right?" },
             { 14, "<b>Terrence:</b>\nYeah, I do, but it’s been a while though." },
             { 15, "<b>Phillip:</b>\nWhatever, let’s get to the city." },
             { 16, "<b>Terrence:</b>\nOh shoot! Here we go! Start shooting!" },
             { 17, "<b>Terrence:</b>\nPhew, I hope that was all the zombies from the city." },
-            { 18, "<b>Phillip:</b>\nThat’s not possible, the city has tens of thousands of people and we just killed around 30." },
+            { 18, "<b>Phillip:</b>\nThat’s not possible, the city has tens of thousands of people and we only killed around 30." },
             { 19, "<b>Terrence:</b>\nFair enough. Come on, let’s get to the city." },
             { 21, "<b>Josh:</b>\nWhere the hell are you guys?" },
             { 22, "<b>Phillip:</b>\nWe are literally just outside the apartment. What about you?" },
@@ -125,9 +124,9 @@ public class GameManager : MonoBehaviour
             { 29, "<b>Josh:</b>\nGuys, we have another problem, these…" },
             { 30, "<b>Terrence:</b>\nWhat the hell just happened?" },
             { 31, "<b>Phillip:</b>\nI don’t know, but hopefully he’s alright. Come on, we gotta get some parts from these cars. But it will take a while for me to get them." },
-            { 32, "<b>Terrence:</b>\nWhy don’t we just use grenades, blow up the car and then get the parts?" },
+            { 32, "<b>Terrence:</b>\nWhy don’t we just use grenades, blow up the car and then get the parts? Two should be enough for each." },
             { 33, "<b>Phillip:</b>\nGood idea. We need to blow up all four of these cars. Remember, both of us need to stay alive if we want to survive." },
-            { 34, "<b>Terrence:</b>\nQuickly, get the parts, and defend yourself!" },
+            { 34, "<b>Terrence:</b>\nQuickly, get the parts and defend yourself!" },
             { 35, "<b>Phillip:</b>\nAlright, I got all the parts that I could use to fix the chopper." },
             { 36, "<b>Terrence:</b>\nCool, let’s go upstairs. I don’t want to see a single blood thirsty zombie again." },
             { 38, "<b>Phillip:</b>\nJosh is not here…" },
@@ -144,13 +143,13 @@ public class GameManager : MonoBehaviour
         {
             { 0, "<b>Terrence:</b>\nShoot! Phillip is gone. I just hope that Josh is still alive and he knows how to fix the chopper." },
             { 2, "<b>Terrence:</b>\nJosh, where are you? JOSH? Dang it, I guess he got killed by the zombies." },
-            { 3, "<b>Terrence:</b>\nOh no, I am dead" }
+            { 3, "<b>Terrence:</b>\nOh no, I am dead..." }
         };
         alternate2Dict = new Dictionary<int, string>
         {
             { 0, "<b>Phillip:</b>\nShoot! Terrence is gone. I just hope Josh knows how to fly the damn chopper." },
             { 2, "<b>Phillip:</b>\nJosh, where are you? I got all the parts, JOSH? Dang it, I guess he’s dead." },
-            { 3, "<b>Phillip:</b>\nOh no, I am next" }
+            { 3, "<b>Phillip:</b>\nOh no, I am next..." }
         };
     }
 
@@ -170,6 +169,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         player1UI.SetActive(false);
         player2UI.SetActive(false);
+        player1TutorialUI.SetActive(true);
+        player2TutorialUI.SetActive(true);
         Color temp;
         Image gameCompletedImages = gameCompleted.GetComponentInChildren<Image>(true);
         temp = gameCompletedImages.color;
