@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject player2;
     [SerializeField] GameObject player1UI;
     [SerializeField] GameObject player2UI;
+    [SerializeField] GameObject player1TutorialUI
+    ;
+    [SerializeField] GameObject player2TutorialUI;
+
     [SerializeField] GameObject gameCompleted;
     [SerializeField] GameObject gameOver;
     [SerializeField] GameObject backToMainMenu;
@@ -672,6 +676,8 @@ public class GameManager : MonoBehaviour
         transitionAnim.gameObject.SetActive(true);
         player1.SetActive(false);
         player2.SetActive(false);
+        player1TutorialUI.SetActive(false);
+        player2TutorialUI.SetActive(false);
         transitionAnim.SetTrigger("End");
         level1Done = true;
         yield return new WaitForSeconds(2);
