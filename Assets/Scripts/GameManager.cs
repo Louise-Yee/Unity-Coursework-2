@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject zombieSpawnWest1;
     [SerializeField] GameObject zombieSpawnWest2;
     [SerializeField] GameObject zombieSpawnEast;
+    [SerializeField] GameObject skipButton;
+    [SerializeField] GameObject ovals;
     [SerializeField] Text player1killed;
     [SerializeField] Text player2killed;
     [SerializeField] AudioSource audioSource;
@@ -89,6 +91,8 @@ public class GameManager : MonoBehaviour
         zombieSpawnWest1.SetActive(false);
         zombieSpawnWest2.SetActive(false);
         zombieSpawnEast.SetActive(false);
+        skipButton.SetActive(true);
+        ovals.SetActive(false);
         transitionAnim.gameObject.SetActive(false);
         
         speechDict = new Dictionary<int, string>
@@ -250,6 +254,8 @@ public class GameManager : MonoBehaviour
         zombieSpawnWest1.SetActive(false);
         zombieSpawnWest2.SetActive(false);
         zombieSpawnEast.SetActive(false);
+        skipButton.SetActive(true);
+        ovals.SetActive(false);
         p1ZombieKilled = 0;
         p2ZombieKilled = 0;
         terrenceIndex = 0;
@@ -435,12 +441,15 @@ public class GameManager : MonoBehaviour
                         carCount++;
                     }
                 }
-                if (sumSpawned==30 && count==0 && !level1Done && !level2Done){
+                if (((!level1Done && !level2Done) || (level1Done && level2Done)) && (player1Dead || player2Dead)){
+                    GameOver();
+                }
+                if (sumSpawned==30 && count==0 && !level1Done && !level2Done && !player1.GetComponent<PlayerHealthSystem>().isDowned && !player2.GetComponent<PlayerHealthSystem>().isDowned){
                     mission.SetActive(false);
                     inGame = false;
                 }
                 else if (!player1Dead && !player2Dead){
-                    if (sumSpawned==80 && count==0 && level1Done && !level2Done && allGearsCollected){
+                    if (sumSpawned==80 && count==0 && level1Done && !level2Done && allGearsCollected && !player1.GetComponent<PlayerHealthSystem>().isDowned && !player2.GetComponent<PlayerHealthSystem>().isDowned){
                         mission.SetActive(false);
                         inGame = false;
                     }
@@ -466,7 +475,7 @@ public class GameManager : MonoBehaviour
                         SwitchCharacter();
                     }
                     if (level1Done && level2Done){
-                        missionText.text = "<b>Mission:</b>\nFix the helicopter. ("+(4-player2.GetComponent<PlayerInventory>().gearCount)+"/4)\nStart the helicopter.";
+                        missionText.text = "<b>Mission:</b>\n[Phillip] Fix the helicopter. ("+(4-player2.GetComponent<PlayerInventory>().gearCount)+"/4)\n[Terrence] Start the helicopter.";
                     }
                 }
                 else if (player1Dead && !player2Dead){
@@ -485,7 +494,7 @@ public class GameManager : MonoBehaviour
                     missionText.text = "<b>Mission:</b>\nKill all 30 zombies. ("+(p1ZombieKilled+p2ZombieKilled)+"/30)";
                 }
                 else if (level1Done && !level2Done){
-                    missionText.text = "<b>Mission:</b>\nKill all 80 zombies. ("+(p1ZombieKilled+p2ZombieKilled-30)+"/80)\nBlow up the 4 cars using grenades to get gears. ("+(4-carCount)+"/4)\nCollect all 4 gears. ("+player2.GetComponent<PlayerInventory>().gearCount+"/4)";
+                    missionText.text = "<b>Mission:</b>\nKill all 80 zombies. ("+(p1ZombieKilled+p2ZombieKilled-30)+"/80)\nBlow up the 4 cars using grenades to get gears. ("+(4-carCount)+"/4)\n[Phillip] Collect all 4 gears. ("+player2.GetComponent<PlayerInventory>().gearCount+"/4)";
                 }
             }
             player1killed.text = "Zombies killed: "+p1ZombieKilled;
@@ -556,8 +565,43 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     public void Skip(){
+        if (!player1Dead && !player2Dead){
+            if (speechKey >= 0 && speechKey <= 16){
+                speechKey = 16;
+                terrenceIndex = 4;
+                phillipIndex = 8;
+                joshIndex = 5;
+            }
+            else if (speechKey > 16 && speechKey <= 19){
+                speechKey = 19;
+                terrenceIndex = 6;
+                phillipIndex = 9;
+            }
+            else if (speechKey >= 21 && speechKey <= 34){
+                speechKey = 34;
+                terrenceIndex = 10;
+                phillipIndex = 14;
+            }
+            else if (speechKey > 34 && speechKey <= 36){
+                speechKey = 36;
+                terrenceIndex = 11;
+                phillipIndex = 15;
+            }
+            else if (speechKey >= 38 && speechKey <= 43){
+                speechKey = 43;
+                terrenceIndex = 13;
+                phillipIndex = 18;
+            }
+            else if (speechKey > 43 && speechKey <= 45){
+                speechKey = 45;
+                terrenceIndex = 15;
+            }
+            Next();
+        }
+    }
+
+    public void Next(){
         if (!player1Dead && !player2Dead){
             if (speechKey==16){
                 inGame = true;
@@ -569,6 +613,12 @@ public class GameManager : MonoBehaviour
                 p1Movement.isAutoMoving = true;
                 p2Movement.isAutoMoving = true;
                 speech.SetActive(false);
+            }
+            else if (speechKey==31 || speechKey==32){
+                ovals.SetActive(true);
+            }
+            else if (speechKey==33){
+                ovals.SetActive(false);
             }
             else if (speechKey==34){
                 inGame = true;
@@ -614,6 +664,7 @@ public class GameManager : MonoBehaviour
             audioSource.Stop();
         }
         else if (player1Dead && !player2Dead){
+            skipButton.SetActive(false);
             if (alternate2Key==0){
                 p2Movement.isAutoMoving = true;
                 speech.SetActive(false);
@@ -640,6 +691,7 @@ public class GameManager : MonoBehaviour
             audioSource.Stop();
         }
         else if (!player1Dead && player2Dead){
+            skipButton.SetActive(false);
             if (alternate1Key==0){
                 p1Movement.isAutoMoving = true;
                 speech.SetActive(false);
@@ -675,6 +727,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LoadLevel2(){
         transitionAnim.gameObject.SetActive(true);
+        DestroyDrops();
         player1.SetActive(false);
         player2.SetActive(false);
         player1TutorialUI.SetActive(false);
@@ -683,7 +736,6 @@ public class GameManager : MonoBehaviour
         level1Done = true;
         yield return new WaitForSeconds(2);
         rural.SetActive(false);
-        DestroyDrops();
         city.SetActive(true);
         ZombieSpawner.powerCount = 20;
         ZombieSpawner.minSpawmTime = 4f;
@@ -702,6 +754,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LoadLevel3(){
         transitionAnim.gameObject.SetActive(true);
+        DestroyDrops();
         player1.SetActive(false);
         player2.SetActive(false);
         zombieSpawnNorth.SetActive(false);
@@ -712,7 +765,6 @@ public class GameManager : MonoBehaviour
         level2Done = true;
         yield return new WaitForSeconds(2);
         city.SetActive(false);
-        DestroyDrops();
         rooftop.SetActive(true);
         ZombieSpawner.powerCount = int.MaxValue;
         if (player1Dead || player2Dead){

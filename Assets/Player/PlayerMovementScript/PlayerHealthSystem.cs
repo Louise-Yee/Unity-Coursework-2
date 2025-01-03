@@ -323,7 +323,7 @@ public class PlayerHealthSystem : MonoBehaviour
             // Revive the player
             isDowned = false;
             isBeingRevived = false;
-            dyingHealth = 10;
+            dyingHealth = 20;
             currentHealth = reviveHealth;
 
             if (isPlayerOne)

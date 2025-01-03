@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 19e49da7c93ef7045a2a1d70e257bcea
+guid: 95d60c0a1e5dc834584acb804ac8775e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,46 +95,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Helicopter_0
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 96
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: 40, y: -16}
-        - {x: 15, y: -21}
-        - {x: 30, y: -7}
-        - {x: 31, y: -1}
-        - {x: -59, y: -1}
-        - {x: -59, y: -6}
-        - {x: -18, y: -7}
-        - {x: -19, y: -12}
-        - {x: -32, y: -17}
-        - {x: -44, y: -32}
-        - {x: -45, y: -48}
-        - {x: -31, y: -55}
-        - {x: -40, y: -63}
-        - {x: 5, y: -63}
-        - {x: -1, y: -55}
-        - {x: 4, y: -54}
-        - {x: 23, y: -35}
-        - {x: 40, y: -24}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17ffd44daada3a54eb1530309e3a3e92
-      internalID: 1121521912
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,8 +106,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Helicopter_0: 1121521912
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

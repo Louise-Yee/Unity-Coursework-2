@@ -74,10 +74,17 @@ public class StartHeliProgress : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider){
-        if (collider.name == "Player 1" && !completed){
+        if (collider.name == "Player 1" && !completed && transform.GetComponent<FixProgress>().completed){
             playerNearby = collider;
             image.gameObject.SetActive(true);
         }
+        if ((collider.name == "Player 1" || collider.name == "Player 2") && completed){
+            collider.gameObject.SetActive(false);
+            count++;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider){
         if ((collider.name == "Player 1" || collider.name == "Player 2") && completed){
             collider.gameObject.SetActive(false);
             count++;
