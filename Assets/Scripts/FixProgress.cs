@@ -37,9 +37,9 @@ public class FixProgress : MonoBehaviour
     void StartFixing(){
         PlayerInventory playerNearbyInventory = playerNearby.gameObject.GetComponent<PlayerInventory>();
         if (playerNearbyInventory.gearCount>0){
-            if (fixTime <= 10){
+            if (fixTime <= 5){
                 fixTime += Time.deltaTime;
-                image.fillAmount = fixTime / 10f;
+                image.fillAmount = fixTime / 5f;
             }
             else{
                 scrollbar.size += 0.25f;

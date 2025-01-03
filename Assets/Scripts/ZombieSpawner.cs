@@ -15,6 +15,8 @@ public class ZombieSpawner : MonoBehaviour
     public int temp1 = 0;
     public int temp2 = 0;
     private System.Random random = new System.Random(); // Random number generator
+    private int westSpawnCounter = 0; // Counter for spawns in West areas
+    private bool isCoolingDown = false; // Flag to check if spawner is in cooldown
 
     // Update is called once per frame
     void Update()
@@ -25,7 +27,7 @@ public class ZombieSpawner : MonoBehaviour
             // Update the spawn timer
             spawnTimer += Time.deltaTime;
             // Check if enough time has passed to spawn a zombie
-            if (spawnTimer >= spawnInterval)
+            if (spawnTimer >= spawnInterval && !isCoolingDown)
             {
                 // Spawn the current prefab
                 GameObject newZombie = Instantiate(zombiePrefab[currentIndex]);
@@ -37,6 +39,15 @@ public class ZombieSpawner : MonoBehaviour
                 }
                 else if (transform.name.Contains("West (1)") || transform.name.Contains("West (2)")){
                     newZombie.transform.position = new Vector2(transform.position.x, transform.position.y);
+                    westSpawnCounter++;
+
+                    // Check if we've spawned 3 zombies in the West area
+                    if (westSpawnCounter >= 3)
+                    {
+                        isCoolingDown = true; // Start cooldown period
+                        Invoke("EndCooldown", 4f); // End cooldown after 4 seconds
+                        westSpawnCounter = 0; // Reset counter for next batch
+                    }
                 }
                 else{
                     // Change x value by a random number between -2 and 2
@@ -73,5 +84,10 @@ public class ZombieSpawner : MonoBehaviour
                 spawnInterval = Random.Range(minSpawmTime, maxSpawmTime);
             }
         }
+    }
+
+    private void EndCooldown()
+    {
+        isCoolingDown = false; // End cooldown period, allowing spawning again
     }
 }
