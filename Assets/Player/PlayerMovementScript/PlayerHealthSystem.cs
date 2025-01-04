@@ -45,6 +45,9 @@ public class PlayerHealthSystem : MonoBehaviour
         get { return currentHealth == maxHealth; }
     }
 
+    private float damageCooldown = 1f; // Time between damage instances
+    private float lastDamageTime = 0f; // Track when the last damage was taken
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -75,12 +78,15 @@ public class PlayerHealthSystem : MonoBehaviour
         }
     }
 
-    public void Reset(){
+    public void Reset()
+    {
         dyingHealth = 20;
         isDead = false;
         isDowned = false;
         isImmune = false;
         isBeingRevived = false;
+        lastDamageTime = 0f; // Reset damage cooldown
+
         animator = GetComponent<Animator>();
         if (isPlayerOne)
         {
@@ -91,14 +97,11 @@ public class PlayerHealthSystem : MonoBehaviour
             player2Movement = GetComponent<Player2Movement>();
         }
 
-        // Initialize the player's health
         currentHealth = maxHealth;
-        revivalPrompt.SetActive(false); // Hide prompt initially
+        revivalPrompt.SetActive(false);
 
-        // Initialize UI
         UpdateHealthUI();
 
-        // Disable revive text initially
         if (reviveText != null)
         {
             reviveText.gameObject.SetActive(false);
@@ -111,26 +114,29 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void Update()
     {
-        if (isDead){
-            if (isPlayerOne){
+        if (isDead)
+        {
+            if (isPlayerOne)
+            {
                 GameManager.player1Dead = true;
             }
-            else{
+            else
+            {
                 GameManager.player2Dead = true;
             }
             reviveText.text = "Dead";
         }
-        // Check for game over
+
         if (currentHealth <= 0 && !isDowned)
         {
             EnterDownedState();
         }
 
-        if (currentHealth <= 0 && isDowned && !isDead){
+        if (currentHealth <= 0 && isDowned && !isDead)
+        {
             UpdateHealthUI();
         }
 
-        // Check for revival input
         if (nearbyAlivePlayer != null)
         {
             if (!nearbyAlivePlayer.isDead && nearbyAlivePlayer.isDowned && Input.GetKey(KeyCode.H))
@@ -153,25 +159,29 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         if (healthImage != null)
         {
-            if (isDowned){
+            if (isDowned)
+            {
                 float fillAmount = dyingHealth / maxHealth;
 
                 healthImage.fillAmount = fillAmount;
-                healthImage.color = new Color(1,0.001546457f,1);
-                if (!isBeingRevived){
-                    dyingHealth -= Time.deltaTime/2;
-                    if (dyingHealth <= 0){
+                healthImage.color = new Color(1, 0.001546457f, 1);
+                if (!isBeingRevived)
+                {
+                    dyingHealth -= Time.deltaTime / 2;
+                    if (dyingHealth <= 0)
+                    {
                         isDead = true;
                     }
                 }
             }
-            else{
+            else
+            {
                 // Calculate the fill amount based on current health
                 float fillAmount = currentHealth / maxHealth;
 
                 // Update the fill amount directly
                 healthImage.fillAmount = fillAmount;
-                healthImage.color = new Color(1,1,1);
+                healthImage.color = new Color(1, 1, 1);
             }
 
             // Ensure the fill origin is correctly configured
@@ -188,22 +198,30 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Check if enough time has passed since last damage
         if (
             other.CompareTag("Zombie")
             && !isDowned
             && !isImmune
             && !other.GetComponent<Animator>().GetBool("isDead")
+            && Time.time >= lastDamageTime + damageCooldown
         )
         {
             // Reduce health
             currentHealth--;
+            // Update last damage time
+            lastDamageTime = Time.time;
             // Update health UI
             UpdateHealthUI();
         }
 
-        // Check for nearby downed player
         PlayerHealthSystem otherPlayerHealth = other.GetComponent<PlayerHealthSystem>();
-        if (other.CompareTag("Player") && otherPlayerHealth != null && otherPlayerHealth.isDowned && !otherPlayerHealth.isDead)
+        if (
+            other.CompareTag("Player")
+            && otherPlayerHealth != null
+            && otherPlayerHealth.isDowned
+            && !otherPlayerHealth.isDead
+        )
         {
             revivalPrompt.gameObject.SetActive(true);
             reviveButtonText.gameObject.SetActive(true);
@@ -217,7 +235,11 @@ public class PlayerHealthSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerHealthSystem otherPlayerHealth = other.GetComponent<PlayerHealthSystem>();
-            if (otherPlayerHealth != null && otherPlayerHealth.isDowned && !otherPlayerHealth.isDead)
+            if (
+                otherPlayerHealth != null
+                && otherPlayerHealth.isDowned
+                && !otherPlayerHealth.isDead
+            )
             {
                 revivalPrompt.gameObject.SetActive(false);
                 reviveButtonImage.fillAmount = 1;
