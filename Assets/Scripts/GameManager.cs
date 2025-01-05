@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
             { 21, "<b>Josh:</b>\nWhere the hell are you guys?" },
             { 22, "<b>Phillip:</b>\nWe are literally just outside the apartment. What about you?" },
             { 23, "<b>Josh:</b>\nWell, I am beside the chopper, and we have a problem. Some parts inside the chopper are rusted and broken since it hasn’t been flown for ages. The engine is dead." },
-            { 24, "<b>Phillip:</b>\nI believe I can fix the chopper. I just need a few parts from some vehicles if that’s one way." },
+            { 24, "<b>Phillip:</b>\nI believe I can fix the chopper. I just need a few parts from some cars if that’s one way." },
             { 25, "<b>Josh:</b>\nYou just have to get some parts from, say, cars, and apply it to the chopper so that it works again, but even if we are able to fix it, we still need someone who can fly it." },
             { 26, "<b>Terrence:</b>\nI can fly. I was a pilot before I retired a few months ago." },
             { 27, "<b>Josh:</b>\nCool, I guess we are not done after all." },

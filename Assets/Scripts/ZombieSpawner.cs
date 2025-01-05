@@ -39,14 +39,16 @@ public class ZombieSpawner : MonoBehaviour
                 }
                 else if (transform.name.Contains("West (1)") || transform.name.Contains("West (2)")){
                     newZombie.transform.position = new Vector2(transform.position.x, transform.position.y);
-                    westSpawnCounter++;
+                    if (!GameManager.player1Dead && !GameManager.player2Dead){
+                        westSpawnCounter++;
 
-                    // Check if we've spawned 3 zombies in the West area
-                    if (westSpawnCounter >= 3)
-                    {
-                        isCoolingDown = true; // Start cooldown period
-                        Invoke("EndCooldown", 4f); // End cooldown after 4 seconds
-                        westSpawnCounter = 0; // Reset counter for next batch
+                        // Check if we've spawned 3 zombies in the West area
+                        if (westSpawnCounter >= 3)
+                        {
+                            isCoolingDown = true; // Start cooldown period
+                            Invoke("EndCooldown", 4f); // End cooldown after 4 seconds
+                            westSpawnCounter = 0; // Reset counter for next batch
+                        }
                     }
                 }
                 else{
@@ -65,7 +67,7 @@ public class ZombieSpawner : MonoBehaviour
                 };
 
                 // Randomly paint some zombies red
-                if (random.Next(0, 7) == 1 && temp2 < powerCount)
+                if (random.Next(0, 5) == 1 && temp2 < powerCount)
                 {
                     SpriteRenderer spriteRenderer = newZombie.GetComponent<SpriteRenderer>();
                     if (spriteRenderer != null)
