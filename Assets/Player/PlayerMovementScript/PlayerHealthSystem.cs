@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
-    public float maxHealth = 20; // Maximum health
+    public float maxHealth = 10; // Maximum health
     public float currentHealth; // Current health
-    public float dyingHealth = 20; // Dying health
+    public float dyingHealth = 10; // Dying health
     public float pushForce = 2f; // Force to push the zombie away
     private float revivalTime = 5f; // Time required to revive the player
     private float revivalCount = 0f;
-    private int reviveHealth = 10; // Health restored upon revival
+    private int reviveHealth = 5; // Health restored upon revival
     public bool isPlayerOne;
     public bool isDead = false; // Tracks if the player is dead
     public bool isDowned = false; // Tracks if the player is downed
@@ -80,7 +80,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public void Reset()
     {
-        dyingHealth = 20;
+        dyingHealth = 10;
         isDead = false;
         isDowned = false;
         isImmune = false;
@@ -167,7 +167,7 @@ public class PlayerHealthSystem : MonoBehaviour
                 healthImage.color = new Color(1, 0.001546457f, 1);
                 if (!isBeingRevived)
                 {
-                    dyingHealth -= Time.deltaTime / 2;
+                    dyingHealth -= Time.deltaTime / 3;
                     if (dyingHealth <= 0)
                     {
                         isDead = true;
@@ -345,7 +345,7 @@ public class PlayerHealthSystem : MonoBehaviour
             // Revive the player
             isDowned = false;
             isBeingRevived = false;
-            dyingHealth = 20;
+            dyingHealth = 10;
             currentHealth = reviveHealth;
 
             if (isPlayerOne)
