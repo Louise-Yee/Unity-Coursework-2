@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text player1killed;
     [SerializeField] Text player2killed;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip background;
     [SerializeField] AudioClip[] terrenceVoice;
     [SerializeField] AudioClip[] phillipVoice;
     [SerializeField] AudioClip[] joshVoice;
@@ -93,6 +95,9 @@ public class GameManager : MonoBehaviour
         zombieSpawnEast.SetActive(false);
         skipButton.SetActive(true);
         ovals.SetActive(false);
+        audioSource.clip = background;
+        audioSource.loop = true;
+        audioSource.Play();
         transitionAnim.gameObject.SetActive(false);
         
         speechDict = new Dictionary<int, string>
@@ -167,6 +172,8 @@ public class GameManager : MonoBehaviour
         p2Movement = player2.GetComponent<Player2Movement>();
         player1.transform.position = new Vector3(1.1f, 2.87f, 0);
         player2.transform.position = new Vector3(3.1f, 2.87f, 0);
+        audioSource.Stop();
+        audioSource.loop = false;
     }
 
     public void ClickedMainMenu(){
@@ -275,6 +282,9 @@ public class GameManager : MonoBehaviour
         isPlaying = false;
         isPaused = false;
         backToMainMenu.SetActive(false);
+        audioSource.clip = background;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     void GameCompleted(){
@@ -821,5 +831,9 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
         }
         Time.timeScale = 1f;
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
