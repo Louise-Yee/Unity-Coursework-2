@@ -9448,6 +9448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1360557383}
   audioSource: {fileID: 541145430}
+  decayRate: 0.5
   completed: 0
   gameCompleted: 0
 --- !u!82 &541145430
@@ -9459,7 +9460,7 @@ AudioSource:
   m_GameObject: {fileID: 541145424}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 7cd415419bf350e40aee83d85802a83a, type: 2}
   m_audioClip: {fileID: 8300000, guid: 43dfb5a440d5f614d8ff19f9e9d28df7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -34188,7 +34189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &1896623026
 Grid:
   m_ObjectHideFlags: 0

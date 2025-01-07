@@ -5,20 +5,27 @@ using UnityEngine.UI;
 
 public class StartHeliProgress : MonoBehaviour
 {
-    [SerializeField] Image image;
-    [SerializeField] AudioSource audioSource;
+    [SerializeField]
+    Image image;
+
+    [SerializeField]
+    AudioSource audioSource;
+
+    [SerializeField]
+    float decayRate = 0.5f; // How fast the progress decreases per second
     private Collider2D playerNearby;
     private float startTime = 0;
     private int count = 0;
     public bool completed = false;
     public bool gameCompleted = false;
-    // Start is called before the first frame update
+
     void Start()
     {
         image.gameObject.SetActive(false);
     }
 
-    public void Reset(){
+    public void Reset()
+    {
         image.gameObject.SetActive(false);
         startTime = 0;
         count = 0;
@@ -27,33 +34,48 @@ public class StartHeliProgress : MonoBehaviour
         transform.position = new Vector3(7.78f, 3.45f, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (playerNearby != null){
-            if (Input.GetKey(KeyCode.E) && transform.gameObject.GetComponent<FixProgress>().completed == true && !completed){
+        if (playerNearby != null)
+        {
+            if (
+                Input.GetKey(KeyCode.E)
+                && transform.gameObject.GetComponent<FixProgress>().completed == true
+                && !completed
+            )
+            {
                 StartEngine();
             }
-            else{
-                startTime = 0;
+            else if (!completed) // Only decay if not completed
+            {
+                // Gradually decrease the progress
+                startTime = Mathf.Max(0, startTime - (decayRate * Time.deltaTime));
+                image.fillAmount = startTime / 10f;
             }
         }
-        if (completed && !audioSource.isPlaying){
-            // Play audio when completed
+
+        if (completed && !audioSource.isPlaying)
+        {
             PlayAudio();
         }
-        if (count == 2){
+
+        if (count == 2)
+        {
             gameCompleted = true;
             MoveUp();
         }
     }
 
-    void StartEngine(){
-        if (startTime <= 10){
+    void StartEngine()
+    {
+        if (startTime <= 10)
+        {
             startTime += Time.deltaTime;
             image.fillAmount = startTime / 10f;
         }
-        else{
+        else
+        {
+            Debug.Log("Engine has been started");
             image.gameObject.SetActive(false);
             completed = true;
         }
@@ -69,30 +91,40 @@ public class StartHeliProgress : MonoBehaviour
 
     void MoveUp()
     {
-        // Move the GameObject up slowly
-        transform.position += new Vector3(0, Time.deltaTime * 3f, 0); // Adjust speed as necessary
+        transform.position += new Vector3(0, Time.deltaTime * 3f, 0);
     }
 
-    void OnTriggerEnter2D(Collider2D collider){
-        if (collider.name == "Player 1" && !completed && transform.GetComponent<FixProgress>().completed){
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (
+            collider.name == "Player 1"
+            && !completed
+            && transform.GetComponent<FixProgress>().completed
+        )
+        {
             playerNearby = collider;
             image.gameObject.SetActive(true);
         }
-        if ((collider.name == "Player 1" || collider.name == "Player 2") && completed){
+        if ((collider.name == "Player 1" || collider.name == "Player 2") && completed)
+        {
             collider.gameObject.SetActive(false);
             count++;
         }
     }
 
-    void OnTriggerStay2D(Collider2D collider){
-        if ((collider.name == "Player 1" || collider.name == "Player 2") && completed){
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if ((collider.name == "Player 1" || collider.name == "Player 2") && completed)
+        {
             collider.gameObject.SetActive(false);
             count++;
         }
     }
 
-    void OnTriggerExit2D(Collider2D collider){
-        if (collider.name == "Player 1"){
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.name == "Player 1")
+        {
             playerNearby = null;
             image.gameObject.SetActive(false);
         }
