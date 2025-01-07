@@ -42,11 +42,11 @@ public class ZombieSpawner : MonoBehaviour
                     if (!GameManager.player1Dead && !GameManager.player2Dead){
                         westSpawnCounter++;
 
-                        // Check if we've spawned 3 zombies in the West area
-                        if (westSpawnCounter >= 3)
+                        // Check if we've spawned 4 zombies in the West area
+                        if (westSpawnCounter >= 4)
                         {
                             isCoolingDown = true; // Start cooldown period
-                            Invoke("EndCooldown", 4f); // End cooldown after 4 seconds
+                            Invoke("EndCooldown", 2f); // End cooldown after 2 seconds
                             westSpawnCounter = 0; // Reset counter for next batch
                         }
                     }
