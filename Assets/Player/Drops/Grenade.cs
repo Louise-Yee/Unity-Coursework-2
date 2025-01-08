@@ -108,19 +108,21 @@ public class Grenade : MonoBehaviour
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (Collider2D hitCollider in hitColliders)
         {
-            if (hitCollider is CapsuleCollider2D || hitCollider is PolygonCollider2D){
+            if (hitCollider is CapsuleCollider2D || hitCollider is PolygonCollider2D)
+            {
                 if (hitCollider.CompareTag("Zombie"))
                 {
                     // Attempt to get the zombieHealth script on the zombie
                     zombieHealth zombie = hitCollider.GetComponent<zombieHealth>();
 
-                    if (zombie != null && !zombie.IsDead() && zombie.currentHealth!=0)
+                    if (zombie != null && !zombie.IsDead() && zombie.currentHealth != 0)
                     {
                         // Call the TakeDamage function with the grenade's damage
-                        zombie.TakeDamage(damage,gameObject.name);
+                        zombie.TakeDamage(damage, gameObject.name);
                     }
                 }
-                else if (hitCollider.CompareTag("Vehicle")){
+                else if (hitCollider.CompareTag("Vehicle"))
+                {
                     // Attempt to get the vehicleHealth script on the vehicle
                     vehicleHealth vehicle = hitCollider.GetComponent<vehicleHealth>();
 
