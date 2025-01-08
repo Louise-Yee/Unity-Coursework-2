@@ -25,6 +25,7 @@ public class vehicleHealth : MonoBehaviour
         currentHealth = maxHealth;
         vehicleDrop = GetComponent<VehicleDrop>(); // Get the ZombieDrop component
         vehicleCollider = GetComponent<Collider2D>(); // Get the Zombie's Collider2D component
+        vehicleCollider.enabled = true;
     }
 
     public void TakeDamage(float damage)
