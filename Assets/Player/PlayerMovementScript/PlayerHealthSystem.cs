@@ -303,6 +303,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if (reviveText != null)
         {
             reviveText.gameObject.SetActive(true);
+            reviveText.text = "Revive";
         }
         if (reviveTextBackground != null)
         {
