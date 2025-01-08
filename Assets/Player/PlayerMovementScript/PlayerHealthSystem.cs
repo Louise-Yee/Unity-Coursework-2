@@ -48,6 +48,13 @@ public class PlayerHealthSystem : MonoBehaviour
     private float damageCooldown = 1f; // Time between damage instances
     private float lastDamageTime = 0f; // Track when the last damage was taken
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip[] hurtSounds;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -75,6 +82,11 @@ public class PlayerHealthSystem : MonoBehaviour
         if (reviveTextBackground != null)
         {
             reviveTextBackground.gameObject.SetActive(false);
+        }
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
 
@@ -209,6 +221,7 @@ public class PlayerHealthSystem : MonoBehaviour
         {
             // Reduce health
             currentHealth--;
+            PlayRandomHurtSound();
             // Update last damage time
             lastDamageTime = Time.time;
             // Update health UI
@@ -227,6 +240,18 @@ public class PlayerHealthSystem : MonoBehaviour
             reviveButtonText.gameObject.SetActive(true);
             reviveButtonImage.gameObject.SetActive(true);
             nearbyAlivePlayer = otherPlayerHealth;
+        }
+    }
+
+    private void PlayRandomHurtSound()
+    {
+        if (audioSource != null && hurtSounds != null && hurtSounds.Length > 0)
+        {
+            // Get a random index within the hurtSounds array
+            int randomIndex = Random.Range(0, hurtSounds.Length);
+
+            // Play the randomly selected hurt sound
+            audioSource.PlayOneShot(hurtSounds[randomIndex]);
         }
     }
 

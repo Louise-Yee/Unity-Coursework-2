@@ -36105,6 +36105,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 205448411}
     - target: {fileID: 3564565282491453482, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 5578792477737762255}
+    - target: {fileID: 3564565282491453482, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
       propertyPath: dyingHealth
       value: 10
       objectReference: {fileID: 0}
@@ -36132,6 +36136,26 @@ PrefabInstance:
       propertyPath: reviveTextBackground
       value: 
       objectReference: {fileID: 305906120}
+    - target: {fileID: 3564565282491453482, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
+      propertyPath: hurtSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564565282491453482, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
+      propertyPath: hurtSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 76ab4b141b5f2b54f9dd4ea472aba49e, type: 3}
+    - target: {fileID: 3564565282491453482, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
+      propertyPath: hurtSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 57dc0a97a419c8242be56060024da56f, type: 3}
+    - target: {fileID: 3564565282491453482, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
+      propertyPath: hurtSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 05224b75ca9fc894db3f0d8a42a27456, type: 3}
+    - target: {fileID: 3564565282491453482, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
+      propertyPath: hurtSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: ba1835bea46cf8f42b7497191baf37e3, type: 3}
     - target: {fileID: 5012460529294347834, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -36244,6 +36268,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
+--- !u!82 &5578792477737762255 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3148330591755838434, guid: f0f39dfbd91b9b24f945f540307cf7c5, type: 3}
+  m_PrefabInstance: {fileID: 5578792477737762254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8804155080547119919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36341,6 +36370,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 433008221}
     - target: {fileID: 8914629058045932328, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 8804155080547119920}
+    - target: {fileID: 8914629058045932328, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
       propertyPath: dyingHealth
       value: 10
       objectReference: {fileID: 0}
@@ -36368,6 +36401,26 @@ PrefabInstance:
       propertyPath: reviveTextBackground
       value: 
       objectReference: {fileID: 1341090266}
+    - target: {fileID: 8914629058045932328, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
+      propertyPath: hurtSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914629058045932328, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
+      propertyPath: hurtSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 76ab4b141b5f2b54f9dd4ea472aba49e, type: 3}
+    - target: {fileID: 8914629058045932328, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
+      propertyPath: hurtSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 57dc0a97a419c8242be56060024da56f, type: 3}
+    - target: {fileID: 8914629058045932328, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
+      propertyPath: hurtSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 05224b75ca9fc894db3f0d8a42a27456, type: 3}
+    - target: {fileID: 8914629058045932328, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
+      propertyPath: hurtSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: ba1835bea46cf8f42b7497191baf37e3, type: 3}
     - target: {fileID: 8946194114049067868, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
       propertyPath: m_fontSize
       value: 3
@@ -36400,6 +36453,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
+--- !u!82 &8804155080547119920 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4343743710838894736, guid: 459407bd7f8ae8442873ae9aac5e0415, type: 3}
+  m_PrefabInstance: {fileID: 8804155080547119919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
