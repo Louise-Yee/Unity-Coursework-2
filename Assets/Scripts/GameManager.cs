@@ -937,6 +937,7 @@ public class GameManager : MonoBehaviour
                 speechKey = 45;
                 terrenceIndex = 15;
             }
+            ovals.SetActive(false);
             Next();
         }
     }
